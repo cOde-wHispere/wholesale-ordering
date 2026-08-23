@@ -37,4 +37,15 @@ if ( ! file_exists( $autoload ) ) {
 }
 
 require_once $autoload;
+
+register_activation_hook(
+    __FILE__,
+    array( \WholesaleOrdering\Plugin::class, 'activate' )
+);
+
+register_deactivation_hook(
+    __FILE__,
+    array( \WholesaleOrdering\Plugin::class, 'deactivate' )
+);
+
 \WholesaleOrdering\Plugin::init();
