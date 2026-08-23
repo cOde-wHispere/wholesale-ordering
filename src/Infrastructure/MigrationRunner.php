@@ -26,14 +26,12 @@ final class MigrationRunner {
             return;
         }
 
-        /*
-         * Migration 1 currently establishes the migration framework.
-         *
-         * Actual business tables will be introduced in later phases
-         * after their respective data models have been implemented.
-         */
         if ( $installed_version < 1 ) {
             self::migrate_to_1();
+        }
+
+        if ( $installed_version < 2 ) {
+            self::migrate_to_2();
         }
 
         update_option(
@@ -50,7 +48,18 @@ final class MigrationRunner {
      */
     private static function migrate_to_1(): void {
         // Foundation migration.
-        // No custom tables are required at this stage.
+        // No custom tables were required at this stage.
+    }
+
+    /**
+     * Migration to schema version 2.
+     *
+     * Establishes the approved wholesale customer role and capability.
+     *
+     * @return void
+     */
+    private static function migrate_to_2(): void {
+        RoleManager::install();
     }
 
     /**

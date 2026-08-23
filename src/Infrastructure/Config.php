@@ -17,7 +17,7 @@ final class Config {
     /**
      * Current database schema version.
      */
-    public const DB_VERSION = 1;
+    public const DB_VERSION = 2;
 
     /**
      * WordPress option storing the installed plugin version.
