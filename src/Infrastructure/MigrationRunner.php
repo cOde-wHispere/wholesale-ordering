@@ -23,6 +23,8 @@ final class MigrationRunner {
         $target_version = Config::DB_VERSION;
 
         if ( $installed_version >= $target_version ) {
+            self::ensure_current_state();
+
             return;
         }
 
@@ -32,6 +34,10 @@ final class MigrationRunner {
 
         if ( $installed_version < 2 ) {
             self::migrate_to_2();
+        }
+
+        if ( $installed_version < 3 ) {
+            self::migrate_to_3();
         }
 
         update_option(
@@ -60,6 +66,40 @@ final class MigrationRunner {
      */
     private static function migrate_to_2(): void {
         RoleManager::install();
+    }
+
+    /**
+     * Migration to schema version 3.
+     *
+     * Establishes the wholesale customer status framework.
+     *
+     * @return void
+     */
+    private static function migrate_to_3(): void {
+        update_option(
+            Config::OPTION_STATUS_VERSION,
+            1,
+            false
+        );
+    }
+
+    /**
+     * Ensure state introduced by the current schema is present.
+     *
+     * This protects against a database where the schema version was
+     * advanced but an associated framework option was not persisted.
+     *
+     * @return void
+     */
+    private static function ensure_current_state(): void {
+        $status_version = (int) get_option(
+            Config::OPTION_STATUS_VERSION,
+            0
+        );
+
+        if ( $status_version < 1 ) {
+            self::migrate_to_3();
+        }
     }
 
     /**
