@@ -17,9 +17,9 @@ final class Config {
     /**
      * Current database/schema version.
      *
-     * Version 4 establishes the wholesale application domain framework.
+     * Version 5 establishes the product/pricing framework.
      */
-    public const DB_VERSION = 4;
+    public const DB_VERSION = 5;
 
     /**
      * WordPress option storing the installed plugin version.
@@ -42,6 +42,11 @@ final class Config {
     public const OPTION_APPLICATION_VERSION = 'wholesale_ordering_application_version';
 
     /**
+     * WordPress option storing the wholesale product/pricing framework version.
+     */
+    public const OPTION_PRODUCT_PRICING_VERSION = 'wholesale_ordering_product_pricing_version';
+
+    /**
      * Current wholesale status framework version.
      */
     public const STATUS_VERSION = 1;
@@ -50,6 +55,11 @@ final class Config {
      * Current wholesale application framework version.
      */
     public const APPLICATION_VERSION = 1;
+
+    /**
+     * Current wholesale product/pricing framework version.
+     */
+    public const PRODUCT_PRICING_VERSION = 1;
 
     /**
      * Wholesale customer status: pending.

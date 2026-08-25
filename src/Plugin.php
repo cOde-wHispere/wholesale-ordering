@@ -6,6 +6,9 @@ use WholesaleOrdering\Infrastructure\Config;
 use WholesaleOrdering\Infrastructure\Logger;
 use WholesaleOrdering\Infrastructure\MigrationRunner;
 use WholesaleOrdering\Infrastructure\Requirements;
+use WholesaleOrdering\Pricing\WooCommercePricingIntegration;
+use WholesaleOrdering\Products\ProductFields;
+use WholesaleOrdering\Security\PricingLeakageProtection;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -103,7 +106,34 @@ final class Plugin {
      * @return void
      */
     private static function register_runtime(): void {
+        /*
+         * Database/schema and domain framework state.
+         */
         MigrationRunner::run();
+
+        /*
+         * Product administration fields and metadata persistence.
+         */
+        ProductFields::register();
+
+        /*
+         * Authoritative WooCommerce pricing integration.
+         *
+         * This service is responsible for applying the PricingService
+         * decision to WooCommerce product prices, price HTML, cart totals
+         * and variation AJAX responses.
+         */
+        $pricing_integration = new WooCommercePricingIntegration();
+
+        $pricing_integration->register();
+
+        /*
+         * Secondary exposure protection.
+         *
+         * This protects REST responses, structured data and authenticated
+         * request caching from leaking customer-specific wholesale prices.
+         */
+        PricingLeakageProtection::register();
     }
 
     /**
@@ -172,7 +202,6 @@ final class Plugin {
          * WooCommerce does not need to be loaded during activation.
          * Runtime dependency enforcement occurs during plugins_loaded.
          */
-
         update_option(
             Config::OPTION_VERSION,
             Config::VERSION,

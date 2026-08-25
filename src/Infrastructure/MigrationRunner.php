@@ -7,10 +7,9 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Handles plugin database/schema migrations.
  *
- * The application domain currently uses WordPress user metadata rather than
- * a custom application table. Migration version 4 therefore establishes
- * and verifies the application framework version without introducing
- * unnecessary database tables.
+ * The application and product/pricing domains currently use native
+ * WordPress/WooCommerce entities and protected metadata rather than custom
+ * tables.
  */
 final class MigrationRunner {
 
@@ -51,11 +50,17 @@ final class MigrationRunner {
             self::migrate_to_4();
         }
 
+        if ( $installed_version < 5 ) {
+            self::migrate_to_5();
+        }
+
         update_option(
             Config::OPTION_DB_VERSION,
             $target_version,
             false
         );
+
+        self::ensure_current_state();
     }
 
     /**
@@ -74,8 +79,6 @@ final class MigrationRunner {
     /**
      * Migration to schema version 2.
      *
-     * Establishes the approved wholesale customer role and capability.
-     *
      * @return void
      */
     private static function migrate_to_2(): void {
@@ -84,8 +87,6 @@ final class MigrationRunner {
 
     /**
      * Migration to schema version 3.
-     *
-     * Establishes the wholesale customer status framework.
      *
      * @return void
      */
@@ -100,11 +101,6 @@ final class MigrationRunner {
     /**
      * Migration to schema version 4.
      *
-     * Establishes the wholesale application domain framework.
-     *
-     * Application records are represented through native WordPress user
-     * metadata in V1, so no custom application table is required.
-     *
      * @return void
      */
     private static function migrate_to_4(): void {
@@ -116,10 +112,25 @@ final class MigrationRunner {
     }
 
     /**
-     * Ensure all state required by the current schema exists.
+     * Migration to schema version 5.
      *
-     * This protects against installations where the database version was
-     * advanced but one of the associated framework options was not persisted.
+     * Establishes the product/pricing framework version.
+     *
+     * Product pricing uses WooCommerce product entities and protected
+     * metadata, so no custom pricing table is introduced.
+     *
+     * @return void
+     */
+    private static function migrate_to_5(): void {
+        update_option(
+            Config::OPTION_PRODUCT_PRICING_VERSION,
+            Config::PRODUCT_PRICING_VERSION,
+            false
+        );
+    }
+
+    /**
+     * Ensure all current framework state exists.
      *
      * @return void
      */
@@ -143,7 +154,20 @@ final class MigrationRunner {
         );
 
         if ( $application_version < Config::APPLICATION_VERSION ) {
-            self::migrate_to_4();
+            update_option(
+                Config::OPTION_APPLICATION_VERSION,
+                Config::APPLICATION_VERSION,
+                false
+            );
+        }
+
+        $product_pricing_version = (int) get_option(
+            Config::OPTION_PRODUCT_PRICING_VERSION,
+            0
+        );
+
+        if ( $product_pricing_version < Config::PRODUCT_PRICING_VERSION ) {
+            self::migrate_to_5();
         }
 
         /*
