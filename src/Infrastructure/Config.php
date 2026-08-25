@@ -5,7 +5,7 @@ namespace WholesaleOrdering\Infrastructure;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Plugin configuration.
+ * Plugin configuration and domain constants.
  */
 final class Config {
 
@@ -15,9 +15,11 @@ final class Config {
     public const VERSION = '0.1.0';
 
     /**
-     * Current database schema version.
+     * Current database/schema version.
+     *
+     * Version 4 establishes the wholesale application domain framework.
      */
-    public const DB_VERSION = 3;
+    public const DB_VERSION = 4;
 
     /**
      * WordPress option storing the installed plugin version.
@@ -33,6 +35,21 @@ final class Config {
      * WordPress option storing the wholesale status framework version.
      */
     public const OPTION_STATUS_VERSION = 'wholesale_ordering_status_version';
+
+    /**
+     * WordPress option storing the wholesale application framework version.
+     */
+    public const OPTION_APPLICATION_VERSION = 'wholesale_ordering_application_version';
+
+    /**
+     * Current wholesale status framework version.
+     */
+    public const STATUS_VERSION = 1;
+
+    /**
+     * Current wholesale application framework version.
+     */
+    public const APPLICATION_VERSION = 1;
 
     /**
      * Wholesale customer status: pending.
@@ -60,9 +77,9 @@ final class Config {
     public const DEFAULT_STATUS = self::STATUS_PENDING;
 
     /**
-     * Get all supported wholesale customer statuses.
+     * Return all supported wholesale customer statuses.
      *
-     * @return array
+     * @return array<int, string>
      */
     public static function wholesale_statuses(): array {
         return array(
@@ -71,6 +88,22 @@ final class Config {
             self::STATUS_REJECTED,
             self::STATUS_SUSPENDED,
         );
+    }
+
+    /**
+     * Determine whether a wholesale status is supported.
+     *
+     * @param mixed $status Status value.
+     *
+     * @return bool
+     */
+    public static function is_wholesale_status( $status ): bool {
+        return is_string( $status )
+            && in_array(
+                $status,
+                self::wholesale_statuses(),
+                true
+            );
     }
 
     /**

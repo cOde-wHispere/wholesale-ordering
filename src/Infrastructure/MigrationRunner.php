@@ -5,12 +5,19 @@ namespace WholesaleOrdering\Infrastructure;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Handles plugin database schema migrations.
+ * Handles plugin database/schema migrations.
+ *
+ * The application domain currently uses WordPress user metadata rather than
+ * a custom application table. Migration version 4 therefore establishes
+ * and verifies the application framework version without introducing
+ * unnecessary database tables.
  */
 final class MigrationRunner {
 
     /**
-     * Run pending migrations.
+     * Run all pending migrations.
+     *
+     * Migrations are intentionally idempotent.
      *
      * @return void
      */
@@ -40,6 +47,10 @@ final class MigrationRunner {
             self::migrate_to_3();
         }
 
+        if ( $installed_version < 4 ) {
+            self::migrate_to_4();
+        }
+
         update_option(
             Config::OPTION_DB_VERSION,
             $target_version,
@@ -53,8 +64,11 @@ final class MigrationRunner {
      * @return void
      */
     private static function migrate_to_1(): void {
-        // Foundation migration.
-        // No custom tables were required at this stage.
+        /*
+         * Foundation migration.
+         *
+         * No custom tables were required at this stage.
+         */
     }
 
     /**
@@ -78,16 +92,34 @@ final class MigrationRunner {
     private static function migrate_to_3(): void {
         update_option(
             Config::OPTION_STATUS_VERSION,
-            1,
+            Config::STATUS_VERSION,
             false
         );
     }
 
     /**
-     * Ensure state introduced by the current schema is present.
+     * Migration to schema version 4.
      *
-     * This protects against a database where the schema version was
-     * advanced but an associated framework option was not persisted.
+     * Establishes the wholesale application domain framework.
+     *
+     * Application records are represented through native WordPress user
+     * metadata in V1, so no custom application table is required.
+     *
+     * @return void
+     */
+    private static function migrate_to_4(): void {
+        update_option(
+            Config::OPTION_APPLICATION_VERSION,
+            Config::APPLICATION_VERSION,
+            false
+        );
+    }
+
+    /**
+     * Ensure all state required by the current schema exists.
+     *
+     * This protects against installations where the database version was
+     * advanced but one of the associated framework options was not persisted.
      *
      * @return void
      */
@@ -97,9 +129,28 @@ final class MigrationRunner {
             0
         );
 
-        if ( $status_version < 1 ) {
-            self::migrate_to_3();
+        if ( $status_version < Config::STATUS_VERSION ) {
+            update_option(
+                Config::OPTION_STATUS_VERSION,
+                Config::STATUS_VERSION,
+                false
+            );
         }
+
+        $application_version = (int) get_option(
+            Config::OPTION_APPLICATION_VERSION,
+            0
+        );
+
+        if ( $application_version < Config::APPLICATION_VERSION ) {
+            self::migrate_to_4();
+        }
+
+        /*
+         * Repair the role/capability model as part of current-state
+         * verification. This is intentionally idempotent.
+         */
+        RoleManager::install();
     }
 
     /**
