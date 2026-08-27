@@ -108,19 +108,15 @@ final class ApplicationValidator {
      * @return array<string, string>
      */
     public function validate_approval( int $reviewer_id ): array {
-        if ( $reviewer_id <= 0 ) {
-            return array(
-                'reviewer_id' => 'A valid reviewer is required.',
-            );
-        }
-
-        return array();
+        return $this->validate_reviewer(
+            $reviewer_id
+        );
     }
 
     /**
      * Validate a rejection command.
      *
-     * @param int         $reviewer_id  Reviewer user ID.
+     * @param int         $reviewer_id   Reviewer user ID.
      * @param string|null $internal_note Optional internal note.
      *
      * @return array<string, string>
@@ -133,9 +129,13 @@ final class ApplicationValidator {
             $reviewer_id
         );
 
-        $this->validate_internal_note(
-            $internal_note,
-            $errors
+        $note_errors = $this->validate_internal_note(
+            $internal_note
+        );
+
+        $errors = array_merge(
+            $errors,
+            $note_errors
         );
 
         return $errors;
@@ -144,7 +144,7 @@ final class ApplicationValidator {
     /**
      * Validate a suspension command.
      *
-     * @param int         $reviewer_id  Reviewer user ID.
+     * @param int         $reviewer_id   Reviewer user ID.
      * @param string|null $internal_note Optional internal note.
      *
      * @return array<string, string>
@@ -162,7 +162,7 @@ final class ApplicationValidator {
     /**
      * Validate a reactivation command.
      *
-     * @param int         $reviewer_id  Reviewer user ID.
+     * @param int         $reviewer_id   Reviewer user ID.
      * @param string|null $internal_note Optional internal note.
      *
      * @return array<string, string>
@@ -175,6 +175,32 @@ final class ApplicationValidator {
             $reviewer_id,
             $internal_note
         );
+    }
+
+    /**
+     * Validate an internal review note.
+     *
+     * This method is public because ApplicationService uses it directly
+     * when validating approval notes.
+     *
+     * @param string|null $internal_note Optional internal note.
+     *
+     * @return array<string, string>
+     */
+    public function validate_internal_note(
+        ?string $internal_note = null
+    ): array {
+        $errors = array();
+
+        if (
+            null !== $internal_note
+            && mb_strlen( $internal_note ) > self::MAX_INTERNAL_NOTE_LENGTH
+        ) {
+            $errors['internal_note'] =
+                'The internal note is too long.';
+        }
+
+        return $errors;
     }
 
     /**
@@ -230,6 +256,8 @@ final class ApplicationValidator {
 
     /**
      * Validate reviewer ID.
+     *
+     * @param int $reviewer_id Reviewer user ID.
      *
      * @return array<string, string>
      */
@@ -361,7 +389,7 @@ final class ApplicationValidator {
         if (
             ! isset( $data[ $key ] )
             || '' === trim(
-                wp_json_encode( $data[ $key ] )
+                (string) wp_json_encode( $data[ $key ] )
             )
         ) {
             return;
@@ -385,6 +413,8 @@ final class ApplicationValidator {
      * Validate required billing address.
      *
      * @param array<string, mixed>  $data
+     * @param string                $key
+     * @param string                $label
      * @param array<string, string> $errors
      */
     private function required_address(
@@ -414,7 +444,10 @@ final class ApplicationValidator {
      * Validate address fields.
      *
      * @param array<string, mixed>  $address
+     * @param string                $key
+     * @param string                $label
      * @param array<string, string> $errors
+     * @param bool                  $required
      */
     private function validate_address_fields(
         array $address,
@@ -457,6 +490,8 @@ final class ApplicationValidator {
      * Validate a required text field.
      *
      * @param array<string, mixed>  $data
+     * @param string                $key
+     * @param string                $label
      * @param array<string, string> $errors
      */
     private function required_text(
@@ -470,25 +505,6 @@ final class ApplicationValidator {
             || '' === trim( (string) $data[ $key ] )
         ) {
             $errors[ $key ] = $label . ' is required.';
-        }
-    }
-
-    /**
-     * Validate internal review note.
-     *
-     * @param string|null            $internal_note
-     * @param array<string, string>  $errors
-     */
-    private function validate_internal_note(
-        ?string $internal_note,
-        array &$errors
-    ): void {
-        if (
-            null !== $internal_note
-            && mb_strlen( $internal_note ) > self::MAX_INTERNAL_NOTE_LENGTH
-        ) {
-            $errors['internal_note'] =
-                'The internal note is too long.';
         }
     }
 }

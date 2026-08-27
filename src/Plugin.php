@@ -9,6 +9,10 @@ use WholesaleOrdering\Infrastructure\Requirements;
 use WholesaleOrdering\Pricing\WooCommercePricingIntegration;
 use WholesaleOrdering\Products\ProductFields;
 use WholesaleOrdering\Security\PricingLeakageProtection;
+use WholesaleOrdering\Cart\CartIntegration;
+use WholesaleOrdering\Checkout\CheckoutIntegration;
+use WholesaleOrdering\Orders\OrderIntegration;
+
 
 defined( 'ABSPATH' ) || exit;
 
@@ -126,6 +130,9 @@ final class Plugin {
         $pricing_integration = new WooCommercePricingIntegration();
 
         $pricing_integration->register();
+        (new CartIntegration())->register();
+        (new CheckoutIntegration())->register();
+        (new OrderIntegration())->register();
 
         /*
          * Secondary exposure protection.

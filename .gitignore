@@ -6,3 +6,4 @@
 .DS_Store
 Thumbs.db
 *.log
+wp-tests-config.php

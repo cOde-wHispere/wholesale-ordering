@@ -2,232 +2,210 @@
 
 namespace WholesaleOrdering\Pricing;
 
-use WholesaleOrdering\Products\ProductFields;
-
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Integrates the authoritative pricing service with WooCommerce.
+ * Integrates the authoritative PricingService with WooCommerce.
+ *
+ * Phase 4 responsibility:
+ *
+ * - Authorize WooCommerce product price reads through PricingService.
+ * - Render the exact price authorized for the current customer.
+ * - Protect variation AJAX price payloads.
+ *
+ * This class deliberately does NOT mutate cart item prices.
+ *
+ * Cart price mutation belongs exclusively to:
+ *
+ * CartIntegration
+ *     -> CartPricing
+ *         -> PricingService
+ *
+ * The V1 pricing model is the specification's two-price model:
+ *
+ * - Regular Price for guests and non-approved customers.
+ * - Wholesale Price for authenticated, approved wholesale customers when
+ *   the wholesale price is valid.
+ *
+ * No separate registered-customer discount is introduced here.
  */
 final class WooCommercePricingIntegration {
 
-    /**
-     * Pricing service.
-     */
-    private PricingService $pricing_service;
+	/**
+	 * Authoritative pricing service.
+	 *
+	 * @var PricingService
+	 */
+	private PricingService $pricing_service;
 
-    /**
-     * Constructor.
-     *
-     * @param PricingService|null $pricing_service Pricing service.
-     */
-    public function __construct(
-        ?PricingService $pricing_service = null
-    ) {
-        $this->pricing_service = $pricing_service
-            ?? new PricingService();
-    }
+	/**
+	 * Constructor.
+	 *
+	 * @param PricingService|null $pricing_service Pricing service.
+	 */
+	public function __construct(
+		?PricingService $pricing_service = null
+	) {
+		$this->pricing_service = $pricing_service ?? new PricingService();
+	}
 
-    /**
-     * Register WooCommerce pricing hooks.
-     *
-     * @return void
-     */
-    public function register(): void {
-        /*
-         * Product and variation price getters.
-         */
-        add_filter(
-            'woocommerce_product_get_price',
-            array( $this, 'filter_product_price' ),
-            999,
-            2
-        );
+	/**
+	 * Register WooCommerce pricing integration hooks.
+	 *
+	 * @return void
+	 */
+	public function register(): void {
+		add_filter(
+			'woocommerce_product_get_price',
+			array( $this, 'filter_product_price' ),
+			999,
+			2
+		);
 
-        add_filter(
-            'woocommerce_product_variation_get_price',
-            array( $this, 'filter_product_price' ),
-            999,
-            2
-        );
+		add_filter(
+			'woocommerce_product_variation_get_price',
+			array( $this, 'filter_product_price' ),
+			999,
+			2
+		);
 
-        /*
-         * Price HTML is explicitly rebuilt for approved customers so that
-         * WooCommerce cannot accidentally expose the underlying regular/sale
-         * price pair while rendering a wholesale price.
-         */
-        add_filter(
-            'woocommerce_get_price_html',
-            array( $this, 'filter_price_html' ),
-            999,
-            2
-        );
+		add_filter(
+			'woocommerce_get_price_html',
+			array( $this, 'filter_price_html' ),
+			999,
+			2
+		);
 
-        /*
-         * Cart totals are re-authorized server-side on every totals
-         * calculation.
-         */
-        add_action(
-            'woocommerce_before_calculate_totals',
-            array( $this, 'recalculate_cart_prices' ),
-            999
-        );
+		add_filter(
+			'woocommerce_available_variation',
+			array( $this, 'filter_available_variation' ),
+			999,
+			3
+		);
+	}
 
-        /*
-         * WooCommerce variation AJAX payload.
-         */
-        add_filter(
-            'woocommerce_available_variation',
-            array( $this, 'filter_available_variation' ),
-            999,
-            3
-        );
-    }
+	/**
+	 * Filter a WooCommerce product or variation price.
+	 *
+	 * PricingService is the sole authority for the applicable price.
+	 *
+	 * @param string|float $price   Existing WooCommerce price.
+	 * @param \WC_Product  $product Product or variation.
+	 *
+	 * @return string
+	 */
+	public function filter_product_price(
+		$price,
+		\WC_Product $product
+	): string {
+		$context = new CustomerContext();
 
-    /**
-     * Filter product/variation price.
-     *
-     * @param string|float $price   Current price.
-     * @param \WC_Product  $product Product.
-     *
-     * @return string|float
-     */
-    public function filter_product_price(
-        $price,
-        \WC_Product $product
-    ) {
-        $context = new CustomerContext();
+		return $this->pricing_service->getEligiblePrice(
+			$product,
+			$context
+		);
+	}
 
-        return $this->pricing_service->getEligiblePrice(
-            $product,
-            $context
-        );
-    }
+	/**
+	 * Filter rendered WooCommerce price HTML.
+	 *
+	 * Approved wholesale customers receive the authoritative Wholesale Price.
+	 * Guests and non-approved customers retain WooCommerce's normal rendering
+	 * of the Regular Price.
+	 *
+	 * @param string      $html    Existing price HTML.
+	 * @param \WC_Product $product Product.
+	 *
+	 * @return string
+	 */
+	public function filter_price_html(
+		string $html,
+		\WC_Product $product
+	): string {
+		$context = new CustomerContext();
 
-    /**
-     * Filter rendered price HTML.
-     *
-     * @param string       $html    Price HTML.
-     * @param \WC_Product  $product Product.
-     *
-     * @return string
-     */
-    public function filter_price_html(
-        string $html,
-        \WC_Product $product
-    ): string {
-        $context = new CustomerContext();
+		if ( ! $context->can_use_wholesale_pricing() ) {
+			return $html;
+		}
 
-        if ( ! $context->can_use_wholesale_pricing() ) {
-            return $html;
-        }
+		$eligible_price = $this->pricing_service->getEligiblePrice(
+			$product,
+			$context
+		);
 
-        $price = $this->pricing_service->getEligiblePrice(
-            $product,
-            $context
-        );
+		if ( '' === $eligible_price ) {
+			return $html;
+		}
 
-        return wc_price(
-            wc_get_price_to_display(
-                $product,
-                array(
-                    'price' => $price,
-                )
-            )
-        ) . $product->get_price_suffix();
-    }
+		$display_price = wc_get_price_to_display(
+			$product,
+			array(
+				'price' => $eligible_price,
+			)
+		);
 
-    /**
-     * Recalculate all cart item prices against the current customer context.
-     *
-     * @param \WC_Cart $cart Cart.
-     *
-     * @return void
-     */
-    public function recalculate_cart_prices(
-        \WC_Cart $cart
-    ): void {
-        if ( is_admin() && ! wp_doing_ajax() ) {
-            return;
-        }
+		return wc_price( $display_price ) . $product->get_price_suffix();
+	}
 
-        $context = new CustomerContext();
+	/**
+	 * Protect WooCommerce variation AJAX payloads.
+	 *
+	 * Only the price applicable to the current customer is exposed.
+	 *
+	 * @param array<string,mixed>    $variation_data Existing variation data.
+	 * @param \WC_Product             $product        Parent product.
+	 * @param \WC_Product_Variation   $variation      Variation.
+	 *
+	 * @return array<string,mixed>
+	 */
+	public function filter_available_variation(
+		array $variation_data,
+		\WC_Product $product,
+		\WC_Product_Variation $variation
+	): array {
+		$context = new CustomerContext();
 
-        foreach ( $cart->get_cart() as $cart_item ) {
-            if (
-                ! isset( $cart_item['data'] )
-                || ! $cart_item['data'] instanceof \WC_Product
-            ) {
-                continue;
-            }
+		$eligible_price = $this->pricing_service->getEligiblePrice(
+			$variation,
+			$context
+		);
 
-            $product = $cart_item['data'];
+		unset(
+			$variation_data['wholesale_price'],
+			$variation_data['wholesale_min_qty'],
+			$variation_data['wholesale_qty_step'],
+			$variation_data['wholesale_only']
+		);
 
-            $eligible_price = $this->pricing_service->getEligiblePrice(
-                $product,
-                $context
-            );
+		if ( '' === $eligible_price ) {
+			return $variation_data;
+		}
 
-            $product->set_price(
-                $eligible_price
-            );
-        }
-    }
+		$display_price = wc_get_price_to_display(
+			$variation,
+			array(
+				'price' => $eligible_price,
+			)
+		);
 
-    /**
-     * Protect variation AJAX payloads.
-     *
-     * @param array<string,mixed> $variation_data Variation payload.
-     * @param \WC_Product          $product        Parent product.
-     * @param \WC_Product_Variation $variation      Variation.
-     *
-     * @return array<string,mixed>
-     */
-    public function filter_available_variation(
-        array $variation_data,
-        \WC_Product $product,
-        \WC_Product_Variation $variation
-    ): array {
-        $context = new CustomerContext();
+		$variation_data['display_price'] = $display_price;
 
-        $eligible_price = $this->pricing_service->getEligiblePrice(
-            $variation,
-            $context
-        );
+		$variation_data['price_html'] = wc_price(
+			$display_price
+		) . $variation->get_price_suffix();
 
-        /*
-         * WooCommerce variation data is public application data. Never add
-         * the raw wholesale metadata to this payload.
-         */
-        unset(
-            $variation_data['wholesale_price'],
-            $variation_data['wholesale_min_qty'],
-            $variation_data['wholesale_qty_step'],
-            $variation_data['wholesale_only']
-        );
+		if ( $context->can_use_wholesale_pricing() ) {
+			$variation_data['display_regular_price'] = $display_price;
+		} else {
+			$variation_data['display_regular_price'] =
+				wc_get_price_to_display(
+					$variation,
+					array(
+						'price' => $variation->get_regular_price( 'edit' ),
+					)
+				);
+		}
 
-        $variation_data['display_price'] = wc_get_price_to_display(
-            $variation,
-            array(
-                'price' => $eligible_price,
-            )
-        );
-
-        $variation_data['price_html'] = wc_price(
-            $variation_data['display_price']
-        ) . $variation->get_price_suffix();
-
-        if ( $context->can_use_wholesale_pricing() ) {
-            $variation_data['display_regular_price'] = $variation_data['display_price'];
-        } else {
-            $variation_data['display_regular_price'] = wc_get_price_to_display(
-                $variation,
-                array(
-                    'price' => $variation->get_regular_price( 'edit' ),
-                )
-            );
-        }
-
-        return $variation_data;
-    }
+		return $variation_data;
+	}
 }
