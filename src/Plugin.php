@@ -12,7 +12,7 @@ use WholesaleOrdering\Security\PricingLeakageProtection;
 use WholesaleOrdering\Cart\CartIntegration;
 use WholesaleOrdering\Checkout\CheckoutIntegration;
 use WholesaleOrdering\Orders\OrderIntegration;
-
+use WholesaleOrdering\Admin\Admin;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -114,6 +114,11 @@ final class Plugin {
          * Database/schema and domain framework state.
          */
         MigrationRunner::run();
+
+        /*
+         * Phase 5 administration foundation.
+         */
+        Admin::register();
 
         /*
          * Product administration fields and metadata persistence.
