@@ -1,0 +1,269 @@
+/**
+ * Phase 6E — Responsive presentation and accessibility hardening.
+ *
+ * WooCommerce/theme CSS remains the primary product presentation layer.
+ * This stylesheet provides a small, theme-friendly responsive layer for the
+ * wholesale storefront discovery/filter controls, account panels and quantity
+ * controls.
+ *
+ * Phase 6E hardening:
+ * - mobile-first layout;
+ * - tablet breakpoint;
+ * - desktop-friendly max-width behavior without imposing a site container;
+ * - safe wrapping for long product/category labels;
+ * - touch-friendly controls;
+ * - prevention of local horizontal overflow;
+ * - keyboard-visible focus states;
+ * - reduced-motion support.
+ */
+
+.wholesale-ordering-frontend,
+.wholesale-ordering-frontend * {
+    box-sizing: border-box;
+}
+
+.wholesale-ordering-frontend .wholesale-ordering-catalog-tools {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 1.5rem;
+    padding: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.wholesale-ordering-frontend .wholesale-ordering-catalog-tools label,
+.wholesale-ordering-frontend .wholesale-ordering-category-nav strong {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+}
+
+.wholesale-ordering-frontend .wholesale-ordering-catalog-tools input,
+.wholesale-ordering-frontend .wholesale-ordering-catalog-tools select,
+.wholesale-ordering-frontend .wholesale-ordering-catalog-tools button {
+    font: inherit;
+}
+
+.wholesale-ordering-frontend .wholesale-ordering-search-row {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    gap: 0.5rem;
+    align-items: stretch;
+}
+
+.wholesale-ordering-frontend .wholesale-ordering-search-row input[type="search"] {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: 100%;
+}
+
+.wholesale-ordering-frontend .wholesale-ordering-search-row .button {
+    flex: 0 0 auto;
+    min-height: 2.75rem;
+}
+
+.wholesale-ordering-frontend .wholesale-ordering-category-nav {
+    margin-top: 1rem;
+}
+
+.wholesale-ordering-frontend .wholesale-ordering-category-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem 0.75rem;
+    max-width: 100%;
+}
+
+.wholesale-ordering-frontend .wholesale-ordering-category-links a {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    text-decoration: none;
+}
+
+.wholesale-ordering-frontend .wholesale-ordering-category-links a.is-active {
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.wholesale-ordering-frontend .wholesale-ordering-catalog-filter {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.wholesale-ordering-frontend .wholesale-ordering-filter-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+    align-items: end;
+}
+
+.wholesale-ordering-frontend .wholesale-ordering-filter-grid > div {
+    min-width: 0;
+}
+
+.wholesale-ordering-frontend .wholesale-ordering-filter-grid select {
+    width: 100%;
+    min-height: 2.75rem;
+    max-width: 100%;
+}
+
+.wholesale-ordering-frontend .wholesale-ordering-filter-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.wholesale-ordering-frontend .wholesale-ordering-filter-actions .button {
+    min-height: 2.75rem;
+}
+
+.wholesale-ordering-frontend .wholesale-ordering-reset {
+    text-decoration: none;
+}
+
+.wholesale-ordering-frontend .wholesale-account-panel {
+    width: 100%;
+    max-width: 100%;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    overflow-wrap: anywhere;
+}
+
+.wholesale-ordering-frontend .wholesale-account-panel h2,
+.wholesale-ordering-frontend .wholesale-account-panel h3 {
+    margin-top: 0;
+}
+
+.wholesale-ordering-frontend .quantity {
+    display: inline-flex;
+    align-items: stretch;
+    max-width: 100%;
+}
+
+.wholesale-ordering-frontend .quantity .wholesale-quantity-button {
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    padding: 0.35rem 0.6rem;
+    cursor: pointer;
+    border: 1px solid currentColor;
+    background: transparent;
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.wholesale-ordering-frontend .quantity .wholesale-quantity-button:focus-visible,
+.wholesale-ordering-frontend .wholesale-ordering-catalog-tools :is(input, select, button, a):focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+.wholesale-ordering-frontend .quantity .qty {
+    min-height: 2.75rem;
+    width: 5rem;
+    max-width: 100%;
+    text-align: center;
+}
+
+.wholesale-ordering-frontend .wholesale-order-documents ul {
+    margin-bottom: 0;
+}
+
+.wholesale-ordering-frontend .woocommerce table.shop_table,
+.wholesale-ordering-frontend .woocommerce-page table.shop_table {
+    max-width: 100%;
+}
+
+@media (max-width: 767px) {
+    .wholesale-ordering-frontend .woocommerce,
+    .wholesale-ordering-frontend .woocommerce-page {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .wholesale-ordering-frontend .woocommerce table.shop_table,
+    .wholesale-ordering-frontend .woocommerce-page table.shop_table {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .wholesale-ordering-frontend .wholesale-ordering-catalog-tools {
+        margin-top: 1rem;
+        padding: 0.875rem;
+    }
+
+    .wholesale-ordering-frontend .wholesale-ordering-search-row {
+        flex-direction: column;
+    }
+
+    .wholesale-ordering-frontend .wholesale-ordering-search-row input[type="search"],
+    .wholesale-ordering-frontend .wholesale-ordering-search-row .button,
+    .wholesale-ordering-frontend .wholesale-ordering-filter-actions .button {
+        width: 100%;
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .wholesale-ordering-frontend .wholesale-ordering-filter-actions {
+        flex-direction: column;
+    }
+
+    .wholesale-ordering-frontend .wholesale-ordering-filter-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .wholesale-ordering-frontend .wholesale-ordering-category-links {
+        gap: 0.5rem 0.75rem;
+    }
+
+    .wholesale-ordering-frontend .wholesale-account-panel {
+        margin-top: 1rem;
+        padding: 0.875rem;
+    }
+
+    .wholesale-ordering-frontend .quantity .wholesale-quantity-button,
+    .wholesale-ordering-frontend .quantity .qty {
+        min-height: 2.75rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .wholesale-ordering-frontend .wholesale-ordering-filter-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .wholesale-ordering-frontend .wholesale-ordering-filter-actions {
+        grid-column: 1 / -1;
+    }
+
+    .wholesale-ordering-frontend .wholesale-account-panel {
+        padding: 1.25rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .wholesale-ordering-frontend .wholesale-ordering-filter-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+    }
+
+    .wholesale-ordering-frontend .wholesale-ordering-filter-actions {
+        justify-content: flex-start;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wholesale-ordering-frontend *,
+    .wholesale-ordering-frontend *::before,
+    .wholesale-ordering-frontend *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}

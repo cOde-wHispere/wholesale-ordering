@@ -2,6 +2,8 @@
 
 namespace WholesaleOrdering\Admin;
 
+use WholesaleOrdering\Admin\ApplicationsAdmin;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -28,6 +30,7 @@ final class Admin {
 			'admin_menu',
 			array( self::class, 'register_menu' )
 		);
+        ApplicationsAdmin::register();
 	}
 
 	/**
