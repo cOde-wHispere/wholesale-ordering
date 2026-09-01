@@ -218,6 +218,12 @@ Security is part of the design, not optional polish.
 10. Payment processing remains delegated to compliant gateway integrations.
 11. Historical order prices must remain stable after later product-price changes. fileciteturn189file2L253-L270
 
+## templates
+
+Contains plugin-owned presentation templates.
+It controls presentation while relying on the existing WooCommerce product and pricing
+architecture for product data and authorized prices.
+
 ## Catalogue and pricing
 
 The intended customer journey is:
