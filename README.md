@@ -112,6 +112,8 @@ wholesale-ordering/
 │       └── PricingLeakageProtection.php
 │
 ├── templates/
+|   |__home.php
+|   
 ├── tests/
 │   ├── bootstrap.php
 │   ├── Unit/
