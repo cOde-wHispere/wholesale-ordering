@@ -231,6 +231,7 @@
     .wholesale-ordering-frontend .quantity .qty {
         min-height: 2.75rem;
     }
+
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -266,4 +267,374 @@
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
     }
+}
+/**
+ * Homepage presentation.
+ *
+ * The homepage does not replace WooCommerce product/catalogue styling.
+ * These rules only provide the surrounding presentation and responsive
+ * layout.
+ */
+
+.wholesale-ordering-homepage {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.wholesale-home-container {
+    width: min(1120px, calc(100% - 2rem));
+    margin-inline: auto;
+}
+
+.wholesale-home-hero {
+    padding: clamp(4rem, 8vw, 7rem) 0;
+    background: linear-gradient(
+        135deg,
+        #f5f7fa 0%,
+        #ffffff 55%,
+        #eef3f8 100%
+    );
+}
+
+.wholesale-home-hero-content {
+    max-width: 720px;
+}
+
+.wholesale-home-eyebrow {
+    margin: 0 0 0.75rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.wholesale-home-hero h1 {
+    max-width: 760px;
+    margin: 0;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+}
+
+.wholesale-home-hero-text {
+    max-width: 650px;
+    margin: 1.5rem 0 0;
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    line-height: 1.7;
+}
+
+.wholesale-home-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+}
+
+.wholesale-home-actions .button {
+    min-height: 2.9rem;
+    padding: 0.75rem 1.25rem;
+    text-decoration: none;
+}
+
+.wholesale-home-primary-button {
+    font-weight: 700;
+}
+
+.wholesale-home-secondary-button {
+    background: transparent;
+}
+
+.wholesale-home-categories,
+.wholesale-home-products,
+.wholesale-home-business {
+    padding: clamp(3.5rem, 7vw, 5.5rem) 0;
+}
+
+.wholesale-home-products {
+    background: #f7f8fa;
+}
+
+.wholesale-home-section-heading {
+    max-width: 700px;
+    margin-bottom: 2rem;
+}
+
+.wholesale-home-section-heading .wholesale-home-eyebrow {
+    margin-bottom: 0.5rem;
+}
+
+.wholesale-home-section-heading h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+}
+
+.wholesale-home-section-heading p:last-child {
+    margin-bottom: 0;
+    line-height: 1.7;
+}
+
+.wholesale-home-woocommerce-output {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/*
+ * WooCommerce remains responsible for the category/product markup.
+ * These rules only help the existing loop sit comfortably inside the
+ * homepage sections.
+ */
+.wholesale-ordering-homepage .woocommerce ul.products {
+    margin-bottom: 0;
+}
+
+.wholesale-ordering-homepage .woocommerce ul.products li.product {
+    margin-bottom: 2rem;
+}
+
+.wholesale-home-section-action {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.wholesale-home-section-action .button {
+    min-height: 2.75rem;
+    text-decoration: none;
+}
+
+.wholesale-home-business-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 2rem;
+    align-items: center;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+}
+
+.wholesale-home-business-card h2 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.wholesale-home-business-card p:last-child {
+    margin-bottom: 0;
+    line-height: 1.7;
+}
+
+.wholesale-home-business-action {
+    white-space: nowrap;
+}
+
+.wholesale-home-business-action .button {
+    min-height: 2.75rem;
+    text-decoration: none;
+}
+
+.wholesale-ordering-homepage a:focus-visible,
+.wholesale-ordering-homepage button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+
+@media (max-width: 767px) {
+    .wholesale-home-container {
+        width: min(100% - 1.5rem, 1120px);
+    }
+
+    .wholesale-home-hero {
+        padding: 3.5rem 0;
+    }
+
+    .wholesale-home-actions {
+        flex-direction: column;
+    }
+
+    .wholesale-home-actions .button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .wholesale-home-business-card {
+        grid-template-columns: 1fr;
+    }
+
+    .wholesale-home-business-action {
+        white-space: normal;
+    }
+
+    .wholesale-home-business-action .button {
+        width: 100%;
+        text-align: center;
+    }
+
+    /*
+     * WooCommerce's own responsive product rules remain authoritative.
+     * This only prevents the homepage wrapper from creating page-level
+     * overflow.
+     */
+    .wholesale-ordering-homepage .woocommerce ul.products {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .wholesale-home-container {
+        width: min(1120px, calc(100% - 3rem));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wholesale-ordering-homepage *,
+    .wholesale-ordering-homepage *::before,
+    .wholesale-ordering-homepage *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+/**
+ * Homepage QA — footer-safe presentation.
+ *
+ * This block is intentionally scoped to the wholesale homepage footer.
+ * It does not style WooCommerce product pricing or alter catalogue behavior.
+ */
+
+.wholesale-ordering-home-footer {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 3rem;
+    padding: 2rem 0 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    overflow-wrap: anywhere;
+}
+
+.wholesale-ordering-home-footer-inner {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.wholesale-ordering-home-footer a {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 767px) {
+    .wholesale-ordering-home-footer {
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+    }
+
+    .wholesale-ordering-home-footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .wholesale-ordering-home-footer-inner {
+        gap: 1.5rem;
+    }
+}
+
+/* =========================================================
+ * Site Chrome
+ * ========================================================= */
+
+.wholesale-ordering-site .wholesale-ordering-site-footer {
+	width: 100%;
+	margin-top: 4rem;
+	border-top: 1px solid rgba(0, 0, 0, 0.12);
+	background: #fff;
+}
+
+.wholesale-ordering-site .wholesale-ordering-site-footer__inner {
+	width: min(100% - 2rem, 1200px);
+	margin: 0 auto;
+	padding: 3rem 0;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(180px, 260px);
+	gap: 3rem;
+}
+
+.wholesale-ordering-site .wholesale-ordering-site-footer__site-name {
+	display: inline-block;
+	font-size: 1.25rem;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.wholesale-ordering-site .wholesale-ordering-site-footer__description {
+	max-width: 32rem;
+	margin: 0.75rem 0 0;
+}
+
+.wholesale-ordering-site .wholesale-ordering-site-footer__navigation ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: grid;
+	gap: 0.65rem;
+}
+
+.wholesale-ordering-site .wholesale-ordering-site-footer__navigation a {
+	text-decoration: none;
+}
+
+.wholesale-ordering-site .wholesale-ordering-site-footer__navigation a:hover,
+.wholesale-ordering-site .wholesale-ordering-site-footer__navigation a:focus-visible {
+	text-decoration: underline;
+}
+
+.wholesale-ordering-site .wholesale-ordering-site-footer__bottom {
+	width: min(100% - 2rem, 1200px);
+	margin: 0 auto;
+	padding: 1.25rem 0;
+	border-top: 1px solid rgba(0, 0, 0, 0.08);
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	flex-wrap: wrap;
+	font-size: 0.9rem;
+}
+
+.wholesale-ordering-site .wholesale-ordering-site-footer__bottom p {
+	margin: 0;
+}
+
+/* Tablet */
+@media (max-width: 782px) {
+	.wholesale-ordering-site .wholesale-ordering-site-footer__inner {
+		grid-template-columns: 1fr;
+		gap: 2rem;
+	}
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+	.wholesale-ordering-site .wholesale-ordering-site-footer__inner,
+	.wholesale-ordering-site .wholesale-ordering-site-footer__bottom {
+		width: min(100% - 1.5rem, 1200px);
+	}
+
+	.wholesale-ordering-site .wholesale-ordering-site-footer__inner {
+		padding: 2.25rem 0;
+	}
+
+	.wholesale-ordering-site .wholesale-ordering-site-footer__bottom {
+		padding: 1rem 0;
+		display: block;
+	}
+
+	.wholesale-ordering-site .wholesale-ordering-site-footer__bottom p + p {
+		margin-top: 0.5rem;
+	}
 }
