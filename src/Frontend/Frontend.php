@@ -4,6 +4,7 @@ namespace WholesaleOrdering\Frontend;
 
 use WholesaleOrdering\Pricing\CustomerContext;
 use WholesaleOrdering\Products\ProductFields;
+use WholesaleOrdering\Frontend\SiteChrome;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -47,6 +48,11 @@ final class Frontend {
 	 * Quantity-control script handle.
 	 */
 	private const SCRIPT_HANDLE = 'wholesale-ordering-quantity-controls';
+
+	/**
+    * Site-wide chrome script handle.
+    */
+    private const CHROME_SCRIPT_HANDLE = 'wholesale-ordering-site-chrome';
 
 	/**
 	 * Register frontend hooks.
@@ -120,41 +126,64 @@ final class Frontend {
 		);
 	}
 
-	/**
-	 * Enqueue responsive presentation and quantity-control assets.
-	 *
-	 * @return void
-	 */
-	public static function enqueue_assets(): void {
-		$plugin_root = dirname( __DIR__, 2 );
-		$plugin_file = $plugin_root . '/wholesale-ordering.php';
-		$style_file  = $plugin_root . '/assets/css/frontend.css';
-		$script_file = $plugin_root . '/assets/js/quantity-controls.js';
+		/**
+ 		* Enqueue responsive presentation and frontend interaction assets.
+ 		*
+ 		* The stylesheet provides the shared visual system for the customer-facing
+ 		* application. The quantity-control script handles quantity presentation
+ 		* only, while the site-chrome script handles shared navigation interactions
+ 		* such as the responsive mobile menu.
+ 		*
+ 		* No frontend asset introduces a separate pricing, catalogue, cart, or
+ 		* checkout implementation.
+ 		*
+ 		* @return void
+ 		*/
+	   public static function enqueue_assets(): void {
+		   $plugin_root = dirname( __DIR__, 2 );
+		   $plugin_file = $plugin_root . '/wholesale-ordering.php';
 
-		wp_enqueue_style(
-			self::STYLE_HANDLE,
-			plugins_url(
-				'assets/css/frontend.css',
-				$plugin_file
-			),
-			array(),
-			file_exists( $style_file )
-				? (string) filemtime( $style_file )
-				: '1.0.0'
-		);
+		   $style_file        = $plugin_root . '/assets/css/frontend.css';
+		   $quantity_script   = $plugin_root . '/assets/js/quantity-controls.js';
+		   $chrome_script     = $plugin_root . '/assets/js/site-chrome.js';
 
-		wp_enqueue_script(
-			self::SCRIPT_HANDLE,
-			plugins_url(
-				'assets/js/quantity-controls.js',
-				$plugin_file
-			),
-			array(),
-			file_exists( $script_file )
-				? (string) filemtime( $script_file )
-				: '1.0.0',
-			true
-		);
+		   wp_enqueue_style(
+			   self::STYLE_HANDLE,
+		 	   plugins_url(
+				   'assets/css/frontend.css',
+					$plugin_file
+			   ),
+			   array(),
+			   file_exists( $style_file )
+				   ? (string) filemtime( $style_file )
+				   : '1.0.0'
+		   );
+
+	       wp_enqueue_script(
+			   self::SCRIPT_HANDLE,
+			   plugins_url(
+			       'assets/js/quantity-controls.js',
+				   $plugin_file
+			   ),
+			   array(),
+			   file_exists( $quantity_script )
+				   ? (string) filemtime( $quantity_script )
+				   : '1.0.0',
+			   true
+		   );
+
+	       wp_enqueue_script(
+			   self::CHROME_SCRIPT_HANDLE,
+			   plugins_url(
+				   'assets/js/site-chrome.js',
+				   $plugin_file
+			   ),
+			   array(),
+			   file_exists( $chrome_script )
+				   ? (string) filemtime( $chrome_script )
+				   : '1.0.0',
+			   true
+		   );
 	}
 
 	/**
