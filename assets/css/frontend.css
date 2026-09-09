@@ -1,1561 +1,65 @@
 /**
- * Phase 6E — Responsive presentation and accessibility hardening.
+ * Wholesale Ordering — Frontend Application Styles
  *
- * WooCommerce/theme CSS remains the primary product presentation layer.
- * This stylesheet provides a small, theme-friendly responsive layer for the
- * wholesale storefront discovery/filter controls, account panels and quantity
- * controls.
+ * Responsibilities:
+ * - Phase 6E responsive storefront/account presentation.
+ * - Application shell presentation.
+ * - Current homepage presentation.
+ * - Responsive navigation support.
+ * - Accessibility and reduced-motion support.
  *
- * Phase 6E hardening:
- * - mobile-first layout;
- * - tablet breakpoint;
- * - desktop-friendly max-width behavior without imposing a site container;
- * - safe wrapping for long product/category labels;
- * - touch-friendly controls;
- * - prevention of local horizontal overflow;
- * - keyboard-visible focus states;
- * - reduced-motion support.
- */
-
-.wholesale-ordering-frontend,
-.wholesale-ordering-frontend * {
-    box-sizing: border-box;
-}
-
-.wholesale-ordering-frontend .wholesale-ordering-catalog-tools {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 0 1.5rem;
-    padding: 1rem;
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.wholesale-ordering-frontend .wholesale-ordering-catalog-tools label,
-.wholesale-ordering-frontend .wholesale-ordering-category-nav strong {
-    display: block;
-    margin-bottom: 0.4rem;
-    font-weight: 600;
-}
-
-.wholesale-ordering-frontend .wholesale-ordering-catalog-tools input,
-.wholesale-ordering-frontend .wholesale-ordering-catalog-tools select,
-.wholesale-ordering-frontend .wholesale-ordering-catalog-tools button {
-    font: inherit;
-}
-
-.wholesale-ordering-frontend .wholesale-ordering-search-row {
-    display: flex;
-    width: 100%;
-    max-width: 100%;
-    gap: 0.5rem;
-    align-items: stretch;
-}
-
-.wholesale-ordering-frontend .wholesale-ordering-search-row input[type="search"] {
-    flex: 1 1 auto;
-    min-width: 0;
-    width: 100%;
-}
-
-.wholesale-ordering-frontend .wholesale-ordering-search-row .button {
-    flex: 0 0 auto;
-    min-height: 2.75rem;
-}
-
-.wholesale-ordering-frontend .wholesale-ordering-category-nav {
-    margin-top: 1rem;
-}
-
-.wholesale-ordering-frontend .wholesale-ordering-category-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem 0.75rem;
-    max-width: 100%;
-}
-
-.wholesale-ordering-frontend .wholesale-ordering-category-links a {
-    max-width: 100%;
-    overflow-wrap: anywhere;
-    text-decoration: none;
-}
-
-.wholesale-ordering-frontend .wholesale-ordering-category-links a.is-active {
-    font-weight: 700;
-    text-decoration: underline;
-}
-
-.wholesale-ordering-frontend .wholesale-ordering-catalog-filter {
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.wholesale-ordering-frontend .wholesale-ordering-filter-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0.75rem;
-    align-items: end;
-}
-
-.wholesale-ordering-frontend .wholesale-ordering-filter-grid > div {
-    min-width: 0;
-}
-
-.wholesale-ordering-frontend .wholesale-ordering-filter-grid select {
-    width: 100%;
-    min-height: 2.75rem;
-    max-width: 100%;
-}
-
-.wholesale-ordering-frontend .wholesale-ordering-filter-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.wholesale-ordering-frontend .wholesale-ordering-filter-actions .button {
-    min-height: 2.75rem;
-}
-
-.wholesale-ordering-frontend .wholesale-ordering-reset {
-    text-decoration: none;
-}
-
-.wholesale-ordering-frontend .wholesale-account-panel {
-    width: 100%;
-    max-width: 100%;
-    margin: 1.5rem 0;
-    padding: 1rem;
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    border-radius: 4px;
-    overflow-wrap: anywhere;
-}
-
-.wholesale-ordering-frontend .wholesale-account-panel h2,
-.wholesale-ordering-frontend .wholesale-account-panel h3 {
-    margin-top: 0;
-}
-
-.wholesale-ordering-frontend .quantity {
-    display: inline-flex;
-    align-items: stretch;
-    max-width: 100%;
-}
-
-.wholesale-ordering-frontend .quantity .wholesale-quantity-button {
-    min-width: 2.75rem;
-    min-height: 2.75rem;
-    padding: 0.35rem 0.6rem;
-    cursor: pointer;
-    border: 1px solid currentColor;
-    background: transparent;
-    font-size: 1rem;
-    line-height: 1;
-}
-
-.wholesale-ordering-frontend .quantity .wholesale-quantity-button:focus-visible,
-.wholesale-ordering-frontend .wholesale-ordering-catalog-tools :is(input, select, button, a):focus-visible {
-    outline: 2px solid currentColor;
-    outline-offset: 2px;
-}
-
-.wholesale-ordering-frontend .quantity .qty {
-    min-height: 2.75rem;
-    width: 5rem;
-    max-width: 100%;
-    text-align: center;
-}
-
-.wholesale-ordering-frontend .wholesale-order-documents ul {
-    margin-bottom: 0;
-}
-
-.wholesale-ordering-frontend .woocommerce table.shop_table,
-.wholesale-ordering-frontend .woocommerce-page table.shop_table {
-    max-width: 100%;
-}
-
-@media (max-width: 767px) {
-    .wholesale-ordering-frontend .woocommerce,
-    .wholesale-ordering-frontend .woocommerce-page {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .wholesale-ordering-frontend .woocommerce table.shop_table,
-    .wholesale-ordering-frontend .woocommerce-page table.shop_table {
-        display: block;
-        width: 100%;
-        max-width: 100%;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .wholesale-ordering-frontend .wholesale-ordering-catalog-tools {
-        margin-top: 1rem;
-        padding: 0.875rem;
-    }
-
-    .wholesale-ordering-frontend .wholesale-ordering-search-row {
-        flex-direction: column;
-    }
-
-    .wholesale-ordering-frontend .wholesale-ordering-search-row input[type="search"],
-    .wholesale-ordering-frontend .wholesale-ordering-search-row .button,
-    .wholesale-ordering-frontend .wholesale-ordering-filter-actions .button {
-        width: 100%;
-        max-width: 100%;
-        text-align: center;
-    }
-
-    .wholesale-ordering-frontend .wholesale-ordering-filter-actions {
-        flex-direction: column;
-    }
-
-    .wholesale-ordering-frontend .wholesale-ordering-filter-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .wholesale-ordering-frontend .wholesale-ordering-category-links {
-        gap: 0.5rem 0.75rem;
-    }
-
-    .wholesale-ordering-frontend .wholesale-account-panel {
-        margin-top: 1rem;
-        padding: 0.875rem;
-    }
-
-    .wholesale-ordering-frontend .quantity .wholesale-quantity-button,
-    .wholesale-ordering-frontend .quantity .qty {
-        min-height: 2.75rem;
-    }
-
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-    .wholesale-ordering-frontend .wholesale-ordering-filter-grid {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    }
-
-    .wholesale-ordering-frontend .wholesale-ordering-filter-actions {
-        grid-column: 1 / -1;
-    }
-
-    .wholesale-ordering-frontend .wholesale-account-panel {
-        padding: 1.25rem;
-    }
-}
-
-@media (min-width: 1024px) {
-    .wholesale-ordering-frontend .wholesale-ordering-filter-grid {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
-    }
-
-    .wholesale-ordering-frontend .wholesale-ordering-filter-actions {
-        justify-content: flex-start;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .wholesale-ordering-frontend *,
-    .wholesale-ordering-frontend *::before,
-    .wholesale-ordering-frontend *::after {
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-    }
-}
-/**
- * Homepage presentation.
+ * WooCommerce remains responsible for product/catalogue markup and
+ * product presentation. This stylesheet provides the application
+ * presentation layer around that content.
  *
- * The homepage does not replace WooCommerce product/catalogue styling.
- * These rules only provide the surrounding presentation and responsive
- * layout.
+ * @package WholesaleOrdering
  */
-
-.wholesale-ordering-homepage {
-    width: 100%;
-    overflow-x: hidden;
-}
-
-.wholesale-home-container {
-    width: min(1120px, calc(100% - 2rem));
-    margin-inline: auto;
-}
-
-.wholesale-home-hero {
-    padding: clamp(4rem, 8vw, 7rem) 0;
-    background: linear-gradient(
-        135deg,
-        #f5f7fa 0%,
-        #ffffff 55%,
-        #eef3f8 100%
-    );
-}
-
-.wholesale-home-hero-content {
-    max-width: 720px;
-}
-
-.wholesale-home-eyebrow {
-    margin: 0 0 0.75rem;
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-}
-
-.wholesale-home-hero h1 {
-    max-width: 760px;
-    margin: 0;
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    line-height: 1.02;
-    letter-spacing: -0.035em;
-}
-
-.wholesale-home-hero-text {
-    max-width: 650px;
-    margin: 1.5rem 0 0;
-    font-size: clamp(1.05rem, 2vw, 1.25rem);
-    line-height: 1.7;
-}
-
-.wholesale-home-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 2rem;
-}
-
-.wholesale-home-actions .button {
-    min-height: 2.9rem;
-    padding: 0.75rem 1.25rem;
-    text-decoration: none;
-}
-
-.wholesale-home-primary-button {
-    font-weight: 700;
-}
-
-.wholesale-home-secondary-button {
-    background: transparent;
-}
-
-.wholesale-home-categories,
-.wholesale-home-products,
-.wholesale-home-business {
-    padding: clamp(3.5rem, 7vw, 5.5rem) 0;
-}
-
-.wholesale-home-products {
-    background: #f7f8fa;
-}
-
-.wholesale-home-section-heading {
-    max-width: 700px;
-    margin-bottom: 2rem;
-}
-
-.wholesale-home-section-heading .wholesale-home-eyebrow {
-    margin-bottom: 0.5rem;
-}
-
-.wholesale-home-section-heading h2 {
-    margin: 0;
-    font-size: clamp(2rem, 4vw, 3rem);
-    line-height: 1.1;
-}
-
-.wholesale-home-section-heading p:last-child {
-    margin-bottom: 0;
-    line-height: 1.7;
-}
-
-.wholesale-home-woocommerce-output {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-}
-
-/*
- * WooCommerce remains responsible for the category/product markup.
- * These rules only help the existing loop sit comfortably inside the
- * homepage sections.
- */
-.wholesale-ordering-homepage .woocommerce ul.products {
-    margin-bottom: 0;
-}
-
-.wholesale-ordering-homepage .woocommerce ul.products li.product {
-    margin-bottom: 2rem;
-}
-
-.wholesale-home-section-action {
-    margin-top: 2rem;
-    text-align: center;
-}
-
-.wholesale-home-section-action .button {
-    min-height: 2.75rem;
-    text-decoration: none;
-}
-
-.wholesale-home-business-card {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 2rem;
-    align-items: center;
-    padding: clamp(1.5rem, 4vw, 3rem);
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    border-radius: 8px;
-}
-
-.wholesale-home-business-card h2 {
-    margin-top: 0;
-    margin-bottom: 0.75rem;
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
-}
-
-.wholesale-home-business-card p:last-child {
-    margin-bottom: 0;
-    line-height: 1.7;
-}
-
-.wholesale-home-business-action {
-    white-space: nowrap;
-}
-
-.wholesale-home-business-action .button {
-    min-height: 2.75rem;
-    text-decoration: none;
-}
-
-.wholesale-ordering-homepage a:focus-visible,
-.wholesale-ordering-homepage button:focus-visible {
-    outline: 2px solid currentColor;
-    outline-offset: 3px;
-}
-
-@media (max-width: 767px) {
-    .wholesale-home-container {
-        width: min(100% - 1.5rem, 1120px);
-    }
-
-    .wholesale-home-hero {
-        padding: 3.5rem 0;
-    }
-
-    .wholesale-home-actions {
-        flex-direction: column;
-    }
-
-    .wholesale-home-actions .button {
-        width: 100%;
-        text-align: center;
-    }
-
-    .wholesale-home-business-card {
-        grid-template-columns: 1fr;
-    }
-
-    .wholesale-home-business-action {
-        white-space: normal;
-    }
-
-    .wholesale-home-business-action .button {
-        width: 100%;
-        text-align: center;
-    }
-
-    /*
-     * WooCommerce's own responsive product rules remain authoritative.
-     * This only prevents the homepage wrapper from creating page-level
-     * overflow.
-     */
-    .wholesale-ordering-homepage .woocommerce ul.products {
-        width: 100%;
-        max-width: 100%;
-    }
-}
-
-@media (min-width: 768px) {
-    .wholesale-home-container {
-        width: min(1120px, calc(100% - 3rem));
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .wholesale-ordering-homepage *,
-    .wholesale-ordering-homepage *::before,
-    .wholesale-ordering-homepage *::after {
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-    }
-}
-/**
- * Homepage QA — footer-safe presentation.
- *
- * This block is intentionally scoped to the wholesale homepage footer.
- * It does not style WooCommerce product pricing or alter catalogue behavior.
- */
-
-.wholesale-ordering-home-footer {
-    width: 100%;
-    max-width: 100%;
-    margin-top: 3rem;
-    padding: 2rem 0 1rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.12);
-    overflow-wrap: anywhere;
-}
-
-.wholesale-ordering-home-footer-inner {
-    width: 100%;
-    max-width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-}
-
-.wholesale-ordering-home-footer a {
-    max-width: 100%;
-    overflow-wrap: anywhere;
-}
-
-@media (max-width: 767px) {
-    .wholesale-ordering-home-footer {
-        margin-top: 2rem;
-        padding-top: 1.5rem;
-    }
-
-    .wholesale-ordering-home-footer-inner {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-    .wholesale-ordering-home-footer-inner {
-        gap: 1.5rem;
-    }
-}
 
 /* =========================================================
- * Site Chrome
- * ========================================================= */
-
-.wholesale-ordering-site .wholesale-ordering-site-footer {
-	width: 100%;
-	margin-top: 4rem;
-	border-top: 1px solid rgba(0, 0, 0, 0.12);
-	background: #fff;
-}
-
-.wholesale-ordering-site .wholesale-ordering-site-footer__inner {
-	width: min(100% - 2rem, 1200px);
-	margin: 0 auto;
-	padding: 3rem 0;
-	display: grid;
-	grid-template-columns: minmax(0, 1fr) minmax(180px, 260px);
-	gap: 3rem;
-}
-
-.wholesale-ordering-site .wholesale-ordering-site-footer__site-name {
-	display: inline-block;
-	font-size: 1.25rem;
-	font-weight: 700;
-	text-decoration: none;
-}
-
-.wholesale-ordering-site .wholesale-ordering-site-footer__description {
-	max-width: 32rem;
-	margin: 0.75rem 0 0;
-}
-
-.wholesale-ordering-site .wholesale-ordering-site-footer__navigation ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	display: grid;
-	gap: 0.65rem;
-}
-
-.wholesale-ordering-site .wholesale-ordering-site-footer__navigation a {
-	text-decoration: none;
-}
-
-.wholesale-ordering-site .wholesale-ordering-site-footer__navigation a:hover,
-.wholesale-ordering-site .wholesale-ordering-site-footer__navigation a:focus-visible {
-	text-decoration: underline;
-}
-
-.wholesale-ordering-site .wholesale-ordering-site-footer__bottom {
-	width: min(100% - 2rem, 1200px);
-	margin: 0 auto;
-	padding: 1.25rem 0;
-	border-top: 1px solid rgba(0, 0, 0, 0.08);
-	display: flex;
-	justify-content: space-between;
-	gap: 1rem;
-	flex-wrap: wrap;
-	font-size: 0.9rem;
-}
-
-.wholesale-ordering-site .wholesale-ordering-site-footer__bottom p {
-	margin: 0;
-}
-
-/* Tablet */
-@media (max-width: 782px) {
-	.wholesale-ordering-site .wholesale-ordering-site-footer__inner {
-		grid-template-columns: 1fr;
-		gap: 2rem;
-	}
-}
-
-/* Mobile */
-@media (max-width: 480px) {
-	.wholesale-ordering-site .wholesale-ordering-site-footer__inner,
-	.wholesale-ordering-site .wholesale-ordering-site-footer__bottom {
-		width: min(100% - 1.5rem, 1200px);
-	}
-
-	.wholesale-ordering-site .wholesale-ordering-site-footer__inner {
-		padding: 2.25rem 0;
-	}
-
-	.wholesale-ordering-site .wholesale-ordering-site-footer__bottom {
-		padding: 1rem 0;
-		display: block;
-	}
-
-	.wholesale-ordering-site .wholesale-ordering-site-footer__bottom p + p {
-		margin-top: 0.5rem;
-	}
-}
-
-/* =========================================================
- * Wholesale Ordering — Production Application Shell
+ * 1. Design tokens
  * ========================================================= */
 
 .wholesale-ordering-site {
-    --wo-ink: #14213d;
+    --wo-ink: #172033;
+    --wo-ink-strong: #0f172a;
     --wo-muted: #667085;
-    --wo-border: #e4e7ec;
+    --wo-muted-light: #98a2b3;
+
+    --wo-background: #eef2f7;
+    --wo-background-soft: #f5f7fb;
     --wo-surface: #ffffff;
-    --wo-background: #f5f7fb;
+    --wo-surface-soft: #f8fafc;
+    --wo-surface-dark: #111a2e;
+
+    --wo-border: #dfe5ee;
+    --wo-border-strong: #cbd5e1;
+
     --wo-primary: #3157d5;
-    --wo-primary-dark: #2545ad;
-    --wo-primary-soft: #eaf0ff;
-    --wo-dark: #101a33;
-    --wo-radius: 18px;
-    --wo-shadow: 0 12px 35px rgba(16, 24, 40, 0.08);
+    --wo-primary-dark: #2444aa;
+    --wo-primary-soft: #e8eeff;
+
+    --wo-success: #15803d;
+    --wo-success-soft: #eaf8ef;
+
+    --wo-dark: #10182b;
+    --wo-dark-soft: #18233d;
+
+    --wo-radius-sm: 10px;
+    --wo-radius-md: 14px;
+    --wo-radius-lg: 20px;
+    --wo-radius-xl: 28px;
+
+    --wo-shadow-sm: 0 4px 16px rgba(15, 23, 42, 0.05);
+    --wo-shadow-md: 0 12px 32px rgba(15, 23, 42, 0.08);
+    --wo-shadow-lg: 0 24px 60px rgba(15, 23, 42, 0.12);
+
     --wo-container: 1200px;
-
-    background: var(--wo-background);
-    color: var(--wo-ink);
+    --wo-gutter: 1.25rem;
 }
 
-.wholesale-ordering-site *,
-.wholesale-ordering-site *::before,
-.wholesale-ordering-site *::after {
-    box-sizing: border-box;
-}
-
-.wholesale-ordering-site a {
-    color: inherit;
-}
-
-.wholesale-ordering-site-header {
-    position: relative;
-    z-index: 100;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.97);
-    border-bottom: 1px solid var(--wo-border);
-    box-shadow: 0 1px 0 rgba(16, 24, 40, 0.02);
-}
-
-.wholesale-ordering-site-header__inner {
-    width: min(
-        calc(100% - 2rem),
-        var(--wo-container)
-    );
-    min-height: 76px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-}
-
-.wholesale-ordering-site-brand {
-    flex: 0 0 auto;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    min-width: max-content;
-    text-decoration: none;
-}
-
-.wholesale-ordering-site-brand__mark {
-    width: 42px;
-    height: 42px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-    background: linear-gradient(
-        135deg,
-        var(--wo-primary),
-        #647ce5
-    );
-    color: #fff;
-    font-size: 0.9rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    box-shadow: 0 7px 18px rgba(49, 87, 213, 0.25);
-}
-
-.wholesale-ordering-site-brand__text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.1;
-}
-
-.wholesale-ordering-site-brand__text strong {
-    color: var(--wo-ink);
-    font-size: 0.95rem;
-    font-weight: 800;
-}
-
-.wholesale-ordering-site-brand__text small {
-    margin-top: 0.22rem;
-    color: var(--wo-muted);
-    font-size: 0.7rem;
-    font-weight: 600;
-}
-
-.wholesale-ordering-primary-navigation {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    margin-left: 0.75rem;
-}
-
-.wholesale-ordering-primary-navigation a {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    min-height: 42px;
-    padding: 0 0.85rem;
-    border-radius: 10px;
-    color: #475467;
-    font-size: 0.9rem;
-    font-weight: 700;
-    text-decoration: none;
-    transition:
-        background-color 160ms ease,
-        color 160ms ease;
-}
-
-.wholesale-ordering-primary-navigation a:hover,
-.wholesale-ordering-primary-navigation a:focus-visible {
-    background: #f2f4f7;
-    color: var(--wo-ink);
-}
-
-.wholesale-ordering-primary-navigation a.is-active {
-    background: var(--wo-primary-soft);
-    color: var(--wo-primary-dark);
-}
-
-.wholesale-ordering-header-actions {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 0.65rem;
-    min-width: 0;
-}
-
-.wholesale-ordering-header-search {
-    width: min(280px, 25vw);
-    min-width: 180px;
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.wholesale-ordering-header-search__icon {
-    position: absolute;
-    left: 0.85rem;
-    top: 50%;
-    transform: translateY(-50%);
-    display: inline-flex;
-    color: #98a2b3;
-    pointer-events: none;
-}
-
-.wholesale-ordering-header-search input[type="search"] {
-    width: 100%;
-    min-height: 42px;
-    margin: 0;
-    padding: 0.65rem 0.85rem 0.65rem 2.55rem;
-    border: 1px solid var(--wo-border);
-    border-radius: 11px;
-    background: #f8fafc;
-    color: var(--wo-ink);
-    font-size: 0.85rem;
-    outline: none;
-    box-shadow: none;
-}
-
-.wholesale-ordering-header-search input[type="search"]:focus {
-    border-color: var(--wo-primary);
-    background: #fff;
-    box-shadow: 0 0 0 3px rgba(49, 87, 213, 0.12);
-}
-
-.wholesale-ordering-header-account,
-.wholesale-ordering-header-cart {
-    min-height: 42px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.45rem;
-    padding: 0 0.75rem;
-    border-radius: 11px;
-    color: #475467;
-    font-size: 0.82rem;
-    font-weight: 750;
-    text-decoration: none;
-    white-space: nowrap;
-}
-
-.wholesale-ordering-header-account:hover,
-.wholesale-ordering-header-account:focus-visible,
-.wholesale-ordering-header-cart:hover,
-.wholesale-ordering-header-cart:focus-visible {
-    background: #f2f4f7;
-    color: var(--wo-ink);
-}
-
-.wholesale-ordering-header-account__icon,
-.wholesale-ordering-header-cart__icon {
-    display: inline-flex;
-}
-
-.wholesale-ordering-cart-count {
-    min-width: 21px;
-    height: 21px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 0.3rem;
-    border-radius: 999px;
-    background: var(--wo-primary);
-    color: #fff;
-    font-size: 0.68rem;
-    font-weight: 800;
-}
-
-.wholesale-ordering-mobile-toggle {
-    display: none;
-    width: 44px;
-    height: 44px;
-    margin-left: auto;
-    padding: 0.65rem;
-    border: 1px solid var(--wo-border);
-    border-radius: 11px;
-    background: #fff;
-    cursor: pointer;
-}
-
-.wholesale-ordering-mobile-toggle > span:not(.screen-reader-text) {
-    display: block;
-    width: 20px;
-    height: 2px;
-    margin: 4px auto;
-    border-radius: 999px;
-    background: var(--wo-ink);
-}
 
 /* =========================================================
- * Homepage
- * ========================================================= */
-
-.wholesale-ordering-homepage {
-    overflow-x: clip;
-    background: var(--wo-background);
-}
-
-.wholesale-home-container {
-    width: min(
-        calc(100% - 2rem),
-        var(--wo-container)
-    );
-    margin: 0 auto;
-}
-
-.wholesale-home-hero {
-    position: relative;
-    overflow: hidden;
-    padding: clamp(4rem, 8vw, 7rem) 0;
-    background:
-        radial-gradient(
-            circle at 85% 20%,
-            rgba(93, 123, 230, 0.3),
-            transparent 32%
-        ),
-        linear-gradient(
-            135deg,
-            #101a33 0%,
-            #1c2f68 55%,
-            #3157d5 100%
-        );
-    color: #fff;
-}
-
-.wholesale-home-hero::after {
-    content: "";
-    position: absolute;
-    right: -8rem;
-    bottom: -12rem;
-    width: 28rem;
-    height: 28rem;
-    border: 1px solid rgba(255, 255, 255, 0.13);
-    border-radius: 50%;
-    pointer-events: none;
-}
-
-.wholesale-home-hero__grid {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: minmax(0, 1.1fr) minmax(360px, 0.9fr);
-    gap: clamp(2.5rem, 6vw, 6rem);
-    align-items: center;
-}
-
-.wholesale-home-eyebrow,
-.wholesale-home-section-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    color: inherit;
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    line-height: 1;
-    text-transform: uppercase;
-}
-
-.wholesale-home-eyebrow {
-    margin-bottom: 1.2rem;
-    color: #b9c9ff;
-}
-
-.wholesale-home-hero h1 {
-    max-width: 760px;
-    margin: 0;
-    color: #fff;
-    font-size: clamp(2.8rem, 6vw, 5.5rem);
-    font-weight: 850;
-    letter-spacing: -0.055em;
-    line-height: 0.98;
-}
-
-.wholesale-home-hero__lead {
-    max-width: 650px;
-    margin: 1.5rem 0 0;
-    color: rgba(255, 255, 255, 0.78);
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    line-height: 1.7;
-}
-
-.wholesale-home-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 2rem;
-}
-
-.wholesale-home-actions .button {
-    min-height: 48px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem 1.2rem;
-    border-radius: 11px;
-    font-weight: 800;
-    text-decoration: none;
-}
-
-.wholesale-home-primary-button {
-    border: 1px solid #fff !important;
-    background: #fff !important;
-    color: var(--wo-primary-dark) !important;
-}
-
-.wholesale-home-secondary-button {
-    border: 1px solid rgba(255, 255, 255, 0.28) !important;
-    background: rgba(255, 255, 255, 0.08) !important;
-    color: #fff !important;
-}
-
-.wholesale-home-hero-panel {
-    padding: 1px;
-    border-radius: 22px;
-    background: linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.32),
-        rgba(255, 255, 255, 0.06)
-    );
-    box-shadow: 0 30px 70px rgba(4, 10, 28, 0.28);
-}
-
-.wholesale-home-hero-panel__top,
-.wholesale-home-hero-panel__main {
-    background: rgba(255, 255, 255, 0.075);
-}
-
-.wholesale-home-hero-panel__top {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 1rem 1.2rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 21px 21px 0 0;
-    color: rgba(255, 255, 255, 0.68);
-    font-size: 0.75rem;
-    font-weight: 700;
-}
-
-.wholesale-home-hero-panel__dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #8ee6b0;
-    box-shadow: 0 0 0 4px rgba(142, 230, 176, 0.1);
-}
-
-.wholesale-home-hero-panel__main {
-    padding: 2rem;
-    border-radius: 0 0 21px 21px;
-}
-
-.wholesale-home-hero-panel__label {
-    display: block;
-    margin-bottom: 0.55rem;
-    color: rgba(255, 255, 255, 0.58);
-    font-size: 0.72rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-}
-
-.wholesale-home-hero-panel__main > strong {
-    display: block;
-    color: #fff;
-    font-size: 1.7rem;
-    letter-spacing: -0.025em;
-}
-
-.wholesale-home-hero-panel__search {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    margin-top: 1.4rem;
-    padding: 0.9rem 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.13);
-    border-radius: 12px;
-    background: rgba(0, 0, 0, 0.14);
-    color: rgba(255, 255, 255, 0.55);
-    font-size: 0.82rem;
-}
-
-.wholesale-home-hero-panel__stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.6rem;
-    margin-top: 1.2rem;
-}
-
-.wholesale-home-hero-panel__stats > div {
-    padding: 0.8rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 11px;
-}
-
-.wholesale-home-hero-panel__stats strong,
-.wholesale-home-hero-panel__stats span {
-    display: block;
-}
-
-.wholesale-home-hero-panel__stats strong {
-    color: #fff;
-    font-size: 0.8rem;
-}
-
-.wholesale-home-hero-panel__stats span {
-    margin-top: 0.25rem;
-    color: rgba(255, 255, 255, 0.52);
-    font-size: 0.68rem;
-}
-
-.wholesale-home-features {
-    position: relative;
-    z-index: 2;
-    margin-top: -2.2rem;
-}
-
-.wholesale-home-feature-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-}
-
-.wholesale-home-feature-card {
-    min-width: 0;
-    padding: 1.5rem;
-    border: 1px solid var(--wo-border);
-    border-radius: var(--wo-radius);
-    background: var(--wo-surface);
-    box-shadow: var(--wo-shadow);
-}
-
-.wholesale-home-feature-card__number {
-    display: inline-flex;
-    margin-bottom: 1rem;
-    color: var(--wo-primary);
-    font-size: 0.72rem;
-    font-weight: 850;
-}
-
-.wholesale-home-feature-card h2 {
-    margin: 0;
-    color: var(--wo-ink);
-    font-size: 1.05rem;
-    letter-spacing: -0.02em;
-}
-
-.wholesale-home-feature-card p {
-    margin: 0.65rem 0 0;
-    color: var(--wo-muted);
-    font-size: 0.86rem;
-    line-height: 1.65;
-}
-
-.wholesale-home-section {
-    padding: clamp(4rem, 7vw, 6rem) 0 0;
-}
-
-.wholesale-home-section-heading {
-    display: flex;
-    align-items: end;
-    justify-content: space-between;
-    gap: 1.5rem;
-    margin-bottom: 1.8rem;
-}
-
-.wholesale-home-section-eyebrow {
-    margin-bottom: 0.55rem;
-    color: var(--wo-primary);
-}
-
-.wholesale-home-section-heading h2 {
-    margin: 0;
-    color: var(--wo-ink);
-    font-size: clamp(1.7rem, 3vw, 2.35rem);
-    letter-spacing: -0.04em;
-}
-
-.wholesale-home-section-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    color: var(--wo-primary-dark);
-    font-size: 0.82rem;
-    font-weight: 800;
-    text-decoration: none;
-}
-
-.wholesale-home-section-link:hover {
-    text-decoration: underline;
-}
-
-.wholesale-home-products .woocommerce ul.products {
-    margin-bottom: 0;
-}
-
-.wholesale-home-products .woocommerce ul.products li.product {
-    overflow: hidden;
-    border: 1px solid var(--wo-border);
-    border-radius: 16px;
-    background: #fff;
-    box-shadow: 0 7px 25px rgba(16, 24, 40, 0.055);
-}
-
-.wholesale-home-business {
-    padding: clamp(4rem, 7vw, 7rem) 0;
-}
-
-.wholesale-home-business-card {
-    position: relative;
-    overflow: hidden;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 2rem;
-    align-items: center;
-    padding: clamp(2rem, 5vw, 4rem);
-    border-radius: 24px;
-    background:
-        radial-gradient(
-            circle at 85% 20%,
-            rgba(255, 255, 255, 0.14),
-            transparent 30%
-        ),
-        linear-gradient(
-            135deg,
-            #16244b,
-            #3157d5
-        );
-    color: #fff;
-    box-shadow: 0 25px 60px rgba(25, 45, 105, 0.2);
-}
-
-.wholesale-home-business-content {
-    position: relative;
-    z-index: 1;
-}
-
-.wholesale-home-business-card .wholesale-home-section-eyebrow {
-    color: #bdcbff;
-}
-
-.wholesale-home-business-card h2 {
-    margin: 0.4rem 0 0;
-    color: #fff;
-    font-size: clamp(1.8rem, 4vw, 3rem);
-    letter-spacing: -0.045em;
-}
-
-.wholesale-home-business-card p {
-    max-width: 650px;
-    margin: 0.9rem 0 0;
-    color: rgba(255, 255, 255, 0.75);
-    line-height: 1.7;
-}
-
-.wholesale-home-business-action {
-    position: relative;
-    z-index: 1;
-}
-
-.wholesale-home-business-action .button {
-    min-height: 48px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.8rem 1.2rem;
-    border: 0 !important;
-    border-radius: 11px;
-    background: #fff !important;
-    color: var(--wo-primary-dark) !important;
-    font-weight: 800;
-    text-decoration: none;
-}
-
-/* =========================================================
- * Shared Footer
- * ========================================================= */
-
-.wholesale-ordering-site .wholesale-ordering-site-footer {
-    width: 100%;
-    margin-top: 0;
-    background: var(--wo-dark);
-    color: #fff;
-    border: 0;
-}
-
-.wholesale-ordering-site .wholesale-ordering-site-footer__inner {
-    width: min(
-        calc(100% - 2rem),
-        var(--wo-container)
-    );
-    margin: 0 auto;
-    padding: 4rem 0;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 240px;
-    gap: 4rem;
-}
-
-.wholesale-ordering-site-footer__site-name {
-    display: inline-block;
-    color: #fff;
-    font-size: 1.15rem;
-    font-weight: 850;
-    text-decoration: none;
-}
-
-.wholesale-ordering-site-footer__brand p {
-    max-width: 430px;
-    margin: 0.8rem 0 0;
-    color: rgba(255, 255, 255, 0.58);
-    line-height: 1.7;
-}
-
-.wholesale-ordering-site-footer__links h2 {
-    margin: 0 0 0.9rem;
-    color: #fff;
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-}
-
-.wholesale-ordering-site-footer__links ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.wholesale-ordering-site-footer__links li + li {
-    margin-top: 0.5rem;
-}
-
-.wholesale-ordering-site-footer__links a {
-    color: rgba(255, 255, 255, 0.64);
-    font-size: 0.85rem;
-    text-decoration: none;
-}
-
-.wholesale-ordering-site-footer__links a:hover,
-.wholesale-ordering-site-footer__links a:focus-visible {
-    color: #fff;
-}
-
-.wholesale-ordering-site .wholesale-ordering-site-footer__bottom {
-    width: min(
-        calc(100% - 2rem),
-        var(--wo-container)
-    );
-    margin: 0 auto;
-    padding: 1.2rem 0;
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.wholesale-ordering-site-footer__bottom p {
-    margin: 0;
-    color: rgba(255, 255, 255, 0.42);
-    font-size: 0.72rem;
-}
-
-/* =========================================================
- * Accessibility
- * ========================================================= */
-
-.wholesale-ordering-site a:focus-visible,
-.wholesale-ordering-site button:focus-visible,
-.wholesale-ordering-site input:focus-visible,
-.wholesale-ordering-site select:focus-visible {
-    outline: 3px solid rgba(49, 87, 213, 0.45);
-    outline-offset: 3px;
-}
-
-/* =========================================================
- * Tablet
- * ========================================================= */
-
-@media (max-width: 1100px) {
-    .wholesale-ordering-primary-navigation {
-        margin-left: 0;
-    }
-
-    .wholesale-ordering-header-search {
-        width: 210px;
-        min-width: 150px;
-    }
-
-    .wholesale-ordering-header-account__label {
-        display: none;
-    }
-
-    .wholesale-home-hero__grid {
-        gap: 2.5rem;
-    }
-}
-
-/* =========================================================
- * Mobile
- * ========================================================= */
-
-@media (max-width: 899px) {
-    .wholesale-ordering-site-header__inner {
-        min-height: 68px;
-        flex-wrap: wrap;
-        padding: 0.7rem 0;
-    }
-
-    .wholesale-ordering-mobile-toggle {
-        display: block;
-    }
-
-    .wholesale-ordering-primary-navigation {
-        width: 100%;
-        display: none;
-        order: 4;
-        margin: 0;
-        padding: 0.5rem;
-        flex-direction: column;
-        align-items: stretch;
-        border: 1px solid var(--wo-border);
-        border-radius: 14px;
-        background: #fff;
-        box-shadow: var(--wo-shadow);
-    }
-
-    .wholesale-ordering-primary-navigation.is-open {
-        display: flex;
-    }
-
-    .wholesale-ordering-primary-navigation a {
-        width: 100%;
-        justify-content: flex-start;
-    }
-
-    .wholesale-ordering-header-actions {
-        width: 100%;
-        order: 5;
-        margin: 0;
-        padding: 0.2rem 0 0.3rem;
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto auto;
-    }
-
-    .wholesale-ordering-header-search {
-        width: 100%;
-        min-width: 0;
-    }
-
-    .wholesale-ordering-header-account,
-    .wholesale-ordering-header-cart {
-        padding: 0 0.6rem;
-    }
-
-    .wholesale-ordering-header-account__label {
-        display: none;
-    }
-
-    .wholesale-home-hero {
-        padding: 4rem 0 5rem;
-    }
-
-    .wholesale-home-hero__grid {
-        grid-template-columns: 1fr;
-    }
-
-    .wholesale-home-hero-panel {
-        max-width: 620px;
-    }
-
-    .wholesale-home-feature-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .wholesale-home-section-heading {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .wholesale-home-business-card {
-        grid-template-columns: 1fr;
-    }
-
-    .wholesale-home-business-action .button {
-        width: 100%;
-    }
-
-    .wholesale-ordering-site .wholesale-ordering-site-footer__inner {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
-
-    .wholesale-ordering-site .wholesale-ordering-site-footer__bottom {
-        flex-direction: column;
-    }
-}
-
-/* =========================================================
- * Small Mobile
- * ========================================================= */
-
-@media (max-width: 480px) {
-    .wholesale-home-container,
-    .wholesale-ordering-site-header__inner,
-    .wholesale-ordering-site .wholesale-ordering-site-footer__inner,
-    .wholesale-ordering-site .wholesale-ordering-site-footer__bottom {
-        width: min(
-            calc(100% - 1.25rem),
-            var(--wo-container)
-        );
-    }
-
-    .wholesale-home-hero h1 {
-        font-size: clamp(2.45rem, 13vw, 3.4rem);
-    }
-
-    .wholesale-home-actions {
-        flex-direction: column;
-    }
-
-    .wholesale-home-actions .button {
-        width: 100%;
-    }
-
-    .wholesale-home-hero-panel__main {
-        padding: 1.35rem;
-    }
-
-    .wholesale-home-hero-panel__stats {
-        gap: 0.4rem;
-    }
-
-    .wholesale-home-hero-panel__stats > div {
-        padding: 0.65rem;
-    }
-
-    .wholesale-ordering-header-actions {
-        grid-template-columns: minmax(0, 1fr) auto;
-    }
-
-    .wholesale-ordering-header-account {
-        display: none;
-    }
-}
-
-/* =========================================================
- * Reduced Motion
- * ========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-    .wholesale-ordering-site *,
-    .wholesale-ordering-site *::before,
-    .wholesale-ordering-site *::after {
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-    }
-}
-
-/* =========================================================
- * Application shell — page scrolling safety
+ * 2. Global application reset / safety
  * ========================================================= */
 
 html {
@@ -1567,99 +71,1888 @@ body.wholesale-ordering-site {
     margin: 0;
     overflow-x: clip;
     overflow-y: auto;
+    background: var(--wo-background);
+    color: var(--wo-ink);
 }
 
-body.wholesale-ordering-site.wholesale-ordering-menu-open {
-    overflow-y: auto;
+.wholesale-ordering-site *,
+.wholesale-ordering-site *::before,
+.wholesale-ordering-site *::after {
+    box-sizing: border-box;
 }
 
-.wholesale-ordering-site-header,
-.wholesale-ordering-homepage,
-.wholesale-ordering-site-footer {
-    max-width: 100%;
-}
-
-.wholesale-ordering-site-header__inner,
-.wholesale-home-container,
-.wholesale-ordering-site-footer__inner,
-.wholesale-ordering-site-footer__bottom {
-    min-width: 0;
-}
-
-.wholesale-home-hero__grid,
-.wholesale-home-feature-grid,
-.wholesale-home-business-card {
-    min-width: 0;
-}
-
-.wholesale-home-hero__content,
-.wholesale-home-hero-panel,
-.wholesale-home-feature-card,
-.wholesale-home-business-content,
-.wholesale-home-business-action {
-    min-width: 0;
-}
-
-/*
- * Prevent long WooCommerce/product content from creating page-level
- * horizontal overflow while preserving vertical page scrolling.
- */
-.wholesale-ordering-homepage img,
 .wholesale-ordering-site img,
-.wholesale-ordering-homepage video,
 .wholesale-ordering-site video,
-.wholesale-ordering-homepage iframe,
 .wholesale-ordering-site iframe {
     max-width: 100%;
 }
 
-.wholesale-ordering-homepage,
-.wholesale-ordering-site {
-    overflow-x: clip;
+.wholesale-ordering-site img {
+    height: auto;
 }
 
+.wholesale-ordering-site a {
+    color: inherit;
+}
+
+.wholesale-ordering-site button,
+.wholesale-ordering-site input,
+.wholesale-ordering-site select,
+.wholesale-ordering-site textarea {
+    font: inherit;
+}
+
+.wholesale-ordering-site h1,
+.wholesale-ordering-site h2,
+.wholesale-ordering-site h3,
+.wholesale-ordering-site h4,
+.wholesale-ordering-site p {
+    overflow-wrap: anywhere;
+}
+
+
 /* =========================================================
- * Application shell — scrolling, accessibility and mobile nav
+ * 3. Shared application container
  * ========================================================= */
-html { overflow-x: clip; }
-body.wholesale-ordering-site { min-height: 100vh; margin: 0; overflow-x: clip; overflow-y: auto; }
-.wholesale-ordering-site .wholesale-ordering-site-header,
-.wholesale-ordering-site .wholesale-ordering-site-header__inner,
-.wholesale-ordering-site .wholesale-ordering-primary-navigation,
-.wholesale-ordering-site .wholesale-ordering-header-actions { min-width: 0; }
-.wholesale-ordering-site .wholesale-ordering-header-actions { flex: 1 1 auto; }
-.wholesale-ordering-site .wholesale-ordering-mobile-toggle:focus-visible,
-.wholesale-ordering-site .wholesale-ordering-primary-navigation a:focus-visible,
-.wholesale-ordering-site .wholesale-ordering-header-search input:focus-visible,
-.wholesale-ordering-site .wholesale-ordering-header-account:focus-visible,
-.wholesale-ordering-site .wholesale-ordering-header-cart:focus-visible { outline: 2px solid var(--wo-primary); outline-offset: 3px; }
-@media (min-width: 900px) {
-    .wholesale-ordering-site .wholesale-ordering-primary-navigation { display: flex; position: static; visibility: visible; opacity: 1; transform: none; }
-    .wholesale-ordering-site .wholesale-ordering-mobile-toggle { display: none; }
+
+.wholesale-ordering-site-header__inner,
+.wholesale-home-section__inner,
+.wholesale-ordering-site-footer__inner,
+.wholesale-ordering-site-footer__bottom {
+    width: min(
+        calc(100% - (var(--wo-gutter) * 2)),
+        var(--wo-container)
+    );
+
+    min-width: 0;
+    margin-inline: auto;
 }
+
+
+/* =========================================================
+ * 4. Application header
+ * ========================================================= */
+
+.wholesale-ordering-site-header {
+    position: relative;
+    z-index: 100;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.96);
+    border-bottom: 1px solid var(--wo-border);
+    box-shadow: 0 1px 0 rgba(15, 23, 42, 0.025);
+    backdrop-filter: blur(14px);
+}
+
+.wholesale-ordering-site-header__inner {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.wholesale-ordering-site-brand {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    min-width: max-content;
+    color: var(--wo-ink-strong);
+    text-decoration: none;
+}
+
+.wholesale-ordering-site-brand__mark {
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 42px;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--wo-primary),
+            #6b82e5
+        );
+
+    color: #fff;
+    font-size: 0.88rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+
+    box-shadow:
+        0 8px 20px rgba(49, 87, 213, 0.24);
+}
+
+.wholesale-ordering-site-brand__text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    line-height: 1.1;
+}
+
+.wholesale-ordering-site-brand__text strong {
+    color: var(--wo-ink-strong);
+    font-size: 0.95rem;
+    font-weight: 800;
+}
+
+.wholesale-ordering-site-brand__text small {
+    margin-top: 0.22rem;
+    color: var(--wo-muted);
+    font-size: 0.68rem;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+ * 5. Primary navigation
+ * ========================================================= */
+
+.wholesale-ordering-primary-navigation {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-left: 0.75rem;
+}
+
+.wholesale-ordering-primary-navigation a {
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+
+    min-height: 42px;
+    padding: 0 0.85rem;
+
+    border-radius: var(--wo-radius-sm);
+
+    color: #475467;
+    font-size: 0.88rem;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+        background-color 160ms ease,
+        color 160ms ease;
+}
+
+.wholesale-ordering-primary-navigation a:hover,
+.wholesale-ordering-primary-navigation a:focus-visible {
+    background: #f1f4f9;
+    color: var(--wo-ink-strong);
+}
+
+.wholesale-ordering-primary-navigation a.is-active {
+    background: var(--wo-primary-soft);
+    color: var(--wo-primary-dark);
+}
+
+
+/* =========================================================
+ * 6. Header actions
+ * ========================================================= */
+
+.wholesale-ordering-header-actions {
+    flex: 1 1 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 0.55rem;
+    min-width: 0;
+    margin-left: auto;
+}
+
+.wholesale-ordering-header-search {
+    position: relative;
+
+    width: min(300px, 27vw);
+    min-width: 180px;
+
+    display: flex;
+    align-items: center;
+}
+
+.wholesale-ordering-header-search__icon {
+    position: absolute;
+    left: 0.9rem;
+    top: 50%;
+
+    display: inline-flex;
+
+    transform: translateY(-50%);
+
+    color: var(--wo-muted-light);
+    pointer-events: none;
+}
+
+.wholesale-ordering-header-search input[type="search"] {
+    width: 100%;
+    min-height: 42px;
+
+    margin: 0;
+    padding: 0.65rem 0.9rem 0.65rem 2.55rem;
+
+    border: 1px solid var(--wo-border);
+    border-radius: 11px;
+
+    background: var(--wo-surface-soft);
+    color: var(--wo-ink);
+
+    font-size: 0.84rem;
+
+    outline: none;
+    box-shadow: none;
+
+    transition:
+        border-color 160ms ease,
+        background-color 160ms ease,
+        box-shadow 160ms ease;
+}
+
+.wholesale-ordering-header-search input[type="search"]:focus {
+    border-color: var(--wo-primary);
+    background: #fff;
+
+    box-shadow:
+        0 0 0 3px rgba(49, 87, 213, 0.12);
+}
+
+.wholesale-ordering-header-account,
+.wholesale-ordering-header-cart {
+    min-height: 42px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.4rem;
+
+    padding: 0 0.75rem;
+
+    border-radius: 11px;
+
+    color: #475467;
+
+    font-size: 0.81rem;
+    font-weight: 750;
+
+    text-decoration: none;
+    white-space: nowrap;
+
+    transition:
+        background-color 160ms ease,
+        color 160ms ease;
+}
+
+.wholesale-ordering-header-account:hover,
+.wholesale-ordering-header-account:focus-visible,
+.wholesale-ordering-header-cart:hover,
+.wholesale-ordering-header-cart:focus-visible {
+    background: #f1f4f9;
+    color: var(--wo-ink-strong);
+}
+
+.wholesale-ordering-header-account__icon,
+.wholesale-ordering-header-cart__icon {
+    display: inline-flex;
+}
+
+.wholesale-ordering-cart-count {
+    min-width: 21px;
+    height: 21px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 0.3rem;
+
+    border-radius: 999px;
+
+    background: var(--wo-primary);
+    color: #fff;
+
+    font-size: 0.67rem;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+ * 7. Mobile navigation toggle
+ * ========================================================= */
+
+.wholesale-ordering-mobile-toggle {
+    display: none;
+
+    width: 44px;
+    height: 44px;
+
+    margin-left: auto;
+    padding: 0.65rem;
+
+    border: 1px solid var(--wo-border);
+    border-radius: 11px;
+
+    background: #fff;
+
+    cursor: pointer;
+}
+
+.wholesale-ordering-mobile-toggle > span:not(.screen-reader-text) {
+    display: block;
+
+    width: 20px;
+    height: 2px;
+
+    margin: 4px auto;
+
+    border-radius: 999px;
+
+    background: var(--wo-ink-strong);
+}
+
+
+/* =========================================================
+ * 8. Current homepage base
+ * ========================================================= */
+
+.wholesale-ordering-home {
+    width: 100%;
+    min-width: 0;
+
+    overflow-x: clip;
+
+    background:
+        linear-gradient(
+            180deg,
+            #eef2f7 0%,
+            #f5f7fb 48%,
+            #e9eef5 100%
+        );
+
+    color: var(--wo-ink);
+}
+
+
+/*
+ * IMPORTANT:
+ * The current home.php does not use the old
+ * .wholesale-home-container wrapper.
+ *
+ * The current template uses .wholesale-home-section__inner.
+ * Every section therefore receives its horizontal alignment here.
+ */
+
+.wholesale-home-section__inner {
+    position: relative;
+    min-width: 0;
+}
+
+
+/* =========================================================
+ * 9. Homepage hero
+ * ========================================================= */
+
+.wholesale-home-hero {
+    position: relative;
+
+    width: 100%;
+
+    overflow: hidden;
+
+    padding:
+        clamp(4rem, 8vw, 7rem)
+        0
+        clamp(4.5rem, 9vw, 7.5rem);
+
+    background:
+        radial-gradient(
+            circle at 88% 18%,
+            rgba(103, 130, 229, 0.32),
+            transparent 31%
+        ),
+        radial-gradient(
+            circle at 70% 90%,
+            rgba(49, 87, 213, 0.18),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #0d172c 0%,
+            #17254a 48%,
+            #3157d5 100%
+        );
+
+    color: #fff;
+}
+
+.wholesale-home-hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 34rem;
+    height: 34rem;
+
+    right: -13rem;
+    top: -16rem;
+
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.wholesale-home-hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 28rem;
+    height: 28rem;
+
+    right: -10rem;
+    bottom: -15rem;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.wholesale-home-hero__content {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    max-width: 900px;
+
+    /*
+     * This is the important horizontal correction for the current
+     * home.php markup. The old stylesheet expected another container
+     * that no longer exists.
+     */
+    margin-inline: auto;
+
+    padding-inline: 0;
+}
+
+.wholesale-home-hero__text {
+    max-width: 780px;
+}
+
+.wholesale-home-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+
+    margin: 0 0 1.15rem;
+
+    color: #bdcbff;
+
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    line-height: 1.2;
+
+    text-transform: uppercase;
+}
+
+.wholesale-home-hero h1 {
+    max-width: 800px;
+
+    margin: 0;
+
+    color: #fff;
+
+    font-size: clamp(2.8rem, 7vw, 5.4rem);
+    font-weight: 850;
+
+    letter-spacing: -0.055em;
+    line-height: 0.98;
+}
+
+.wholesale-home-hero__lead {
+    max-width: 680px;
+
+    margin: 1.5rem 0 0;
+
+    color: rgba(255, 255, 255, 0.76);
+
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.7;
+}
+
+.wholesale-home-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 0.75rem;
+
+    margin-top: 2rem;
+}
+
+
+/* =========================================================
+ * 10. Shared homepage buttons
+ * ========================================================= */
+
+.wholesale-button {
+    min-height: 48px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.78rem 1.2rem;
+
+    border: 1px solid transparent;
+    border-radius: 11px;
+
+    font-size: 0.86rem;
+    font-weight: 800;
+
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        transform 160ms ease,
+        background-color 160ms ease,
+        border-color 160ms ease,
+        box-shadow 160ms ease;
+}
+
+.wholesale-button:hover {
+    transform: translateY(-1px);
+}
+
+.wholesale-button--primary {
+    background: #fff;
+    border-color: #fff;
+
+    color: var(--wo-primary-dark);
+
+    box-shadow:
+        0 10px 25px rgba(5, 15, 40, 0.16);
+}
+
+.wholesale-button--primary:hover,
+.wholesale-button--primary:focus-visible {
+    background: #f3f6ff;
+    border-color: #f3f6ff;
+    color: var(--wo-primary-dark);
+}
+
+.wholesale-button--secondary {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.24);
+
+    color: #fff;
+
+    backdrop-filter: blur(8px);
+}
+
+.wholesale-button--secondary:hover,
+.wholesale-button--secondary:focus-visible {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.38);
+    color: #fff;
+}
+
+
+/* =========================================================
+ * 11. Homepage workspace
+ * ========================================================= */
+
+.wholesale-home-workspace {
+    position: relative;
+    z-index: 2;
+
+    padding:
+        clamp(3.5rem, 7vw, 5.5rem)
+        0;
+
+    background:
+        linear-gradient(
+            180deg,
+            #e8edf5 0%,
+            #f3f6fa 100%
+        );
+}
+
+.wholesale-home-section__header {
+    max-width: 720px;
+
+    margin: 0 0 2rem;
+}
+
+.wholesale-home-section__header .wholesale-home-eyebrow {
+    margin-bottom: 0.6rem;
+
+    color: var(--wo-primary);
+}
+
+.wholesale-home-section__header h2 {
+    margin: 0;
+
+    color: var(--wo-ink-strong);
+
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+    font-weight: 800;
+
+    letter-spacing: -0.04em;
+    line-height: 1.08;
+}
+
+.wholesale-home-section__header p:last-child {
+    margin: 0.8rem 0 0;
+
+    color: var(--wo-muted);
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+ * 12. Homepage search card
+ * ========================================================= */
+
+.wholesale-home-search {
+    width: 100%;
+    max-width: 820px;
+
+    margin: 0;
+}
+
+.wholesale-home-search__link {
+    min-height: 64px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 0.9rem;
+
+    padding: 0 1.2rem;
+
+    border: 1px solid var(--wo-border);
+    border-radius: var(--wo-radius-md);
+
+    background: var(--wo-surface);
+
+    color: var(--wo-muted);
+
+    text-decoration: none;
+
+    box-shadow: var(--wo-shadow-md);
+
+    transition:
+        border-color 160ms ease,
+        box-shadow 160ms ease,
+        transform 160ms ease;
+}
+
+.wholesale-home-search__link:hover,
+.wholesale-home-search__link:focus-visible {
+    border-color: #b8c6ea;
+
+    box-shadow:
+        0 16px 36px rgba(15, 23, 42, 0.11);
+
+    transform: translateY(-1px);
+}
+
+.wholesale-home-search__icon {
+    width: 34px;
+    height: 34px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 34px;
+
+    border-radius: 9px;
+
+    background: var(--wo-primary-soft);
+
+    color: var(--wo-primary);
+
+    font-size: 1.2rem;
+}
+
+
+/* =========================================================
+ * 13. Homepage process steps
+ * ========================================================= */
+
+.wholesale-home-steps {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 0.9rem;
+
+    margin-top: 1.25rem;
+}
+
+.wholesale-home-step {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 0.75rem;
+
+    padding: 1rem 1.1rem;
+
+    border: 1px solid var(--wo-border);
+    border-radius: var(--wo-radius-md);
+
+    background: rgba(255, 255, 255, 0.72);
+}
+
+.wholesale-home-step > span {
+    width: 32px;
+    height: 32px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 32px;
+
+    border-radius: 9px;
+
+    background: var(--wo-dark);
+
+    color: #fff;
+
+    font-size: 0.68rem;
+    font-weight: 800;
+}
+
+.wholesale-home-step strong {
+    color: var(--wo-ink-strong);
+
+    font-size: 0.85rem;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+ * 14. Homepage feature section
+ * ========================================================= */
+
+.wholesale-home-features {
+    padding:
+        clamp(3.5rem, 7vw, 5.5rem)
+        0;
+
+    background: #f7f9fc;
+}
+
+.wholesale-home-feature-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 1rem;
+}
+
+.wholesale-home-feature {
+    min-width: 0;
+
+    padding: 1.6rem;
+
+    border: 1px solid var(--wo-border);
+    border-radius: var(--wo-radius-lg);
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff 0%,
+            #f8fafc 100%
+        );
+
+    box-shadow: var(--wo-shadow-sm);
+
+    transition:
+        transform 160ms ease,
+        box-shadow 160ms ease,
+        border-color 160ms ease;
+}
+
+.wholesale-home-feature:hover {
+    transform: translateY(-2px);
+
+    border-color: #c9d3e5;
+
+    box-shadow: var(--wo-shadow-md);
+}
+
+.wholesale-home-feature__number {
+    display: inline-flex;
+
+    margin-bottom: 1rem;
+
+    color: var(--wo-primary);
+
+    font-size: 0.7rem;
+    font-weight: 850;
+    letter-spacing: 0.08em;
+}
+
+.wholesale-home-feature h2 {
+    margin: 0;
+
+    color: var(--wo-ink-strong);
+
+    font-size: 1.08rem;
+    font-weight: 800;
+
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+}
+
+.wholesale-home-feature p {
+    margin: 0.7rem 0 0;
+
+    color: var(--wo-muted);
+
+    font-size: 0.88rem;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+ * 15. Homepage catalogue
+ * ========================================================= */
+
+.wholesale-home-catalogue {
+    padding:
+        clamp(4rem, 7vw, 6rem)
+        0;
+
+    background:
+        linear-gradient(
+            180deg,
+            #e9eef5 0%,
+            #f3f6fa 100%
+        );
+}
+
+.wholesale-home-categories {
+    width: 100%;
+    min-width: 0;
+}
+
+.wholesale-home-catalogue .product-category {
+    overflow: hidden;
+
+    border: 1px solid var(--wo-border);
+    border-radius: var(--wo-radius-md);
+
+    background: var(--wo-surface);
+
+    box-shadow: var(--wo-shadow-sm);
+}
+
+.wholesale-home-catalogue-link {
+    margin-top: 1.5rem;
+}
+
+.wholesale-home-catalogue-link a {
+    display: inline-flex;
+    align-items: center;
+
+    min-height: 42px;
+
+    padding: 0.65rem 1rem;
+
+    border-radius: 10px;
+
+    background: var(--wo-dark);
+
+    color: #fff;
+
+    font-size: 0.8rem;
+    font-weight: 800;
+
+    text-decoration: none;
+
+    transition:
+        background-color 160ms ease,
+        transform 160ms ease;
+}
+
+.wholesale-home-catalogue-link a:hover,
+.wholesale-home-catalogue-link a:focus-visible {
+    background: var(--wo-primary-dark);
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+ * 16. Homepage products
+ * ========================================================= */
+
+.wholesale-home-products {
+    padding:
+        clamp(4rem, 7vw, 6rem)
+        0;
+
+    background: #f7f9fc;
+}
+
+.wholesale-home-product-grid {
+    width: 100%;
+    min-width: 0;
+}
+
+.wholesale-home-products .woocommerce {
+    width: 100%;
+    max-width: 100%;
+}
+
+.wholesale-home-products .woocommerce ul.products {
+    width: 100%;
+    max-width: 100%;
+
+    margin-bottom: 0;
+}
+
+.wholesale-home-products .woocommerce ul.products li.product {
+    overflow: hidden;
+
+    margin-bottom: 2rem;
+
+    border: 1px solid var(--wo-border);
+    border-radius: var(--wo-radius-lg);
+
+    background: var(--wo-surface);
+
+    box-shadow: var(--wo-shadow-sm);
+
+    transition:
+        transform 160ms ease,
+        box-shadow 160ms ease;
+}
+
+.wholesale-home-products .woocommerce ul.products li.product:hover {
+    transform: translateY(-2px);
+
+    box-shadow: var(--wo-shadow-md);
+}
+
+
+/* =========================================================
+ * 17. Homepage business section
+ * ========================================================= */
+
+.wholesale-home-business {
+    padding:
+        clamp(4rem, 7vw, 6.5rem)
+        0;
+
+    background:
+        linear-gradient(
+            180deg,
+            #e8edf5 0%,
+            #dde4ee 100%
+        );
+}
+
+.wholesale-home-business__content {
+    position: relative;
+
+    overflow: hidden;
+
+    max-width: 100%;
+
+    padding:
+        clamp(2rem, 5vw, 4rem);
+
+    border-radius: var(--wo-radius-xl);
+
+    background:
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(255, 255, 255, 0.14),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #111b33 0%,
+            #1d315f 48%,
+            #3157d5 100%
+        );
+
+    color: #fff;
+
+    box-shadow: var(--wo-shadow-lg);
+}
+
+.wholesale-home-business__content::after {
+    content: "";
+
+    position: absolute;
+
+    width: 20rem;
+    height: 20rem;
+
+    right: -10rem;
+    bottom: -12rem;
+
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.wholesale-home-business__content .wholesale-home-eyebrow {
+    position: relative;
+    z-index: 1;
+
+    color: #bdcbff;
+}
+
+.wholesale-home-business__content h2 {
+    position: relative;
+    z-index: 1;
+
+    max-width: 760px;
+
+    margin: 0.4rem 0 0;
+
+    color: #fff;
+
+    font-size: clamp(1.9rem, 4vw, 3.1rem);
+    font-weight: 800;
+
+    letter-spacing: -0.045em;
+    line-height: 1.05;
+}
+
+.wholesale-home-business__content p {
+    position: relative;
+    z-index: 1;
+
+    max-width: 680px;
+
+    margin: 0.9rem 0 0;
+
+    color: rgba(255, 255, 255, 0.74);
+
+    line-height: 1.7;
+}
+
+.wholesale-home-business__content .wholesale-button {
+    position: relative;
+    z-index: 1;
+
+    margin-top: 1.5rem;
+}
+
+
+/* =========================================================
+ * 18. Shared application footer
+ * ========================================================= */
+
+.wholesale-ordering-site-footer {
+    width: 100%;
+
+    margin-top: 0;
+
+    background: var(--wo-dark);
+    color: #fff;
+}
+
+.wholesale-ordering-site-footer__inner {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        240px;
+
+    gap: 4rem;
+
+    padding:
+        4rem
+        0;
+}
+
+.wholesale-ordering-site-footer__site-name {
+    display: inline-block;
+
+    color: #fff;
+
+    font-size: 1.15rem;
+    font-weight: 850;
+
+    text-decoration: none;
+}
+
+.wholesale-ordering-site-footer__brand p {
+    max-width: 430px;
+
+    margin: 0.8rem 0 0;
+
+    color: rgba(255, 255, 255, 0.58);
+
+    line-height: 1.7;
+}
+
+.wholesale-ordering-site-footer__links h2 {
+    margin: 0 0 0.9rem;
+
+    color: #fff;
+
+    font-size: 0.76rem;
+    font-weight: 800;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.wholesale-ordering-site-footer__links ul {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.wholesale-ordering-site-footer__links li + li {
+    margin-top: 0.5rem;
+}
+
+.wholesale-ordering-site-footer__links a {
+    color: rgba(255, 255, 255, 0.62);
+
+    font-size: 0.84rem;
+
+    text-decoration: none;
+
+    transition: color 160ms ease;
+}
+
+.wholesale-ordering-site-footer__links a:hover,
+.wholesale-ordering-site-footer__links a:focus-visible {
+    color: #fff;
+}
+
+.wholesale-ordering-site-footer__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    padding:
+        1.2rem
+        0;
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.1);
+}
+
+.wholesale-ordering-site-footer__bottom p {
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.42);
+
+    font-size: 0.72rem;
+}
+
+
+/* =========================================================
+ * 19. Phase 6E — storefront / account controls
+ * ========================================================= */
+
+.wholesale-ordering-frontend,
+.wholesale-ordering-frontend * {
+    box-sizing: border-box;
+}
+
+.wholesale-ordering-frontend .wholesale-ordering-catalog-tools {
+    width: 100%;
+    max-width: 100%;
+
+    margin: 0 0 1.5rem;
+    padding: 1rem;
+
+    border: 1px solid var(--wo-border);
+    border-radius: var(--wo-radius-md);
+
+    background: var(--wo-surface);
+
+    box-shadow: var(--wo-shadow-sm);
+
+    overflow: hidden;
+}
+
+.wholesale-ordering-frontend
+.wholesale-ordering-catalog-tools
+label,
+.wholesale-ordering-frontend
+.wholesale-ordering-category-nav
+strong {
+    display: block;
+
+    margin-bottom: 0.4rem;
+
+    color: var(--wo-ink-strong);
+
+    font-weight: 700;
+}
+
+.wholesale-ordering-frontend
+.wholesale-ordering-catalog-tools
+input,
+.wholesale-ordering-frontend
+.wholesale-ordering-catalog-tools
+select,
+.wholesale-ordering-frontend
+.wholesale-ordering-catalog-tools
+button {
+    font: inherit;
+}
+
+.wholesale-ordering-frontend .wholesale-ordering-search-row {
+    display: flex;
+
+    width: 100%;
+    max-width: 100%;
+
+    gap: 0.5rem;
+
+    align-items: stretch;
+}
+
+.wholesale-ordering-frontend
+.wholesale-ordering-search-row
+input[type="search"] {
+    flex: 1 1 auto;
+
+    min-width: 0;
+    width: 100%;
+}
+
+.wholesale-ordering-frontend
+.wholesale-ordering-search-row
+.button {
+    flex: 0 0 auto;
+
+    min-height: 2.75rem;
+}
+
+.wholesale-ordering-frontend .wholesale-ordering-category-nav {
+    margin-top: 1rem;
+}
+
+.wholesale-ordering-frontend .wholesale-ordering-category-links {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 0.45rem 0.75rem;
+
+    max-width: 100%;
+}
+
+.wholesale-ordering-frontend
+.wholesale-ordering-category-links
+a {
+    max-width: 100%;
+
+    overflow-wrap: anywhere;
+
+    text-decoration: none;
+}
+
+.wholesale-ordering-frontend
+.wholesale-ordering-category-links
+a.is-active {
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.wholesale-ordering-frontend
+.wholesale-ordering-catalog-filter {
+    margin-top: 1rem;
+    padding-top: 1rem;
+
+    border-top: 1px solid var(--wo-border);
+}
+
+.wholesale-ordering-frontend
+.wholesale-ordering-filter-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr);
+
+    gap: 0.75rem;
+
+    align-items: end;
+}
+
+.wholesale-ordering-frontend
+.wholesale-ordering-filter-grid > div {
+    min-width: 0;
+}
+
+.wholesale-ordering-frontend
+.wholesale-ordering-filter-grid
+select {
+    width: 100%;
+
+    min-height: 2.75rem;
+    max-width: 100%;
+}
+
+.wholesale-ordering-frontend
+.wholesale-ordering-filter-actions {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 0.5rem;
+}
+
+.wholesale-ordering-frontend
+.wholesale-ordering-filter-actions
+.button {
+    min-height: 2.75rem;
+}
+
+.wholesale-ordering-frontend
+.wholesale-ordering-reset {
+    text-decoration: none;
+}
+
+.wholesale-ordering-frontend .wholesale-account-panel {
+    width: 100%;
+    max-width: 100%;
+
+    margin: 1.5rem 0;
+    padding: 1rem;
+
+    border: 1px solid var(--wo-border);
+    border-radius: var(--wo-radius-md);
+
+    background: var(--wo-surface);
+
+    box-shadow: var(--wo-shadow-sm);
+
+    overflow-wrap: anywhere;
+}
+
+.wholesale-ordering-frontend
+.wholesale-account-panel
+h2,
+.wholesale-ordering-frontend
+.wholesale-account-panel
+h3 {
+    margin-top: 0;
+}
+
+.wholesale-ordering-frontend .quantity {
+    display: inline-flex;
+
+    align-items: stretch;
+
+    max-width: 100%;
+}
+
+.wholesale-ordering-frontend
+.quantity
+.wholesale-quantity-button {
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+
+    padding: 0.35rem 0.6rem;
+
+    cursor: pointer;
+
+    border: 1px solid currentColor;
+
+    background: transparent;
+
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.wholesale-ordering-frontend
+.quantity
+.qty {
+    width: 5rem;
+    max-width: 100%;
+
+    min-height: 2.75rem;
+
+    text-align: center;
+}
+
+.wholesale-ordering-frontend
+.wholesale-order-documents
+ul {
+    margin-bottom: 0;
+}
+
+.wholesale-ordering-frontend
+.woocommerce
+table.shop_table,
+.wholesale-ordering-frontend
+.woocommerce-page
+table.shop_table {
+    max-width: 100%;
+}
+
+
+/* =========================================================
+ * 20. Accessibility
+ * ========================================================= */
+
+.wholesale-ordering-site
+a:focus-visible,
+.wholesale-ordering-site
+button:focus-visible,
+.wholesale-ordering-site
+input:focus-visible,
+.wholesale-ordering-site
+select:focus-visible,
+.wholesale-ordering-site
+textarea:focus-visible {
+    outline: 3px solid rgba(49, 87, 213, 0.42);
+    outline-offset: 3px;
+}
+
+.wholesale-ordering-frontend
+.quantity
+.wholesale-quantity-button:focus-visible,
+.wholesale-ordering-frontend
+.wholesale-ordering-catalog-tools
+:is(input, select, button, a):focus-visible {
+    outline: 2px solid var(--wo-primary);
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+ * 21. Tablet
+ * ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .wholesale-ordering-primary-navigation {
+        margin-left: 0;
+    }
+
+    .wholesale-ordering-header-search {
+        width: 220px;
+        min-width: 150px;
+    }
+
+    .wholesale-ordering-header-account__label {
+        display: none;
+    }
+}
+
+
+@media (min-width: 768px) and (max-width: 1023px) {
+
+    .wholesale-ordering-frontend
+    .wholesale-ordering-filter-grid {
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(0, 1fr);
+    }
+
+    .wholesale-ordering-frontend
+    .wholesale-ordering-filter-actions {
+        grid-column: 1 / -1;
+    }
+
+    .wholesale-ordering-frontend
+    .wholesale-account-panel {
+        padding: 1.25rem;
+    }
+}
+
+
+/* =========================================================
+ * 22. Mobile navigation / responsive homepage
+ * ========================================================= */
+
 @media (max-width: 899px) {
-    .wholesale-ordering-site .wholesale-ordering-site-header__inner { min-height: 68px; width: min(calc(100% - 1.5rem), var(--wo-container)); gap: .75rem; flex-wrap: wrap; padding: .7rem 0; }
-    .wholesale-ordering-site .wholesale-ordering-site-brand { min-width: 0; max-width: calc(100% - 56px); }
-    .wholesale-ordering-site .wholesale-ordering-site-brand__text { min-width: 0; }
-    .wholesale-ordering-site .wholesale-ordering-site-brand__text strong,
-    .wholesale-ordering-site .wholesale-ordering-site-brand__text small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .wholesale-ordering-site .wholesale-ordering-mobile-toggle { display: inline-flex; flex: 0 0 44px; align-items: center; justify-content: center; flex-direction: column; }
-    .wholesale-ordering-site .wholesale-ordering-primary-navigation { order: 3; flex: 1 0 100%; display: none; width: 100%; margin: 0; padding: .5rem; border: 1px solid var(--wo-border); border-radius: 14px; background: #fff; box-shadow: var(--wo-shadow); }
-    .wholesale-ordering-site .wholesale-ordering-primary-navigation.is-open { display: grid; gap: .25rem; }
-    .wholesale-ordering-site .wholesale-ordering-primary-navigation a { min-height: 46px; width: 100%; padding: .7rem .85rem; justify-content: flex-start; }
-    .wholesale-ordering-site .wholesale-ordering-header-actions { order: 4; flex: 1 0 100%; display: grid; grid-template-columns: minmax(0, 1fr) auto auto; width: 100%; gap: .5rem; padding-top: .25rem; }
-    .wholesale-ordering-site .wholesale-ordering-header-search { width: 100%; min-width: 0; }
-    .wholesale-ordering-site .wholesale-ordering-header-account,
-    .wholesale-ordering-site .wholesale-ordering-header-cart { min-height: 44px; padding: 0 .65rem; }
-    .wholesale-ordering-site.wholesale-ordering-menu-open { overflow-y: auto; }
+
+    .wholesale-ordering-site-header__inner {
+        min-height: 68px;
+
+        flex-wrap: wrap;
+
+        gap: 0.75rem;
+
+        padding:
+            0.7rem
+            0;
+    }
+
+    .wholesale-ordering-site-brand {
+        min-width: 0;
+        max-width: calc(100% - 56px);
+    }
+
+    .wholesale-ordering-site-brand__text {
+        min-width: 0;
+    }
+
+    .wholesale-ordering-site-brand__text strong,
+    .wholesale-ordering-site-brand__text small {
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .wholesale-ordering-mobile-toggle {
+        display: inline-flex;
+
+        flex: 0 0 44px;
+
+        align-items: center;
+        justify-content: center;
+
+        flex-direction: column;
+    }
+
+    .wholesale-ordering-primary-navigation {
+        order: 3;
+
+        flex: 1 0 100%;
+
+        display: none;
+
+        width: 100%;
+
+        margin: 0;
+        padding: 0.5rem;
+
+        border: 1px solid var(--wo-border);
+        border-radius: var(--wo-radius-md);
+
+        background: #fff;
+
+        box-shadow: var(--wo-shadow-md);
+    }
+
+    .wholesale-ordering-primary-navigation.is-open {
+        display: grid;
+
+        gap: 0.25rem;
+    }
+
+    .wholesale-ordering-primary-navigation a {
+        width: 100%;
+        min-height: 46px;
+
+        padding: 0.7rem 0.85rem;
+
+        justify-content: flex-start;
+    }
+
+    .wholesale-ordering-header-actions {
+        order: 4;
+
+        flex: 1 0 100%;
+
+        display: grid;
+
+        grid-template-columns:
+            minmax(0, 1fr)
+            auto
+            auto;
+
+        width: 100%;
+
+        gap: 0.5rem;
+
+        padding-top: 0.25rem;
+    }
+
+    .wholesale-ordering-header-search {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .wholesale-ordering-header-account,
+    .wholesale-ordering-header-cart {
+        min-height: 44px;
+        padding: 0 0.65rem;
+    }
+
+    .wholesale-ordering-site.wholesale-ordering-menu-open {
+        overflow-y: auto;
+    }
+
+    /* Homepage */
+
+    .wholesale-home-hero {
+        padding:
+            4rem
+            0
+            5rem;
+    }
+
+    .wholesale-home-hero__content {
+        max-width: none;
+    }
+
+    .wholesale-home-feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .wholesale-home-business__content {
+        padding: 2.25rem;
+    }
+
+    .wholesale-ordering-site-footer__inner {
+        grid-template-columns: 1fr;
+
+        gap: 2.5rem;
+    }
+
+    .wholesale-ordering-site-footer__bottom {
+        align-items: flex-start;
+        flex-direction: column;
+    }
 }
+
+
+/* =========================================================
+ * 23. Small mobile
+ * ========================================================= */
+
+@media (max-width: 767px) {
+
+    .wholesale-ordering-frontend
+    .woocommerce,
+    .wholesale-ordering-frontend
+    .woocommerce-page {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .wholesale-ordering-frontend
+    .woocommerce
+    table.shop_table,
+    .wholesale-ordering-frontend
+    .woocommerce-page
+    table.shop_table {
+        display: block;
+
+        width: 100%;
+        max-width: 100%;
+
+        overflow-x: auto;
+
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .wholesale-ordering-frontend
+    .wholesale-ordering-catalog-tools {
+        margin-top: 1rem;
+        padding: 0.875rem;
+    }
+
+    .wholesale-ordering-frontend
+    .wholesale-ordering-search-row {
+        flex-direction: column;
+    }
+
+    .wholesale-ordering-frontend
+    .wholesale-ordering-search-row
+    input[type="search"],
+    .wholesale-ordering-frontend
+    .wholesale-ordering-search-row
+    .button,
+    .wholesale-ordering-frontend
+    .wholesale-ordering-filter-actions
+    .button {
+        width: 100%;
+        max-width: 100%;
+
+        text-align: center;
+    }
+
+    .wholesale-ordering-frontend
+    .wholesale-ordering-filter-actions {
+        flex-direction: column;
+    }
+
+    .wholesale-ordering-frontend
+    .wholesale-ordering-filter-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .wholesale-ordering-frontend
+    .wholesale-account-panel {
+        margin-top: 1rem;
+        padding: 0.875rem;
+    }
+
+    .wholesale-home-section__inner,
+    .wholesale-ordering-site-header__inner,
+    .wholesale-ordering-site-footer__inner,
+    .wholesale-ordering-site-footer__bottom {
+        width: min(
+            calc(100% - 1.5rem),
+            var(--wo-container)
+        );
+    }
+
+    .wholesale-home-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .wholesale-home-hero__actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .wholesale-home-hero__actions .wholesale-button {
+        width: 100%;
+    }
+
+    .wholesale-home-business__content {
+        border-radius: var(--wo-radius-lg);
+    }
+}
+
+
+/* =========================================================
+ * 24. Extra-small mobile
+ * ========================================================= */
+
 @media (max-width: 599px) {
-    .wholesale-ordering-site .wholesale-ordering-site-header__inner { width: min(calc(100% - 1rem), var(--wo-container)); }
-    .wholesale-ordering-site .wholesale-ordering-header-actions { grid-template-columns: 1fr 1fr; }
-    .wholesale-ordering-site .wholesale-ordering-header-search { grid-column: 1 / -1; }
-    .wholesale-ordering-site .wholesale-ordering-header-account,
-    .wholesale-ordering-site .wholesale-ordering-header-cart { width: 100%; }
+
+    .wholesale-ordering-site-header__inner,
+    .wholesale-home-section__inner,
+    .wholesale-ordering-site-footer__inner,
+    .wholesale-ordering-site-footer__bottom {
+        width: min(
+            calc(100% - 1rem),
+            var(--wo-container)
+        );
+    }
+
+    .wholesale-ordering-header-actions {
+        grid-template-columns:
+            1fr
+            1fr;
+    }
+
+    .wholesale-ordering-header-search {
+        grid-column: 1 / -1;
+    }
+
+    .wholesale-ordering-header-account,
+    .wholesale-ordering-header-cart {
+        width: 100%;
+    }
+
+    .wholesale-home-hero h1 {
+        font-size: clamp(
+            2.4rem,
+            13vw,
+            3.4rem
+        );
+    }
+
+    .wholesale-home-business__content {
+        padding: 1.75rem;
+    }
+
+    .wholesale-ordering-header-account {
+        display: none;
+    }
 }
+
+
+/* =========================================================
+ * 25. Desktop filter layout
+ * ========================================================= */
+
+@media (min-width: 1024px) {
+
+    .wholesale-ordering-frontend
+    .wholesale-ordering-filter-grid {
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(0, 1fr)
+            auto;
+    }
+
+    .wholesale-ordering-frontend
+    .wholesale-ordering-filter-actions {
+        justify-content: flex-start;
+    }
+}
+
+
+/* =========================================================
+ * 26. Desktop navigation enforcement
+ * ========================================================= */
+
+@media (min-width: 900px) {
+
+    .wholesale-ordering-primary-navigation {
+        display: flex;
+
+        position: static;
+
+        visibility: visible;
+        opacity: 1;
+
+        transform: none;
+    }
+
+    .wholesale-ordering-mobile-toggle {
+        display: none;
+    }
+}
+
+
+/* =========================================================
+ * 27. Reduced motion
+ * ========================================================= */
+
 @media (prefers-reduced-motion: reduce) {
-    .wholesale-ordering-site *, .wholesale-ordering-site *::before, .wholesale-ordering-site *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+
+    .wholesale-ordering-site *,
+    .wholesale-ordering-site *::before,
+    .wholesale-ordering-site *::after,
+    .wholesale-ordering-frontend *,
+    .wholesale-ordering-frontend *::before,
+    .wholesale-ordering-frontend *::after {
+        scroll-behavior: auto !important;
+
+        transition-duration: 0.01ms !important;
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+    }
 }
