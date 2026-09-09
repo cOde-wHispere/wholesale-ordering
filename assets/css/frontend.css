@@ -15,6 +15,7 @@
  * @package WholesaleOrdering
  */
 
+
 /* =========================================================
  * 1. Design tokens
  * ========================================================= */
@@ -25,41 +26,45 @@
     --wo-muted: #667085;
     --wo-muted-light: #98a2b3;
 
-    --wo-background: #eef2f7;
-    --wo-background-soft: #f5f7fb;
+    --wo-background: #edf2f7;
+    --wo-background-soft: #f4f7fb;
     --wo-surface: #ffffff;
     --wo-surface-soft: #f8fafc;
-    --wo-surface-dark: #111a2e;
+    --wo-surface-muted: #e7edf5;
 
-    --wo-border: #dfe5ee;
-    --wo-border-strong: #cbd5e1;
+    --wo-border: #d8e0eb;
+    --wo-border-strong: #c2cedd;
 
     --wo-primary: #3157d5;
     --wo-primary-dark: #2444aa;
-    --wo-primary-soft: #e8eeff;
+    --wo-primary-soft: #e7edff;
 
     --wo-success: #15803d;
     --wo-success-soft: #eaf8ef;
 
-    --wo-dark: #10182b;
+    --wo-dark: #0d172c;
     --wo-dark-soft: #18233d;
 
+    --wo-white: #ffffff;
+
+    --wo-radius-xs: 8px;
     --wo-radius-sm: 10px;
     --wo-radius-md: 14px;
     --wo-radius-lg: 20px;
     --wo-radius-xl: 28px;
 
-    --wo-shadow-sm: 0 4px 16px rgba(15, 23, 42, 0.05);
-    --wo-shadow-md: 0 12px 32px rgba(15, 23, 42, 0.08);
-    --wo-shadow-lg: 0 24px 60px rgba(15, 23, 42, 0.12);
+    --wo-shadow-xs: 0 2px 8px rgba(15, 23, 42, 0.04);
+    --wo-shadow-sm: 0 6px 18px rgba(15, 23, 42, 0.06);
+    --wo-shadow-md: 0 12px 32px rgba(15, 23, 42, 0.09);
+    --wo-shadow-lg: 0 24px 60px rgba(15, 23, 42, 0.13);
 
     --wo-container: 1200px;
-    --wo-gutter: 1.25rem;
+    --wo-gutter: 20px;
 }
 
 
 /* =========================================================
- * 2. Global application reset / safety
+ * 2. Global application reset
  * ========================================================= */
 
 html {
@@ -69,10 +74,25 @@ html {
 body.wholesale-ordering-site {
     min-height: 100vh;
     margin: 0;
+    padding: 0;
+
     overflow-x: clip;
     overflow-y: auto;
+
     background: var(--wo-background);
     color: var(--wo-ink);
+
+    font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
 .wholesale-ordering-site *,
@@ -91,15 +111,16 @@ body.wholesale-ordering-site {
     height: auto;
 }
 
-.wholesale-ordering-site a {
-    color: inherit;
-}
-
 .wholesale-ordering-site button,
 .wholesale-ordering-site input,
 .wholesale-ordering-site select,
 .wholesale-ordering-site textarea {
     font: inherit;
+}
+
+.wholesale-ordering-site button {
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 .wholesale-ordering-site h1,
@@ -112,11 +133,12 @@ body.wholesale-ordering-site {
 
 
 /* =========================================================
- * 3. Shared application container
+ * 3. Shared application containers
  * ========================================================= */
 
 .wholesale-ordering-site-header__inner,
 .wholesale-home-section__inner,
+.wholesale-home-hero__content,
 .wholesale-ordering-site-footer__inner,
 .wholesale-ordering-site-footer__bottom {
     width: min(
@@ -130,42 +152,78 @@ body.wholesale-ordering-site {
 
 
 /* =========================================================
- * 4. Application header
+ * 4. Main homepage boundary
+ *
+ * Prevents theme/main styles from reintroducing large
+ * or inconsistent margins around the plugin homepage.
+ * ========================================================= */
+
+body.wholesale-ordering-site main.wholesale-ordering-home {
+    display: block;
+
+    width: 100%;
+    max-width: none;
+
+    margin: 0;
+    padding: 0;
+
+    overflow-x: clip;
+}
+
+
+/* =========================================================
+ * 5. Application header
  * ========================================================= */
 
 .wholesale-ordering-site-header {
     position: relative;
     z-index: 100;
+
     width: 100%;
-    background: rgba(255, 255, 255, 0.96);
+
+    background: rgba(255, 255, 255, 0.97);
+
     border-bottom: 1px solid var(--wo-border);
-    box-shadow: 0 1px 0 rgba(15, 23, 42, 0.025);
+
+    box-shadow:
+        0 1px 0 rgba(15, 23, 42, 0.02),
+        0 6px 18px rgba(15, 23, 42, 0.035);
+
     backdrop-filter: blur(14px);
 }
 
 .wholesale-ordering-site-header__inner {
     min-height: 76px;
+
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+
+    gap: 1rem;
 }
 
 .wholesale-ordering-site-brand {
     flex: 0 0 auto;
+
     display: inline-flex;
     align-items: center;
+
     gap: 0.7rem;
+
     min-width: max-content;
+
     color: var(--wo-ink-strong);
+
     text-decoration: none;
 }
 
 .wholesale-ordering-site-brand__mark {
     width: 42px;
     height: 42px;
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
     flex: 0 0 42px;
 
     border-radius: 12px;
@@ -174,47 +232,56 @@ body.wholesale-ordering-site {
         linear-gradient(
             135deg,
             var(--wo-primary),
-            #6b82e5
+            #6d83e6
         );
 
-    color: #fff;
+    color: #ffffff;
+
     font-size: 0.88rem;
     font-weight: 800;
+
     letter-spacing: -0.02em;
 
     box-shadow:
-        0 8px 20px rgba(49, 87, 213, 0.24);
+        0 8px 20px rgba(49, 87, 213, 0.25);
 }
 
 .wholesale-ordering-site-brand__text {
     display: flex;
     flex-direction: column;
+
     min-width: 0;
+
     line-height: 1.1;
 }
 
 .wholesale-ordering-site-brand__text strong {
     color: var(--wo-ink-strong);
+
     font-size: 0.95rem;
     font-weight: 800;
 }
 
 .wholesale-ordering-site-brand__text small {
     margin-top: 0.22rem;
+
     color: var(--wo-muted);
+
     font-size: 0.68rem;
     font-weight: 600;
 }
 
 
 /* =========================================================
- * 5. Primary navigation
+ * 6. Primary navigation
  * ========================================================= */
 
 .wholesale-ordering-primary-navigation {
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+
+    gap: 0.2rem;
+
     margin-left: 0.75rem;
 }
 
@@ -223,13 +290,19 @@ body.wholesale-ordering-site {
 
     display: inline-flex;
     align-items: center;
+    justify-content: center;
 
     min-height: 42px;
+
     padding: 0 0.85rem;
 
+    border: 1px solid transparent;
     border-radius: var(--wo-radius-sm);
 
+    background: transparent;
+
     color: #475467;
+
     font-size: 0.88rem;
     font-weight: 700;
 
@@ -237,23 +310,28 @@ body.wholesale-ordering-site {
 
     transition:
         background-color 160ms ease,
+        border-color 160ms ease,
         color 160ms ease;
 }
 
 .wholesale-ordering-primary-navigation a:hover,
 .wholesale-ordering-primary-navigation a:focus-visible {
     background: #f1f4f9;
+    border-color: #e2e8f0;
+
     color: var(--wo-ink-strong);
 }
 
 .wholesale-ordering-primary-navigation a.is-active {
     background: var(--wo-primary-soft);
+    border-color: #d6e0ff;
+
     color: var(--wo-primary-dark);
 }
 
 
 /* =========================================================
- * 6. Header actions
+ * 7. Header actions
  * ========================================================= */
 
 .wholesale-ordering-header-actions {
@@ -263,8 +341,10 @@ body.wholesale-ordering-site {
     align-items: center;
     justify-content: flex-end;
 
-    gap: 0.55rem;
+    gap: 0.5rem;
+
     min-width: 0;
+
     margin-left: auto;
 }
 
@@ -278,8 +358,10 @@ body.wholesale-ordering-site {
     align-items: center;
 }
 
-.wholesale-ordering-header-search__icon {
+.wholesale-ordering-header-search > span[aria-hidden="true"] {
     position: absolute;
+    z-index: 2;
+
     left: 0.9rem;
     top: 50%;
 
@@ -287,7 +369,8 @@ body.wholesale-ordering-site {
 
     transform: translateY(-50%);
 
-    color: var(--wo-muted-light);
+    color: #64748b;
+
     pointer-events: none;
 }
 
@@ -302,6 +385,7 @@ body.wholesale-ordering-site {
     border-radius: 11px;
 
     background: var(--wo-surface-soft);
+
     color: var(--wo-ink);
 
     font-size: 0.84rem;
@@ -309,15 +393,23 @@ body.wholesale-ordering-site {
     outline: none;
     box-shadow: none;
 
+    appearance: none;
+    -webkit-appearance: none;
+
     transition:
         border-color 160ms ease,
         background-color 160ms ease,
         box-shadow 160ms ease;
 }
 
+.wholesale-ordering-header-search input[type="search"]::placeholder {
+    color: #8b96a8;
+}
+
 .wholesale-ordering-header-search input[type="search"]:focus {
     border-color: var(--wo-primary);
-    background: #fff;
+
+    background: #ffffff;
 
     box-shadow:
         0 0 0 3px rgba(49, 87, 213, 0.12);
@@ -335,9 +427,12 @@ body.wholesale-ordering-site {
 
     padding: 0 0.75rem;
 
+    border: 1px solid transparent;
     border-radius: 11px;
 
-    color: #475467;
+    background: transparent;
+
+    color: #344054;
 
     font-size: 0.81rem;
     font-weight: 750;
@@ -347,6 +442,7 @@ body.wholesale-ordering-site {
 
     transition:
         background-color 160ms ease,
+        border-color 160ms ease,
         color 160ms ease;
 }
 
@@ -355,12 +451,16 @@ body.wholesale-ordering-site {
 .wholesale-ordering-header-cart:hover,
 .wholesale-ordering-header-cart:focus-visible {
     background: #f1f4f9;
+    border-color: #e2e8f0;
+
     color: var(--wo-ink-strong);
 }
 
 .wholesale-ordering-header-account__icon,
 .wholesale-ordering-header-cart__icon {
     display: inline-flex;
+
+    color: currentColor;
 }
 
 .wholesale-ordering-cart-count {
@@ -376,7 +476,7 @@ body.wholesale-ordering-site {
     border-radius: 999px;
 
     background: var(--wo-primary);
-    color: #fff;
+    color: #ffffff;
 
     font-size: 0.67rem;
     font-weight: 800;
@@ -384,7 +484,11 @@ body.wholesale-ordering-site {
 
 
 /* =========================================================
- * 7. Mobile navigation toggle
+ * 8. Mobile navigation toggle
+ *
+ * Explicit colors are intentional. This prevents the active
+ * WordPress/theme button styles from producing a white button
+ * with white hamburger lines.
  * ========================================================= */
 
 .wholesale-ordering-mobile-toggle {
@@ -394,14 +498,39 @@ body.wholesale-ordering-site {
     height: 44px;
 
     margin-left: auto;
-    padding: 0.65rem;
+    padding: 0.55rem;
 
-    border: 1px solid var(--wo-border);
+    border: 1px solid #cbd5e1;
     border-radius: 11px;
 
-    background: #fff;
+    background: #ffffff;
+    color: #0f172a;
 
     cursor: pointer;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    box-shadow:
+        0 2px 8px rgba(15, 23, 42, 0.06);
+
+    transition:
+        background-color 160ms ease,
+        border-color 160ms ease,
+        color 160ms ease,
+        box-shadow 160ms ease;
+}
+
+.wholesale-ordering-mobile-toggle:hover,
+.wholesale-ordering-mobile-toggle:focus-visible,
+.wholesale-ordering-mobile-toggle[aria-expanded="true"] {
+    background: #eef3ff;
+    border-color: #aebde8;
+
+    color: var(--wo-primary-dark);
+
+    box-shadow:
+        0 4px 14px rgba(49, 87, 213, 0.12);
 }
 
 .wholesale-ordering-mobile-toggle > span:not(.screen-reader-text) {
@@ -410,16 +539,16 @@ body.wholesale-ordering-site {
     width: 20px;
     height: 2px;
 
-    margin: 4px auto;
+    margin: 3px auto;
 
     border-radius: 999px;
 
-    background: var(--wo-ink-strong);
+    background: currentColor;
 }
 
 
 /* =========================================================
- * 8. Current homepage base
+ * 9. Homepage base
  * ========================================================= */
 
 .wholesale-ordering-home {
@@ -431,32 +560,17 @@ body.wholesale-ordering-site {
     background:
         linear-gradient(
             180deg,
-            #eef2f7 0%,
-            #f5f7fb 48%,
-            #e9eef5 100%
+            #edf2f7 0%,
+            #f5f7fb 46%,
+            #e7edf5 100%
         );
 
     color: var(--wo-ink);
 }
 
 
-/*
- * IMPORTANT:
- * The current home.php does not use the old
- * .wholesale-home-container wrapper.
- *
- * The current template uses .wholesale-home-section__inner.
- * Every section therefore receives its horizontal alignment here.
- */
-
-.wholesale-home-section__inner {
-    position: relative;
-    min-width: 0;
-}
-
-
 /* =========================================================
- * 9. Homepage hero
+ * 10. Homepage hero
  * ========================================================= */
 
 .wholesale-home-hero {
@@ -474,12 +588,12 @@ body.wholesale-ordering-site {
     background:
         radial-gradient(
             circle at 88% 18%,
-            rgba(103, 130, 229, 0.32),
+            rgba(103, 130, 229, 0.34),
             transparent 31%
         ),
         radial-gradient(
             circle at 70% 90%,
-            rgba(49, 87, 213, 0.18),
+            rgba(49, 87, 213, 0.2),
             transparent 32%
         ),
         linear-gradient(
@@ -489,7 +603,7 @@ body.wholesale-ordering-site {
             #3157d5 100%
         );
 
-    color: #fff;
+    color: #ffffff;
 }
 
 .wholesale-home-hero::before {
@@ -504,6 +618,7 @@ body.wholesale-ordering-site {
     top: -16rem;
 
     border: 1px solid rgba(255, 255, 255, 0.11);
+
     border-radius: 50%;
 
     pointer-events: none;
@@ -521,6 +636,7 @@ body.wholesale-ordering-site {
     bottom: -15rem;
 
     border: 1px solid rgba(255, 255, 255, 0.08);
+
     border-radius: 50%;
 
     pointer-events: none;
@@ -530,15 +646,7 @@ body.wholesale-ordering-site {
     position: relative;
     z-index: 1;
 
-    width: 100%;
-    max-width: 900px;
-
-    /*
-     * This is the important horizontal correction for the current
-     * home.php markup. The old stylesheet expected another container
-     * that no longer exists.
-     */
-    margin-inline: auto;
+    max-width: var(--wo-container);
 
     padding-inline: 0;
 }
@@ -550,6 +658,7 @@ body.wholesale-ordering-site {
 .wholesale-home-eyebrow {
     display: inline-flex;
     align-items: center;
+
     gap: 0.4rem;
 
     margin: 0 0 1.15rem;
@@ -558,6 +667,7 @@ body.wholesale-ordering-site {
 
     font-size: 0.72rem;
     font-weight: 800;
+
     letter-spacing: 0.12em;
     line-height: 1.2;
 
@@ -569,7 +679,7 @@ body.wholesale-ordering-site {
 
     margin: 0;
 
-    color: #fff;
+    color: #ffffff;
 
     font-size: clamp(2.8rem, 7vw, 5.4rem);
     font-weight: 850;
@@ -583,7 +693,7 @@ body.wholesale-ordering-site {
 
     margin: 1.5rem 0 0;
 
-    color: rgba(255, 255, 255, 0.76);
+    color: rgba(255, 255, 255, 0.78);
 
     font-size: clamp(1rem, 2vw, 1.2rem);
     line-height: 1.7;
@@ -600,10 +710,13 @@ body.wholesale-ordering-site {
 
 
 /* =========================================================
- * 10. Shared homepage buttons
+ * 11. Shared homepage buttons
+ *
+ * Explicit foreground/background colors protect these buttons
+ * from generic theme button rules.
  * ========================================================= */
 
-.wholesale-button {
+.wholesale-ordering-site .wholesale-button {
     min-height: 48px;
 
     display: inline-flex;
@@ -620,6 +733,7 @@ body.wholesale-ordering-site {
 
     line-height: 1.2;
     text-align: center;
+
     text-decoration: none;
 
     cursor: pointer;
@@ -628,49 +742,52 @@ body.wholesale-ordering-site {
         transform 160ms ease,
         background-color 160ms ease,
         border-color 160ms ease,
+        color 160ms ease,
         box-shadow 160ms ease;
 }
 
-.wholesale-button:hover {
+.wholesale-ordering-site .wholesale-button:hover {
     transform: translateY(-1px);
 }
 
-.wholesale-button--primary {
-    background: #fff;
-    border-color: #fff;
+.wholesale-ordering-site .wholesale-button--primary {
+    background: #ffffff;
+    border-color: #ffffff;
 
-    color: var(--wo-primary-dark);
+    color: #2444aa;
 
     box-shadow:
         0 10px 25px rgba(5, 15, 40, 0.16);
 }
 
-.wholesale-button--primary:hover,
-.wholesale-button--primary:focus-visible {
+.wholesale-ordering-site .wholesale-button--primary:hover,
+.wholesale-ordering-site .wholesale-button--primary:focus-visible {
     background: #f3f6ff;
     border-color: #f3f6ff;
-    color: var(--wo-primary-dark);
+
+    color: #2444aa;
 }
 
-.wholesale-button--secondary {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.24);
+.wholesale-ordering-site .wholesale-button--secondary {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
 
-    color: #fff;
+    color: #ffffff;
 
     backdrop-filter: blur(8px);
 }
 
-.wholesale-button--secondary:hover,
-.wholesale-button--secondary:focus-visible {
-    background: rgba(255, 255, 255, 0.14);
-    border-color: rgba(255, 255, 255, 0.38);
-    color: #fff;
+.wholesale-ordering-site .wholesale-button--secondary:hover,
+.wholesale-ordering-site .wholesale-button--secondary:focus-visible {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.45);
+
+    color: #ffffff;
 }
 
 
 /* =========================================================
- * 11. Homepage workspace
+ * 12. Workspace
  * ========================================================= */
 
 .wholesale-home-workspace {
@@ -684,8 +801,8 @@ body.wholesale-ordering-site {
     background:
         linear-gradient(
             180deg,
-            #e8edf5 0%,
-            #f3f6fa 100%
+            #e6ecf4 0%,
+            #f1f5f9 100%
         );
 }
 
@@ -723,7 +840,7 @@ body.wholesale-ordering-site {
 
 
 /* =========================================================
- * 12. Homepage search card
+ * 13. Homepage search
  * ========================================================= */
 
 .wholesale-home-search {
@@ -746,9 +863,9 @@ body.wholesale-ordering-site {
     border: 1px solid var(--wo-border);
     border-radius: var(--wo-radius-md);
 
-    background: var(--wo-surface);
+    background: #ffffff;
 
-    color: var(--wo-muted);
+    color: #667085;
 
     text-decoration: none;
 
@@ -763,6 +880,8 @@ body.wholesale-ordering-site {
 .wholesale-home-search__link:hover,
 .wholesale-home-search__link:focus-visible {
     border-color: #b8c6ea;
+
+    color: var(--wo-ink-strong);
 
     box-shadow:
         0 16px 36px rgba(15, 23, 42, 0.11);
@@ -791,7 +910,7 @@ body.wholesale-ordering-site {
 
 
 /* =========================================================
- * 13. Homepage process steps
+ * 14. Homepage steps
  * ========================================================= */
 
 .wholesale-home-steps {
@@ -818,7 +937,9 @@ body.wholesale-ordering-site {
     border: 1px solid var(--wo-border);
     border-radius: var(--wo-radius-md);
 
-    background: rgba(255, 255, 255, 0.72);
+    background: rgba(255, 255, 255, 0.76);
+
+    box-shadow: var(--wo-shadow-xs);
 }
 
 .wholesale-home-step > span {
@@ -835,7 +956,7 @@ body.wholesale-ordering-site {
 
     background: var(--wo-dark);
 
-    color: #fff;
+    color: #ffffff;
 
     font-size: 0.68rem;
     font-weight: 800;
@@ -850,7 +971,7 @@ body.wholesale-ordering-site {
 
 
 /* =========================================================
- * 14. Homepage feature section
+ * 15. Features
  * ========================================================= */
 
 .wholesale-home-features {
@@ -858,7 +979,7 @@ body.wholesale-ordering-site {
         clamp(3.5rem, 7vw, 5.5rem)
         0;
 
-    background: #f7f9fc;
+    background: #f4f7fb;
 }
 
 .wholesale-home-feature-grid {
@@ -910,6 +1031,7 @@ body.wholesale-ordering-site {
 
     font-size: 0.7rem;
     font-weight: 850;
+
     letter-spacing: 0.08em;
 }
 
@@ -936,7 +1058,7 @@ body.wholesale-ordering-site {
 
 
 /* =========================================================
- * 15. Homepage catalogue
+ * 16. Catalogue
  * ========================================================= */
 
 .wholesale-home-catalogue {
@@ -947,12 +1069,13 @@ body.wholesale-ordering-site {
     background:
         linear-gradient(
             180deg,
-            #e9eef5 0%,
-            #f3f6fa 100%
+            #e7edf5 0%,
+            #f0f4f8 100%
         );
 }
 
-.wholesale-home-categories {
+.wholesale-home-categories,
+.wholesale-home-product-grid {
     width: 100%;
     min-width: 0;
 }
@@ -963,7 +1086,7 @@ body.wholesale-ordering-site {
     border: 1px solid var(--wo-border);
     border-radius: var(--wo-radius-md);
 
-    background: var(--wo-surface);
+    background: #ffffff;
 
     box-shadow: var(--wo-shadow-sm);
 }
@@ -975,16 +1098,17 @@ body.wholesale-ordering-site {
 .wholesale-home-catalogue-link a {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
 
     min-height: 42px;
 
     padding: 0.65rem 1rem;
 
+    border: 1px solid #1c2943;
     border-radius: 10px;
 
-    background: var(--wo-dark);
-
-    color: #fff;
+    background: #16223b;
+    color: #ffffff;
 
     font-size: 0.8rem;
     font-weight: 800;
@@ -993,18 +1117,23 @@ body.wholesale-ordering-site {
 
     transition:
         background-color 160ms ease,
+        border-color 160ms ease,
         transform 160ms ease;
 }
 
 .wholesale-home-catalogue-link a:hover,
 .wholesale-home-catalogue-link a:focus-visible {
     background: var(--wo-primary-dark);
+    border-color: var(--wo-primary-dark);
+
+    color: #ffffff;
+
     transform: translateY(-1px);
 }
 
 
 /* =========================================================
- * 16. Homepage products
+ * 17. Products
  * ========================================================= */
 
 .wholesale-home-products {
@@ -1012,12 +1141,7 @@ body.wholesale-ordering-site {
         clamp(4rem, 7vw, 6rem)
         0;
 
-    background: #f7f9fc;
-}
-
-.wholesale-home-product-grid {
-    width: 100%;
-    min-width: 0;
+    background: #f4f7fb;
 }
 
 .wholesale-home-products .woocommerce {
@@ -1025,14 +1149,16 @@ body.wholesale-ordering-site {
     max-width: 100%;
 }
 
-.wholesale-home-products .woocommerce ul.products {
+.wholesale-home-products .woocommerce ul.products,
+.wholesale-home-products ul.products {
     width: 100%;
     max-width: 100%;
 
     margin-bottom: 0;
 }
 
-.wholesale-home-products .woocommerce ul.products li.product {
+.wholesale-home-products .woocommerce ul.products li.product,
+.wholesale-home-products ul.products li.product {
     overflow: hidden;
 
     margin-bottom: 2rem;
@@ -1040,7 +1166,7 @@ body.wholesale-ordering-site {
     border: 1px solid var(--wo-border);
     border-radius: var(--wo-radius-lg);
 
-    background: var(--wo-surface);
+    background: #ffffff;
 
     box-shadow: var(--wo-shadow-sm);
 
@@ -1049,7 +1175,8 @@ body.wholesale-ordering-site {
         box-shadow 160ms ease;
 }
 
-.wholesale-home-products .woocommerce ul.products li.product:hover {
+.wholesale-home-products .woocommerce ul.products li.product:hover,
+.wholesale-home-products ul.products li.product:hover {
     transform: translateY(-2px);
 
     box-shadow: var(--wo-shadow-md);
@@ -1057,7 +1184,7 @@ body.wholesale-ordering-site {
 
 
 /* =========================================================
- * 17. Homepage business section
+ * 18. Business CTA
  * ========================================================= */
 
 .wholesale-home-business {
@@ -1068,8 +1195,8 @@ body.wholesale-ordering-site {
     background:
         linear-gradient(
             180deg,
-            #e8edf5 0%,
-            #dde4ee 100%
+            #e3e9f1 0%,
+            #d9e1eb 100%
         );
 }
 
@@ -1098,7 +1225,7 @@ body.wholesale-ordering-site {
             #3157d5 100%
         );
 
-    color: #fff;
+    color: #ffffff;
 
     box-shadow: var(--wo-shadow-lg);
 }
@@ -1115,6 +1242,7 @@ body.wholesale-ordering-site {
     bottom: -12rem;
 
     border: 1px solid rgba(255, 255, 255, 0.09);
+
     border-radius: 50%;
 
     pointer-events: none;
@@ -1135,7 +1263,7 @@ body.wholesale-ordering-site {
 
     margin: 0.4rem 0 0;
 
-    color: #fff;
+    color: #ffffff;
 
     font-size: clamp(1.9rem, 4vw, 3.1rem);
     font-weight: 800;
@@ -1152,7 +1280,7 @@ body.wholesale-ordering-site {
 
     margin: 0.9rem 0 0;
 
-    color: rgba(255, 255, 255, 0.74);
+    color: rgba(255, 255, 255, 0.76);
 
     line-height: 1.7;
 }
@@ -1166,7 +1294,7 @@ body.wholesale-ordering-site {
 
 
 /* =========================================================
- * 18. Shared application footer
+ * 19. Application footer
  * ========================================================= */
 
 .wholesale-ordering-site-footer {
@@ -1175,7 +1303,8 @@ body.wholesale-ordering-site {
     margin-top: 0;
 
     background: var(--wo-dark);
-    color: #fff;
+
+    color: #ffffff;
 }
 
 .wholesale-ordering-site-footer__inner {
@@ -1195,7 +1324,7 @@ body.wholesale-ordering-site {
 .wholesale-ordering-site-footer__site-name {
     display: inline-block;
 
-    color: #fff;
+    color: #ffffff;
 
     font-size: 1.15rem;
     font-weight: 850;
@@ -1216,7 +1345,7 @@ body.wholesale-ordering-site {
 .wholesale-ordering-site-footer__links h2 {
     margin: 0 0 0.9rem;
 
-    color: #fff;
+    color: #ffffff;
 
     font-size: 0.76rem;
     font-weight: 800;
@@ -1225,19 +1354,20 @@ body.wholesale-ordering-site {
     text-transform: uppercase;
 }
 
-.wholesale-ordering-site-footer__links ul {
+.wholesale-ordering-site-footer__links ul,
+.wholesale-ordering-site-footer__inner ul {
     margin: 0;
     padding: 0;
 
     list-style: none;
 }
 
-.wholesale-ordering-site-footer__links li + li {
+.wholesale-ordering-site-footer__inner li + li {
     margin-top: 0.5rem;
 }
 
-.wholesale-ordering-site-footer__links a {
-    color: rgba(255, 255, 255, 0.62);
+.wholesale-ordering-site-footer__inner a {
+    color: rgba(255, 255, 255, 0.64);
 
     font-size: 0.84rem;
 
@@ -1246,9 +1376,9 @@ body.wholesale-ordering-site {
     transition: color 160ms ease;
 }
 
-.wholesale-ordering-site-footer__links a:hover,
-.wholesale-ordering-site-footer__links a:focus-visible {
-    color: #fff;
+.wholesale-ordering-site-footer__inner a:hover,
+.wholesale-ordering-site-footer__inner a:focus-visible {
+    color: #ffffff;
 }
 
 .wholesale-ordering-site-footer__bottom {
@@ -1277,7 +1407,7 @@ body.wholesale-ordering-site {
 
 
 /* =========================================================
- * 19. Phase 6E — storefront / account controls
+ * 20. Phase 6E — storefront/account controls
  * ========================================================= */
 
 .wholesale-ordering-frontend,
@@ -1295,19 +1425,15 @@ body.wholesale-ordering-site {
     border: 1px solid var(--wo-border);
     border-radius: var(--wo-radius-md);
 
-    background: var(--wo-surface);
+    background: #ffffff;
 
     box-shadow: var(--wo-shadow-sm);
 
     overflow: hidden;
 }
 
-.wholesale-ordering-frontend
-.wholesale-ordering-catalog-tools
-label,
-.wholesale-ordering-frontend
-.wholesale-ordering-category-nav
-strong {
+.wholesale-ordering-frontend .wholesale-ordering-catalog-tools label,
+.wholesale-ordering-frontend .wholesale-ordering-category-nav strong {
     display: block;
 
     margin-bottom: 0.4rem;
@@ -1347,6 +1473,14 @@ input[type="search"] {
 
     min-width: 0;
     width: 100%;
+
+    min-height: 2.75rem;
+
+    border: 1px solid var(--wo-border);
+    border-radius: 10px;
+
+    background: #ffffff;
+    color: var(--wo-ink);
 }
 
 .wholesale-ordering-frontend
@@ -1378,7 +1512,18 @@ a {
 
     overflow-wrap: anywhere;
 
+    color: var(--wo-primary-dark);
+
     text-decoration: none;
+}
+
+.wholesale-ordering-frontend
+.wholesale-ordering-category-links
+a:hover,
+.wholesale-ordering-frontend
+.wholesale-ordering-category-links
+a:focus-visible {
+    color: var(--wo-primary);
 }
 
 .wholesale-ordering-frontend
@@ -1388,8 +1533,7 @@ a.is-active {
     text-decoration: underline;
 }
 
-.wholesale-ordering-frontend
-.wholesale-ordering-catalog-filter {
+.wholesale-ordering-frontend .wholesale-ordering-catalog-filter {
     margin-top: 1rem;
     padding-top: 1rem;
 
@@ -1420,6 +1564,12 @@ select {
 
     min-height: 2.75rem;
     max-width: 100%;
+
+    border: 1px solid var(--wo-border);
+    border-radius: 10px;
+
+    background: #ffffff;
+    color: var(--wo-ink);
 }
 
 .wholesale-ordering-frontend
@@ -1452,7 +1602,7 @@ select {
     border: 1px solid var(--wo-border);
     border-radius: var(--wo-radius-md);
 
-    background: var(--wo-surface);
+    background: #ffffff;
 
     box-shadow: var(--wo-shadow-sm);
 
@@ -1487,8 +1637,11 @@ h3 {
     cursor: pointer;
 
     border: 1px solid currentColor;
+    border-radius: 0;
 
     background: transparent;
+
+    color: inherit;
 
     font-size: 1rem;
     line-height: 1;
@@ -1522,7 +1675,71 @@ table.shop_table {
 
 
 /* =========================================================
- * 20. Accessibility
+ * 21. WooCommerce/frontend action safety
+ *
+ * These rules ensure standard Woo buttons do not become
+ * white-on-white when the active theme supplies conflicting
+ * button defaults.
+ * ========================================================= */
+
+.wholesale-ordering-frontend
+.woocommerce
+.button,
+.wholesale-ordering-frontend
+.woocommerce
+button.button,
+.wholesale-ordering-frontend
+.woocommerce
+input.button,
+.wholesale-ordering-frontend
+.woocommerce
+a.button {
+    border-color: var(--wo-primary);
+    background: var(--wo-primary);
+    color: #ffffff;
+
+    font-weight: 700;
+}
+
+.wholesale-ordering-frontend
+.woocommerce
+.button:hover,
+.wholesale-ordering-frontend
+.woocommerce
+button.button:hover,
+.wholesale-ordering-frontend
+.woocommerce
+input.button:hover,
+.wholesale-ordering-frontend
+.woocommerce
+a.button:hover {
+    border-color: var(--wo-primary-dark);
+    background: var(--wo-primary-dark);
+    color: #ffffff;
+}
+
+.wholesale-ordering-frontend
+.wholesale-ordering-reset {
+    border: 1px solid var(--wo-border-strong);
+
+    background: #ffffff;
+    color: var(--wo-ink-strong);
+
+    padding-inline: 0.9rem;
+}
+
+.wholesale-ordering-frontend
+.wholesale-ordering-reset:hover,
+.wholesale-ordering-frontend
+.wholesale-ordering-reset:focus-visible {
+    border-color: var(--wo-primary);
+    background: var(--wo-primary-soft);
+    color: var(--wo-primary-dark);
+}
+
+
+/* =========================================================
+ * 22. Accessibility
  * ========================================================= */
 
 .wholesale-ordering-site
@@ -1551,25 +1768,8 @@ textarea:focus-visible {
 
 
 /* =========================================================
- * 21. Tablet
+ * 23. Tablet
  * ========================================================= */
-
-@media (max-width: 1100px) {
-
-    .wholesale-ordering-primary-navigation {
-        margin-left: 0;
-    }
-
-    .wholesale-ordering-header-search {
-        width: 220px;
-        min-width: 150px;
-    }
-
-    .wholesale-ordering-header-account__label {
-        display: none;
-    }
-}
-
 
 @media (min-width: 768px) and (max-width: 1023px) {
 
@@ -1593,10 +1793,35 @@ textarea:focus-visible {
 
 
 /* =========================================================
- * 22. Mobile navigation / responsive homepage
+ * 24. Header/tablet
+ * ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .wholesale-ordering-primary-navigation {
+        margin-left: 0;
+    }
+
+    .wholesale-ordering-header-search {
+        width: 220px;
+        min-width: 150px;
+    }
+
+    .wholesale-ordering-header-account__label {
+        display: none;
+    }
+}
+
+
+/* =========================================================
+ * 25. Mobile navigation
  * ========================================================= */
 
 @media (max-width: 899px) {
+
+    .wholesale-ordering-site {
+        --wo-gutter: 20px;
+    }
 
     .wholesale-ordering-site-header__inner {
         min-height: 68px;
@@ -1653,7 +1878,7 @@ textarea:focus-visible {
         border: 1px solid var(--wo-border);
         border-radius: var(--wo-radius-md);
 
-        background: #fff;
+        background: #ffffff;
 
         box-shadow: var(--wo-shadow-md);
     }
@@ -1671,6 +1896,20 @@ textarea:focus-visible {
         padding: 0.7rem 0.85rem;
 
         justify-content: flex-start;
+
+        background: #ffffff;
+        color: #344054;
+    }
+
+    .wholesale-ordering-primary-navigation a:hover,
+    .wholesale-ordering-primary-navigation a:focus-visible {
+        background: #eef3ff;
+        color: var(--wo-primary-dark);
+    }
+
+    .wholesale-ordering-primary-navigation a.is-active {
+        background: var(--wo-primary-soft);
+        color: var(--wo-primary-dark);
     }
 
     .wholesale-ordering-header-actions {
@@ -1701,23 +1940,20 @@ textarea:focus-visible {
     .wholesale-ordering-header-cart {
         min-height: 44px;
         padding: 0 0.65rem;
+
+        background: #ffffff;
+        color: #344054;
     }
 
     .wholesale-ordering-site.wholesale-ordering-menu-open {
         overflow-y: auto;
     }
 
-    /* Homepage */
-
     .wholesale-home-hero {
         padding:
             4rem
             0
             5rem;
-    }
-
-    .wholesale-home-hero__content {
-        max-width: none;
     }
 
     .wholesale-home-feature-grid {
@@ -1736,13 +1972,14 @@ textarea:focus-visible {
 
     .wholesale-ordering-site-footer__bottom {
         align-items: flex-start;
+
         flex-direction: column;
     }
 }
 
 
 /* =========================================================
- * 23. Small mobile
+ * 26. Mobile storefront
  * ========================================================= */
 
 @media (max-width: 767px) {
@@ -1813,14 +2050,18 @@ textarea:focus-visible {
         padding: 0.875rem;
     }
 
-    .wholesale-home-section__inner,
+    /*
+     * Standard modern mobile application gutter.
+     *
+     * 20px means content never sits against the viewport edge.
+     */
     .wholesale-ordering-site-header__inner,
+    .wholesale-home-section__inner,
+    .wholesale-home-hero__content,
     .wholesale-ordering-site-footer__inner,
     .wholesale-ordering-site-footer__bottom {
-        width: min(
-            calc(100% - 1.5rem),
-            var(--wo-container)
-        );
+        width: calc(100% - 40px);
+        max-width: var(--wo-container);
     }
 
     .wholesale-home-steps {
@@ -1843,19 +2084,22 @@ textarea:focus-visible {
 
 
 /* =========================================================
- * 24. Extra-small mobile
+ * 27. Extra-small phones
  * ========================================================= */
 
 @media (max-width: 599px) {
 
+    .wholesale-ordering-site {
+        --wo-gutter: 16px;
+    }
+
     .wholesale-ordering-site-header__inner,
     .wholesale-home-section__inner,
+    .wholesale-home-hero__content,
     .wholesale-ordering-site-footer__inner,
     .wholesale-ordering-site-footer__bottom {
-        width: min(
-            calc(100% - 1rem),
-            var(--wo-container)
-        );
+        width: calc(100% - 32px);
+        max-width: var(--wo-container);
     }
 
     .wholesale-ordering-header-actions {
@@ -1873,9 +2117,13 @@ textarea:focus-visible {
         width: 100%;
     }
 
+    .wholesale-home-hero {
+        padding-top: 3.5rem;
+    }
+
     .wholesale-home-hero h1 {
         font-size: clamp(
-            2.4rem,
+            2.35rem,
             13vw,
             3.4rem
         );
@@ -1892,10 +2140,14 @@ textarea:focus-visible {
 
 
 /* =========================================================
- * 25. Desktop filter layout
+ * 28. Desktop filter layout
  * ========================================================= */
 
 @media (min-width: 1024px) {
+
+    .wholesale-ordering-site {
+        --wo-gutter: 32px;
+    }
 
     .wholesale-ordering-frontend
     .wholesale-ordering-filter-grid {
@@ -1913,7 +2165,7 @@ textarea:focus-visible {
 
 
 /* =========================================================
- * 26. Desktop navigation enforcement
+ * 29. Desktop navigation
  * ========================================================= */
 
 @media (min-width: 900px) {
@@ -1936,7 +2188,7 @@ textarea:focus-visible {
 
 
 /* =========================================================
- * 27. Reduced motion
+ * 30. Reduced motion
  * ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
