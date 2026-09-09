@@ -49,8 +49,8 @@ final class HomePage {
 	/**
 	 * Use the plugin homepage template for the site's front page.
 	 *
-	 * The template still calls the active theme's get_header() and
-	 * get_footer(), so the site remains compatible with the active theme.
+	 * The plugin homepage template remains responsible only for homepage
+	 * presentation. The application shell remains owned by SiteChrome.
 	 *
 	 * @param string $template Current template path.
 	 *
@@ -73,6 +73,9 @@ final class HomePage {
 	/**
 	 * Add stable homepage body classes.
 	 *
+	 * SiteChrome may add its own application-shell body class separately.
+	 * This class only identifies the plugin homepage.
+	 *
 	 * @param array<int,string> $classes Body classes.
 	 *
 	 * @return array<int,string>
@@ -82,7 +85,7 @@ final class HomePage {
 			$classes[] = 'wholesale-ordering-home';
 		}
 
-		return $classes;
+		return array_unique( $classes );
 	}
 
 	/**

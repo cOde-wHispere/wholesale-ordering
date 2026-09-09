@@ -3,462 +3,542 @@
 defined( 'ABSPATH' ) || exit;
 
 $shop_url = function_exists( 'wc_get_page_permalink' )
-    ? wc_get_page_permalink( 'shop' )
-    : home_url( '/shop/' );
+	? wc_get_page_permalink( 'shop' )
+	: home_url( '/shop/' );
 
 $account_url = function_exists( 'wc_get_page_permalink' )
-    ? wc_get_page_permalink( 'myaccount' )
-    : wp_login_url();
+	? wc_get_page_permalink( 'myaccount' )
+	: wp_login_url();
 
 $site_name = get_bloginfo( 'name' );
 
 if ( '' === $site_name ) {
-    $site_name = __( 'Wholesale Ordering', 'wholesale-ordering' );
+	$site_name = __( 'Wholesale Ordering', 'wholesale-ordering' );
 }
 
+/*
+ * Allow the active theme to provide its normal document/header setup.
+ *
+ * SiteChrome is attached to wp_body_open. Some themes/templates do not
+ * execute wp_body_open(), so get_header() alone cannot be treated as a
+ * guarantee that the application shell has rendered.
+ */
 get_header();
+
+/*
+ * Guarantee that the WordPress body-open lifecycle fires.
+ *
+ * SiteChrome owns the Wholesale Ordering application header/navigation.
+ *
+ * The did_action() guard prevents duplicate execution when the active
+ * theme has already called wp_body_open().
+ */
+if (
+	function_exists( 'wp_body_open' )
+	&& 0 === did_action( 'wp_body_open' )
+) {
+	wp_body_open();
+}
 ?>
 
 <main
-    id="primary"
-    class="wholesale-ordering-homepage"
+	id="primary"
+	class="wholesale-ordering-homepage"
 >
 
-    <section class="wholesale-home-hero">
-        <div class="wholesale-home-container wholesale-home-hero__grid">
+	<section class="wholesale-home-hero">
+		<div class="wholesale-home-container wholesale-home-hero__grid">
 
-            <div class="wholesale-home-hero__content">
+			<div class="wholesale-home-hero__content">
 
-                <span class="wholesale-home-eyebrow">
-                    <?php
-                    echo esc_html__(
-                        'Wholesale Ordering',
-                        'wholesale-ordering'
-                    );
-                    ?>
-                </span>
+				<span class="wholesale-home-eyebrow">
+					<?php
+					echo esc_html__(
+						'Wholesale Ordering',
+						'wholesale-ordering'
+					);
+					?>
+				</span>
 
-                <h1>
-                    <?php
-                    echo esc_html__(
-                        'Business ordering made simple.',
-                        'wholesale-ordering'
-                    );
-                    ?>
-                </h1>
+				<h1>
+					<?php
+					echo esc_html__(
+						'Business ordering made simple.',
+						'wholesale-ordering'
+					);
+					?>
+				</h1>
 
-                <p class="wholesale-home-hero__lead">
-                    <?php
-                    echo esc_html__(
-                        'Browse products, manage your account and place orders through one straightforward shopping experience.',
-                        'wholesale-ordering'
-                    );
-                    ?>
-                </p>
+				<p class="wholesale-home-hero__lead">
+					<?php
+					echo esc_html__(
+						'Browse products, manage your account and place orders through one straightforward shopping experience.',
+						'wholesale-ordering'
+					);
+					?>
+				</p>
 
-                <div class="wholesale-home-actions">
+				<div class="wholesale-home-actions">
 
-                    <a
-                        class="button wholesale-home-primary-button"
-                        href="<?php echo esc_url( $shop_url ); ?>"
-                    >
-                        <?php
-                        echo esc_html__(
-                            'Browse Products',
-                            'wholesale-ordering'
-                        );
-                        ?>
-                    </a>
+					<a
+						class="button wholesale-home-primary-button"
+						href="<?php echo esc_url( $shop_url ); ?>"
+					>
+						<?php
+						echo esc_html__(
+							'Browse Products',
+							'wholesale-ordering'
+						);
+						?>
+					</a>
 
-                    <?php if ( ! is_user_logged_in() ) : ?>
+					<?php if ( ! is_user_logged_in() ) : ?>
 
-                        <a
-                            class="button wholesale-home-secondary-button"
-                            href="<?php echo esc_url( $account_url ); ?>"
-                        >
-                            <?php
-                            echo esc_html__(
-                                'Create an Account',
-                                'wholesale-ordering'
-                            );
-                            ?>
-                        </a>
+						<a
+							class="button wholesale-home-secondary-button"
+							href="<?php echo esc_url( $account_url ); ?>"
+						>
+							<?php
+							echo esc_html__(
+								'Create an Account',
+								'wholesale-ordering'
+							);
+							?>
+						</a>
 
-                    <?php else : ?>
+					<?php else : ?>
 
-                        <a
-                            class="button wholesale-home-secondary-button"
-                            href="<?php echo esc_url( $account_url ); ?>"
-                        >
-                            <?php
-                            echo esc_html__(
-                                'My Account',
-                                'wholesale-ordering'
-                            );
-                            ?>
-                        </a>
+						<a
+							class="button wholesale-home-secondary-button"
+							href="<?php echo esc_url( $account_url ); ?>"
+						>
+							<?php
+							echo esc_html__(
+								'My Account',
+								'wholesale-ordering'
+							);
+							?>
+						</a>
 
-                    <?php endif; ?>
+					<?php endif; ?>
 
-                </div>
+				</div>
 
-            </div>
+			</div>
 
-            <div
-                class="wholesale-home-hero-panel"
-                aria-label="<?php echo esc_attr__( 'Ordering overview', 'wholesale-ordering' ); ?>"
-            >
-                <div class="wholesale-home-hero-panel__top">
-                    <span class="wholesale-home-hero-panel__dot"></span>
+			<div
+				class="wholesale-home-hero-panel"
+				aria-label="<?php echo esc_attr__( 'Ordering overview', 'wholesale-ordering' ); ?>"
+			>
 
-                    <span>
-                        <?php
-                        echo esc_html__(
-                            'Ordering workspace',
-                            'wholesale-ordering'
-                        );
-                        ?>
-                    </span>
-                </div>
+				<div class="wholesale-home-hero-panel__top">
 
-                <div class="wholesale-home-hero-panel__main">
+					<span
+						class="wholesale-home-hero-panel__dot"
+						aria-hidden="true"
+					></span>
 
-                    <span class="wholesale-home-hero-panel__label">
-                        <?php
-                        echo esc_html__(
-                            'Find what you need',
-                            'wholesale-ordering'
-                        );
-                        ?>
-                    </span>
+					<span>
+						<?php
+						echo esc_html__(
+							'Ordering workspace',
+							'wholesale-ordering'
+						);
+						?>
+					</span>
 
-                    <strong>
-                        <?php
-                        echo esc_html__(
-                            'Browse the catalogue',
-                            'wholesale-ordering'
-                        );
-                        ?>
-                    </strong>
+				</div>
 
-                    <div class="wholesale-home-hero-panel__search">
-                        <span aria-hidden="true">⌕</span>
+				<div class="wholesale-home-hero-panel__main">
 
-                        <span>
-                            <?php
-                            echo esc_html__(
-                                'Search products…',
-                                'wholesale-ordering'
-                            );
-                            ?>
-                        </span>
-                    </div>
+					<span class="wholesale-home-hero-panel__label">
+						<?php
+						echo esc_html__(
+							'Find what you need',
+							'wholesale-ordering'
+						);
+						?>
+					</span>
 
-                    <div class="wholesale-home-hero-panel__stats">
-                        <div>
-                            <strong>01</strong>
-                            <span>
-                                <?php
-                                echo esc_html__(
-                                    'Browse',
-                                    'wholesale-ordering'
-                                );
-                                ?>
-                            </span>
-                        </div>
+					<strong>
+						<?php
+						echo esc_html__(
+							'Browse the catalogue',
+							'wholesale-ordering'
+						);
+						?>
+					</strong>
 
-                        <div>
-                            <strong>02</strong>
-                            <span>
-                                <?php
-                                echo esc_html__(
-                                    'Order',
-                                    'wholesale-ordering'
-                                );
-                                ?>
-                            </span>
-                        </div>
+					<div class="wholesale-home-hero-panel__search">
 
-                        <div>
-                            <strong>03</strong>
-                            <span>
-                                <?php
-                                echo esc_html__(
-                                    'Track',
-                                    'wholesale-ordering'
-                                );
-                                ?>
-                            </span>
-                        </div>
-                    </div>
+						<span aria-hidden="true">⌕</span>
 
-                </div>
-            </div>
+						<span>
+							<?php
+							echo esc_html__(
+								'Search products…',
+								'wholesale-ordering'
+							);
+							?>
+						</span>
 
-        </div>
-    </section>
+					</div>
 
-    <section
-        class="wholesale-home-features"
-        aria-label="<?php echo esc_attr__( 'Ordering features', 'wholesale-ordering' ); ?>"
-    >
-        <div class="wholesale-home-container">
+					<div class="wholesale-home-hero-panel__stats">
 
-            <div class="wholesale-home-feature-grid">
+						<div>
+							<strong>01</strong>
 
-                <article class="wholesale-home-feature-card">
-                    <span
-                        class="wholesale-home-feature-card__number"
-                        aria-hidden="true"
-                    >
-                        01
-                    </span>
+							<span>
+								<?php
+								echo esc_html__(
+									'Browse',
+									'wholesale-ordering'
+								);
+								?>
+							</span>
+						</div>
 
-                    <h2>
-                        <?php
-                        echo esc_html__(
-                            'Browse with confidence',
-                            'wholesale-ordering'
-                        );
-                        ?>
-                    </h2>
+						<div>
+							<strong>02</strong>
 
-                    <p>
-                        <?php
-                        echo esc_html__(
-                            'Search products, explore categories and use the catalogue filters to find what you need.',
-                            'wholesale-ordering'
-                        );
-                        ?>
-                    </p>
-                </article>
+							<span>
+								<?php
+								echo esc_html__(
+									'Order',
+									'wholesale-ordering'
+								);
+								?>
+							</span>
+						</div>
 
-                <article class="wholesale-home-feature-card">
-                    <span
-                        class="wholesale-home-feature-card__number"
-                        aria-hidden="true"
-                    >
-                        02
-                    </span>
+						<div>
+							<strong>03</strong>
 
-                    <h2>
-                        <?php
-                        echo esc_html__(
-                            'Account-aware ordering',
-                            'wholesale-ordering'
-                        );
-                        ?>
-                    </h2>
+							<span>
+								<?php
+								echo esc_html__(
+									'Track',
+									'wholesale-ordering'
+								);
+								?>
+							</span>
+						</div>
 
-                    <p>
-                        <?php
-                        echo esc_html__(
-                            'Your account and wholesale status determine the pricing and ordering experience you are authorized to receive.',
-                            'wholesale-ordering'
-                        );
-                        ?>
-                    </p>
-                </article>
+					</div>
 
-                <article class="wholesale-home-feature-card">
-                    <span
-                        class="wholesale-home-feature-card__number"
-                        aria-hidden="true"
-                    >
-                        03
-                    </span>
+				</div>
 
-                    <h2>
-                        <?php
-                        echo esc_html__(
-                            'One consistent workspace',
-                            'wholesale-ordering'
-                        );
-                        ?>
-                    </h2>
+			</div>
 
-                    <p>
-                        <?php
-                        echo esc_html__(
-                            'Move between products, your account and cart without leaving the same application experience.',
-                            'wholesale-ordering'
-                        );
-                        ?>
-                    </p>
-                </article>
+		</div>
+	</section>
 
-            </div>
+	<section
+		class="wholesale-home-features"
+		aria-label="<?php echo esc_attr__( 'Ordering features', 'wholesale-ordering' ); ?>"
+	>
 
-        </div>
-    </section>
+		<div class="wholesale-home-container">
 
-    <section
-        class="wholesale-home-categories wholesale-home-section"
-        aria-labelledby="wholesale-home-categories-title"
-    >
-        <div class="wholesale-home-container">
+			<div class="wholesale-home-feature-grid">
 
-            <div class="wholesale-home-section-heading">
-                <div>
-                    <span class="wholesale-home-section-eyebrow">
-                        <?php
-                        echo esc_html__(
-                            'Explore',
-                            'wholesale-ordering'
-                        );
-                        ?>
-                    </span>
+				<article class="wholesale-home-feature-card">
 
-                    <h2 id="wholesale-home-categories-title">
-                        <?php
-                        echo esc_html__(
-                            'Shop by category',
-                            'wholesale-ordering'
-                        );
-                        ?>
-                    </h2>
-                </div>
+					<span
+						class="wholesale-home-feature-card__number"
+						aria-hidden="true"
+					>
+						01
+					</span>
 
-                <a
-                    class="wholesale-home-section-link"
-                    href="<?php echo esc_url( $shop_url ); ?>"
-                >
-                    <?php
-                    echo esc_html__(
-                        'View all products',
-                        'wholesale-ordering'
-                    );
-                    ?>
-                    <span aria-hidden="true">→</span>
-                </a>
-            </div>
+					<h2>
+						<?php
+						echo esc_html__(
+							'Browse with confidence',
+							'wholesale-ordering'
+						);
+						?>
+					</h2>
 
-            <?php
-            /*
-             * HomePage remains responsible for catalogue/category rendering.
-             * Do not introduce a second product query here.
-             */
-            \WholesaleOrdering\Frontend\HomePage::render_categories();
-            ?>
+					<p>
+						<?php
+						echo esc_html__(
+							'Search products, explore categories and use the catalogue filters to find what you need.',
+							'wholesale-ordering'
+						);
+						?>
+					</p>
 
-        </div>
-    </section>
+				</article>
 
-    <section
-        class="wholesale-home-products wholesale-home-section"
-        aria-labelledby="wholesale-home-products-title"
-    >
-        <div class="wholesale-home-container">
+				<article class="wholesale-home-feature-card">
 
-            <div class="wholesale-home-section-heading">
-                <div>
-                    <span class="wholesale-home-section-eyebrow">
-                        <?php
-                        echo esc_html__(
-                            'Catalogue',
-                            'wholesale-ordering'
-                        );
-                        ?>
-                    </span>
+					<span
+						class="wholesale-home-feature-card__number"
+						aria-hidden="true"
+					>
+						02
+					</span>
 
-                    <h2 id="wholesale-home-products-title">
-                        <?php
-                        echo esc_html__(
-                            'Latest products',
-                            'wholesale-ordering'
-                        );
-                        ?>
-                    </h2>
-                </div>
+					<h2>
+						<?php
+						echo esc_html__(
+							'Account-aware ordering',
+							'wholesale-ordering'
+						);
+						?>
+					</h2>
 
-                <a
-                    class="wholesale-home-section-link"
-                    href="<?php echo esc_url( $shop_url ); ?>"
-                >
-                    <?php
-                    echo esc_html__(
-                        'Open shop',
-                        'wholesale-ordering'
-                    );
-                    ?>
-                    <span aria-hidden="true">→</span>
-                </a>
-            </div>
+					<p>
+						<?php
+						echo esc_html__(
+							'Your account and wholesale status determine the pricing and ordering experience you are authorized to receive.',
+							'wholesale-ordering'
+						);
+						?>
+					</p>
 
-            <?php
-            /*
-             * WooCommerce remains authoritative for product retrieval,
-             * rendering and price resolution.
-             */
-            \WholesaleOrdering\Frontend\HomePage::render_products();
-            ?>
+				</article>
 
-        </div>
-    </section>
+				<article class="wholesale-home-feature-card">
 
-    <section class="wholesale-home-business">
-        <div class="wholesale-home-container">
+					<span
+						class="wholesale-home-feature-card__number"
+						aria-hidden="true"
+					>
+						03
+					</span>
 
-            <div class="wholesale-home-business-card">
+					<h2>
+						<?php
+						echo esc_html__(
+							'One consistent workspace',
+							'wholesale-ordering'
+						);
+						?>
+					</h2>
 
-                <div class="wholesale-home-business-content">
+					<p>
+						<?php
+						echo esc_html__(
+							'Move between products, your account and cart without leaving the same application experience.',
+							'wholesale-ordering'
+						);
+						?>
+					</p>
 
-                    <span class="wholesale-home-section-eyebrow">
-                        <?php
-                        echo esc_html__(
-                            'Business access',
-                            'wholesale-ordering'
-                        );
-                        ?>
-                    </span>
+				</article>
 
-                    <h2>
-                        <?php
-                        echo esc_html__(
-                            'Need wholesale access?',
-                            'wholesale-ordering'
-                        );
-                        ?>
-                    </h2>
+			</div>
 
-                    <p>
-                        <?php
-                        echo esc_html__(
-                            'Create an account and use your customer workspace to manage your ordering journey.',
-                            'wholesale-ordering'
-                        );
-                        ?>
-                    </p>
+		</div>
 
-                </div>
+	</section>
 
-                <div class="wholesale-home-business-action">
+	<section
+		class="wholesale-home-categories wholesale-home-section"
+		aria-labelledby="wholesale-home-categories-title"
+	>
 
-                    <a
-                        class="button"
-                        href="<?php echo esc_url( $account_url ); ?>"
-                    >
-                        <?php
-                        echo is_user_logged_in()
-                            ? esc_html__(
-                                'Open My Account',
-                                'wholesale-ordering'
-                            )
-                            : esc_html__(
-                                'Get Started',
-                                'wholesale-ordering'
-                            );
-                        ?>
-                    </a>
+		<div class="wholesale-home-container">
 
-                </div>
+			<div class="wholesale-home-section-heading">
 
-            </div>
+				<div>
 
-        </div>
-    </section>
+					<span class="wholesale-home-section-eyebrow">
+						<?php
+						echo esc_html__(
+							'Explore',
+							'wholesale-ordering'
+						);
+						?>
+					</span>
+
+					<h2 id="wholesale-home-categories-title">
+						<?php
+						echo esc_html__(
+							'Shop by category',
+							'wholesale-ordering'
+						);
+						?>
+					</h2>
+
+				</div>
+
+				<a
+					class="wholesale-home-section-link"
+					href="<?php echo esc_url( $shop_url ); ?>"
+				>
+					<?php
+					echo esc_html__(
+						'View all products',
+						'wholesale-ordering'
+					);
+					?>
+
+					<span aria-hidden="true">→</span>
+				</a>
+
+			</div>
+
+			<?php
+			/*
+			 * HomePage delegates category rendering to WooCommerce.
+			 *
+			 * Do not introduce a second category/product query engine here.
+			 */
+			\WholesaleOrdering\Frontend\HomePage::render_categories();
+			?>
+
+		</div>
+
+	</section>
+
+	<section
+		class="wholesale-home-products wholesale-home-section"
+		aria-labelledby="wholesale-home-products-title"
+	>
+
+		<div class="wholesale-home-container">
+
+			<div class="wholesale-home-section-heading">
+
+				<div>
+
+					<span class="wholesale-home-section-eyebrow">
+						<?php
+						echo esc_html__(
+							'Catalogue',
+							'wholesale-ordering'
+						);
+						?>
+					</span>
+
+					<h2 id="wholesale-home-products-title">
+						<?php
+						echo esc_html__(
+							'Latest products',
+							'wholesale-ordering'
+						);
+						?>
+					</h2>
+
+				</div>
+
+				<a
+					class="wholesale-home-section-link"
+					href="<?php echo esc_url( $shop_url ); ?>"
+				>
+					<?php
+					echo esc_html__(
+						'Open shop',
+						'wholesale-ordering'
+					);
+					?>
+
+					<span aria-hidden="true">→</span>
+				</a>
+
+			</div>
+
+			<?php
+			/*
+			 * WooCommerce remains authoritative for:
+			 *
+			 * - product retrieval;
+			 * - catalogue visibility;
+			 * - product rendering;
+			 * - price resolution.
+			 */
+			\WholesaleOrdering\Frontend\HomePage::render_products();
+			?>
+
+		</div>
+
+	</section>
+
+	<section class="wholesale-home-business">
+
+		<div class="wholesale-home-container">
+
+			<div class="wholesale-home-business-card">
+
+				<div class="wholesale-home-business-content">
+
+					<span class="wholesale-home-section-eyebrow">
+						<?php
+						echo esc_html__(
+							'Business access',
+							'wholesale-ordering'
+						);
+						?>
+					</span>
+
+					<h2>
+						<?php
+						echo esc_html__(
+							'Need wholesale access?',
+							'wholesale-ordering'
+						);
+						?>
+					</h2>
+
+					<p>
+						<?php
+						echo esc_html__(
+							'Create an account and use your customer workspace to manage your ordering journey.',
+							'wholesale-ordering'
+						);
+						?>
+					</p>
+
+				</div>
+
+				<div class="wholesale-home-business-action">
+
+					<a
+						class="button"
+						href="<?php echo esc_url( $account_url ); ?>"
+					>
+						<?php
+						echo is_user_logged_in()
+							? esc_html__(
+								'Open My Account',
+								'wholesale-ordering'
+							)
+							: esc_html__(
+								'Get Started',
+								'wholesale-ordering'
+							);
+						?>
+					</a>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</section>
 
 </main>
 
 <?php
+
+/*
+ * Allow the active theme to provide its normal footer.
+ */
 get_footer();
+
+/*
+ * Guarantee that the WordPress footer lifecycle fires.
+ *
+ * SiteChrome owns the Wholesale Ordering application footer through
+ * wp_footer. The did_action() guard prevents duplicate execution when
+ * the active theme has already called wp_footer().
+ */
+if ( function_exists( 'wp_footer' ) && 0 === did_action( 'wp_footer' ) ) {
+	wp_footer();
+}
