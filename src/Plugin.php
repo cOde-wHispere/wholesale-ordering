@@ -1,6 +1,8 @@
 <?php
 
 namespace WholesaleOrdering;
+
+use WholesaleOrdering\CLI\ProductSeedCommand;
 use WholesaleOrdering\Infrastructure\Config;
 use WholesaleOrdering\Infrastructure\Logger;
 use WholesaleOrdering\Infrastructure\MigrationRunner;
@@ -16,6 +18,7 @@ use WholesaleOrdering\Frontend\Frontend;
 use WholesaleOrdering\Account\Account;
 use WholesaleOrdering\Admin\Admin;
 use WholesaleOrdering\Auth\Registration;
+
 
 defined( 'ABSPATH' ) || exit;
 /**
@@ -161,6 +164,11 @@ defined( 'ABSPATH' ) || exit;
     * request caching from leaking customer-specific wholesale prices.
       */
       PricingLeakageProtection::register();
+
+      /*
+	 * Development/staging WP-CLI product fixture commands.
+	 */
+      ProductSeedCommand::register();
 
         // Phase 7 secure document boundary and protected download handler.
         DocumentSecurity::register();
