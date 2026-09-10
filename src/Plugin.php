@@ -7,7 +7,6 @@ use WholesaleOrdering\Auth\Registration;
 use WholesaleOrdering\Account\Account;
 use WholesaleOrdering\Cart\CartIntegration;
 use WholesaleOrdering\Checkout\CheckoutIntegration;
-use WholesaleOrdering\CLI\ProductSeedCommand;
 use WholesaleOrdering\Frontend\Frontend;
 use WholesaleOrdering\Infrastructure\Config;
 use WholesaleOrdering\Infrastructure\Logger;
@@ -94,9 +93,7 @@ final class Plugin {
 		// Protect REST/structured-data/authenticated-cache exposure of pricing.
 		PricingLeakageProtection::register();
 
-		// Development/staging fixture command; no direct DB writes from Python.
-		ProductSeedCommand::register();
-
+	
 		// Protected supporting-document boundary.
 		DocumentSecurity::register();
 

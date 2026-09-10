@@ -1,101 +1,101 @@
-seed_id,product_name,description,regular_price,wholesale_price,wholesale_minimum_quantity,quantity_step,brand,category,image
-wo-seed-001,Premium Rice 25kg,"Premium long grain rice suitable for homes, restaurants and retailers.",850,720,5,5,Gambia Foods,Groceries,rice-25kg.jpg
-wo-seed-002,Premium Rice 10kg,Quality long grain rice for everyday cooking.,380,320,10,5,Gambia Foods,Groceries,rice-10kg.jpg
-wo-seed-003,Parboiled Rice 25kg,High quality parboiled rice.,900,760,5,5,WestAfrica Foods,Groceries,parboiled-rice.jpg
-wo-seed-004,Cooking Oil 5L,Refined vegetable cooking oil.,420,350,10,5,SunGold,Groceries,cooking-oil-5l.jpg
-wo-seed-005,Cooking Oil 1L,Refined vegetable cooking oil for household use.,95,78,20,10,SunGold,Groceries,cooking-oil-1l.jpg
-wo-seed-006,Sugar 1kg,Premium white granulated sugar.,75,60,20,10,SweetLife,Groceries,sugar-1kg.jpg
-wo-seed-007,Sugar 5kg,Premium white granulated sugar in a 5kg package.,340,285,10,5,SweetLife,Groceries,sugar-5kg.jpg
-wo-seed-008,Wheat Flour 1kg,Fine wheat flour suitable for baking.,80,65,20,10,BakePro,Groceries,wheat-flour.jpg
-wo-seed-009,Corn Flour 1kg,Fine corn flour for cooking and baking.,85,68,20,10,Gambia Foods,Groceries,corn-flour.jpg
-wo-seed-010,Spaghetti 500g,Quality durum wheat spaghetti.,55,42,24,12,PastaHouse,Groceries,spaghetti.jpg
-wo-seed-011,Bottled Water 500ml,Pure bottled drinking water.,15,11,48,24,Gambia Pure,Beverages,water-500ml.jpg
-wo-seed-012,Bottled Water 1.5L,Pure bottled drinking water.,25,19,24,12,Gambia Pure,Beverages,water-1.5l.jpg
-wo-seed-013,Mango Juice 1L,Refreshing mango fruit juice.,85,70,12,6,Tropical,Beverages,mango-juice.jpg
-wo-seed-014,Orange Juice 1L,Refreshing orange fruit juice.,85,70,12,6,Tropical,Beverages,orange-juice.jpg
-wo-seed-015,Soft Drink 500ml,Refreshing carbonated soft drink.,30,24,24,12,FizzUp,Beverages,soft-drink.jpg
-wo-seed-016,Laundry Powder 2kg,Powerful laundry detergent for everyday washing.,180,145,12,6,CleanPro,Household,laundry-2kg.jpg
-wo-seed-017,Laundry Powder 1kg,Effective detergent for household laundry.,95,76,20,10,CleanPro,Household,laundry-1kg.jpg
-wo-seed-018,Dishwashing Liquid 750ml,Liquid detergent for cleaning dishes.,70,55,20,10,CleanPro,Household,dishwashing.jpg
-wo-seed-019,Toilet Cleaner 500ml,Powerful toilet cleaning solution.,65,50,20,10,CleanPro,Household,toilet-cleaner.jpg
-wo-seed-020,Floor Cleaner 1L,Multi-purpose floor cleaning solution.,95,75,12,6,FreshHome,Household,floor-cleaner.jpg
-wo-seed-021,Bath Soap 100g,Gentle soap for everyday bathing.,35,27,24,12,FreshCare,Personal Care,bath-soap.jpg
-wo-seed-022,Shampoo 400ml,Daily care shampoo for healthy hair.,140,110,12,6,FreshCare,Personal Care,shampoo.jpg
-wo-seed-023,Toothpaste 100ml,Fluoride toothpaste for daily oral care.,75,60,24,12,SmilePlus,Personal Care,toothpaste.jpg
-wo-seed-024,Body Lotion 400ml,Moisturizing body lotion.,150,120,12,6,SoftSkin,Personal Care,body-lotion.jpg
-wo-seed-025,Deodorant 150ml,Long-lasting body deodorant.,120,95,12,6,FreshCare,Personal Care,deodorant.jpg
-wo-seed-026,Premium Rice 25kg Test 26,"Premium long grain rice suitable for homes, restaurants and retailers.",851,721,5,5,Gambia Foods,Groceries,rice-25kg.jpg
-wo-seed-027,Premium Rice 10kg Test 27,Quality long grain rice for everyday cooking.,382,322,10,5,Gambia Foods,Groceries,rice-10kg.jpg
-wo-seed-028,Parboiled Rice 25kg Test 28,High quality parboiled rice.,903,763,5,5,WestAfrica Foods,Groceries,parboiled-rice.jpg
-wo-seed-029,Cooking Oil 5L Test 29,Refined vegetable cooking oil.,424,354,10,5,SunGold,Groceries,cooking-oil-5l.jpg
-wo-seed-030,Cooking Oil 1L Test 30,Refined vegetable cooking oil for household use.,100,83,20,10,SunGold,Groceries,cooking-oil-1l.jpg
-wo-seed-031,Sugar 1kg Test 31,Premium white granulated sugar.,81,66,20,10,SweetLife,Groceries,sugar-1kg.jpg
-wo-seed-032,Sugar 5kg Test 32,Premium white granulated sugar in a 5kg package.,347,292,10,5,SweetLife,Groceries,sugar-5kg.jpg
-wo-seed-033,Wheat Flour 1kg Test 33,Fine wheat flour suitable for baking.,88,73,20,10,BakePro,Groceries,wheat-flour.jpg
-wo-seed-034,Corn Flour 1kg Test 34,Fine corn flour for cooking and baking.,94,77,20,10,Gambia Foods,Groceries,corn-flour.jpg
-wo-seed-035,Spaghetti 500g Test 35,Quality durum wheat spaghetti.,65,52,24,12,PastaHouse,Groceries,spaghetti.jpg
-wo-seed-036,Bottled Water 500ml Test 36,Pure bottled drinking water.,26,22,48,24,Gambia Pure,Beverages,water-500ml.jpg
-wo-seed-037,Bottled Water 1.5L Test 37,Pure bottled drinking water.,37,31,24,12,Gambia Pure,Beverages,water-1.5l.jpg
-wo-seed-038,Mango Juice 1L Test 38,Refreshing mango fruit juice.,98,83,12,6,Tropical,Beverages,mango-juice.jpg
-wo-seed-039,Orange Juice 1L Test 39,Refreshing orange fruit juice.,99,84,12,6,Tropical,Beverages,orange-juice.jpg
-wo-seed-040,Soft Drink 500ml Test 40,Refreshing carbonated soft drink.,45,39,24,12,FizzUp,Beverages,soft-drink.jpg
-wo-seed-041,Laundry Powder 2kg Test 41,Powerful laundry detergent for everyday washing.,196,161,12,6,CleanPro,Household,laundry-2kg.jpg
-wo-seed-042,Laundry Powder 1kg Test 42,Effective detergent for household laundry.,112,93,20,10,CleanPro,Household,laundry-1kg.jpg
-wo-seed-043,Dishwashing Liquid 750ml Test 43,Liquid detergent for cleaning dishes.,88,73,20,10,CleanPro,Household,dishwashing.jpg
-wo-seed-044,Toilet Cleaner 500ml Test 44,Powerful toilet cleaning solution.,84,69,20,10,CleanPro,Household,toilet-cleaner.jpg
-wo-seed-045,Floor Cleaner 1L Test 45,Multi-purpose floor cleaning solution.,115,95,12,6,FreshHome,Household,floor-cleaner.jpg
-wo-seed-046,Bath Soap 100g Test 46,Gentle soap for everyday bathing.,56,48,24,12,FreshCare,Personal Care,bath-soap.jpg
-wo-seed-047,Shampoo 400ml Test 47,Daily care shampoo for healthy hair.,162,132,12,6,FreshCare,Personal Care,shampoo.jpg
-wo-seed-048,Toothpaste 100ml Test 48,Fluoride toothpaste for daily oral care.,98,83,24,12,SmilePlus,Personal Care,toothpaste.jpg
-wo-seed-049,Body Lotion 400ml Test 49,Moisturizing body lotion.,174,144,12,6,SoftSkin,Personal Care,body-lotion.jpg
-wo-seed-050,Deodorant 150ml Test 50,Long-lasting body deodorant.,145,120,12,6,FreshCare,Personal Care,deodorant.jpg
-wo-seed-051,Premium Rice 25kg Test 51,"Premium long grain rice suitable for homes, restaurants and retailers.",876,746,5,5,Gambia Foods,Groceries,rice-25kg.jpg
-wo-seed-052,Premium Rice 10kg Test 52,Quality long grain rice for everyday cooking.,407,347,10,5,Gambia Foods,Groceries,rice-10kg.jpg
-wo-seed-053,Parboiled Rice 25kg Test 53,High quality parboiled rice.,928,788,5,5,WestAfrica Foods,Groceries,parboiled-rice.jpg
-wo-seed-054,Cooking Oil 5L Test 54,Refined vegetable cooking oil.,449,379,10,5,SunGold,Groceries,cooking-oil-5l.jpg
-wo-seed-055,Cooking Oil 1L Test 55,Refined vegetable cooking oil for household use.,125,108,20,10,SunGold,Groceries,cooking-oil-1l.jpg
-wo-seed-056,Sugar 1kg Test 56,Premium white granulated sugar.,106,91,20,10,SweetLife,Groceries,sugar-1kg.jpg
-wo-seed-057,Sugar 5kg Test 57,Premium white granulated sugar in a 5kg package.,372,317,10,5,SweetLife,Groceries,sugar-5kg.jpg
-wo-seed-058,Wheat Flour 1kg Test 58,Fine wheat flour suitable for baking.,113,98,20,10,BakePro,Groceries,wheat-flour.jpg
-wo-seed-059,Corn Flour 1kg Test 59,Fine corn flour for cooking and baking.,119,102,20,10,Gambia Foods,Groceries,corn-flour.jpg
-wo-seed-060,Spaghetti 500g Test 60,Quality durum wheat spaghetti.,90,77,24,12,PastaHouse,Groceries,spaghetti.jpg
-wo-seed-061,Bottled Water 500ml Test 61,Pure bottled drinking water.,51,47,48,24,Gambia Pure,Beverages,water-500ml.jpg
-wo-seed-062,Bottled Water 1.5L Test 62,Pure bottled drinking water.,62,56,24,12,Gambia Pure,Beverages,water-1.5l.jpg
-wo-seed-063,Mango Juice 1L Test 63,Refreshing mango fruit juice.,123,108,12,6,Tropical,Beverages,mango-juice.jpg
-wo-seed-064,Orange Juice 1L Test 64,Refreshing orange fruit juice.,124,109,12,6,Tropical,Beverages,orange-juice.jpg
-wo-seed-065,Soft Drink 500ml Test 65,Refreshing carbonated soft drink.,70,64,24,12,FizzUp,Beverages,soft-drink.jpg
-wo-seed-066,Laundry Powder 2kg Test 66,Powerful laundry detergent for everyday washing.,221,186,12,6,CleanPro,Household,laundry-2kg.jpg
-wo-seed-067,Laundry Powder 1kg Test 67,Effective detergent for household laundry.,137,118,20,10,CleanPro,Household,laundry-1kg.jpg
-wo-seed-068,Dishwashing Liquid 750ml Test 68,Liquid detergent for cleaning dishes.,113,98,20,10,CleanPro,Household,dishwashing.jpg
-wo-seed-069,Toilet Cleaner 500ml Test 69,Powerful toilet cleaning solution.,109,94,20,10,CleanPro,Household,toilet-cleaner.jpg
-wo-seed-070,Floor Cleaner 1L Test 70,Multi-purpose floor cleaning solution.,140,120,12,6,FreshHome,Household,floor-cleaner.jpg
-wo-seed-071,Bath Soap 100g Test 71,Gentle soap for everyday bathing.,81,73,24,12,FreshCare,Personal Care,bath-soap.jpg
-wo-seed-072,Shampoo 400ml Test 72,Daily care shampoo for healthy hair.,187,157,12,6,FreshCare,Personal Care,shampoo.jpg
-wo-seed-073,Toothpaste 100ml Test 73,Fluoride toothpaste for daily oral care.,123,108,24,12,SmilePlus,Personal Care,toothpaste.jpg
-wo-seed-074,Body Lotion 400ml Test 74,Moisturizing body lotion.,199,169,12,6,SoftSkin,Personal Care,body-lotion.jpg
-wo-seed-075,Deodorant 150ml Test 75,Long-lasting body deodorant.,170,145,12,6,FreshCare,Personal Care,deodorant.jpg
-wo-seed-076,Premium Rice 25kg Test 76,"Premium long grain rice suitable for homes, restaurants and retailers.",901,771,5,5,Gambia Foods,Groceries,rice-25kg.jpg
-wo-seed-077,Premium Rice 10kg Test 77,Quality long grain rice for everyday cooking.,432,372,10,5,Gambia Foods,Groceries,rice-10kg.jpg
-wo-seed-078,Parboiled Rice 25kg Test 78,High quality parboiled rice.,953,813,5,5,WestAfrica Foods,Groceries,parboiled-rice.jpg
-wo-seed-079,Cooking Oil 5L Test 79,Refined vegetable cooking oil.,474,404,10,5,SunGold,Groceries,cooking-oil-5l.jpg
-wo-seed-080,Cooking Oil 1L Test 80,Refined vegetable cooking oil for household use.,150,133,20,10,SunGold,Groceries,cooking-oil-1l.jpg
-wo-seed-081,Sugar 1kg Test 81,Premium white granulated sugar.,131,116,20,10,SweetLife,Groceries,sugar-1kg.jpg
-wo-seed-082,Sugar 5kg Test 82,Premium white granulated sugar in a 5kg package.,397,342,10,5,SweetLife,Groceries,sugar-5kg.jpg
-wo-seed-083,Wheat Flour 1kg Test 83,Fine wheat flour suitable for baking.,138,123,20,10,BakePro,Groceries,wheat-flour.jpg
-wo-seed-084,Corn Flour 1kg Test 84,Fine corn flour for cooking and baking.,144,127,20,10,Gambia Foods,Groceries,corn-flour.jpg
-wo-seed-085,Spaghetti 500g Test 85,Quality durum wheat spaghetti.,115,102,24,12,PastaHouse,Groceries,spaghetti.jpg
-wo-seed-086,Bottled Water 500ml Test 86,Pure bottled drinking water.,76,72,48,24,Gambia Pure,Beverages,water-500ml.jpg
-wo-seed-087,Bottled Water 1.5L Test 87,Pure bottled drinking water.,87,81,24,12,Gambia Pure,Beverages,water-1.5l.jpg
-wo-seed-088,Mango Juice 1L Test 88,Refreshing mango fruit juice.,148,133,12,6,Tropical,Beverages,mango-juice.jpg
-wo-seed-089,Orange Juice 1L Test 89,Refreshing orange fruit juice.,149,134,12,6,Tropical,Beverages,orange-juice.jpg
-wo-seed-090,Soft Drink 500ml Test 90,Refreshing carbonated soft drink.,95,89,24,12,FizzUp,Beverages,soft-drink.jpg
-wo-seed-091,Laundry Powder 2kg Test 91,Powerful laundry detergent for everyday washing.,246,211,12,6,CleanPro,Household,laundry-2kg.jpg
-wo-seed-092,Laundry Powder 1kg Test 92,Effective detergent for household laundry.,162,143,20,10,CleanPro,Household,laundry-1kg.jpg
-wo-seed-093,Dishwashing Liquid 750ml Test 93,Liquid detergent for cleaning dishes.,138,123,20,10,CleanPro,Household,dishwashing.jpg
-wo-seed-094,Toilet Cleaner 500ml Test 94,Powerful toilet cleaning solution.,134,119,20,10,CleanPro,Household,toilet-cleaner.jpg
-wo-seed-095,Floor Cleaner 1L Test 95,Multi-purpose floor cleaning solution.,165,145,12,6,FreshHome,Household,floor-cleaner.jpg
-wo-seed-096,Bath Soap 100g Test 96,Gentle soap for everyday bathing.,106,98,24,12,FreshCare,Personal Care,bath-soap.jpg
-wo-seed-097,Shampoo 400ml Test 97,Daily care shampoo for healthy hair.,212,182,12,6,FreshCare,Personal Care,shampoo.jpg
-wo-seed-098,Toothpaste 100ml Test 98,Fluoride toothpaste for daily oral care.,148,133,24,12,SmilePlus,Personal Care,toothpaste.jpg
-wo-seed-099,Body Lotion 400ml Test 99,Moisturizing body lotion.,224,194,12,6,SoftSkin,Personal Care,body-lotion.jpg
-wo-seed-100,Deodorant 150ml Test 100,Long-lasting body deodorant.,195,170,12,6,FreshCare,Personal Care,deodorant.jpg
+seed_id,sku,name,description,regular_price,wholesale_price,wholesale_minimum_quantity,quantity_step,brand,category,stock_quantity,manage_stock,low_stock_threshold,weight,length,width,height,tax_status,tax_class,status,catalog_visibility,image_url
+wo-seed-001,WO-SEED-001,Premium Rice 25kg,Wholesale test product: Premium Rice 25kg.,134.00,119.00,20,10,Wholesale Ordering,Staples,110,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-002,WO-SEED-002,Sugar 25kg,Wholesale test product: Sugar 25kg.,85.00,76.00,20,10,Wholesale Ordering,Staples,120,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-003,WO-SEED-003,Wheat Flour 25kg,Wholesale test product: Wheat Flour 25kg.,102.00,90.00,20,10,Wholesale Ordering,Staples,130,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-004,WO-SEED-004,Maize Flour 25kg,Wholesale test product: Maize Flour 25kg.,87.00,76.00,20,10,Wholesale Ordering,Staples,140,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-005,WO-SEED-005,Cooking Oil 25kg,Wholesale test product: Cooking Oil 25kg.,167.00,147.00,20,10,Wholesale Ordering,Cooking,150,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-006,WO-SEED-006,Palm Oil 25kg,Wholesale test product: Palm Oil 25kg.,147.00,128.00,20,10,Wholesale Ordering,Cooking,160,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-007,WO-SEED-007,Milk Powder 25kg,Wholesale test product: Milk Powder 25kg.,228.00,201.00,20,10,Wholesale Ordering,Dairy,170,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-008,WO-SEED-008,Tea 25kg,Wholesale test product: Tea 25kg.,68.00,61.00,20,10,Wholesale Ordering,Beverages,180,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-009,WO-SEED-009,Coffee 25kg,Wholesale test product: Coffee 25kg.,128.00,114.00,20,10,Wholesale Ordering,Beverages,190,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-010,WO-SEED-010,Tomato Paste 25kg,Wholesale test product: Tomato Paste 25kg.,60.00,52.00,20,10,Wholesale Ordering,Canned Goods,100,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-011,WO-SEED-011,Baked Beans 25kg,Wholesale test product: Baked Beans 25kg.,57.00,49.00,20,10,Wholesale Ordering,Canned Goods,110,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-012,WO-SEED-012,Tuna 25kg,Wholesale test product: Tuna 25kg.,84.00,72.00,20,10,Wholesale Ordering,Canned Goods,120,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-013,WO-SEED-013,Biscuits 25kg,Wholesale test product: Biscuits 25kg.,75.00,64.00,20,10,Wholesale Ordering,Snacks,130,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-014,WO-SEED-014,Pasta 25kg,Wholesale test product: Pasta 25kg.,76.00,64.00,20,10,Wholesale Ordering,Staples,140,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-015,WO-SEED-015,Spaghetti 25kg,Wholesale test product: Spaghetti 25kg.,55.00,49.00,20,10,Wholesale Ordering,Staples,150,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-016,WO-SEED-016,Macaroni 25kg,Wholesale test product: Macaroni 25kg.,55.00,49.00,20,10,Wholesale Ordering,Staples,160,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-017,WO-SEED-017,Couscous 25kg,Wholesale test product: Couscous 25kg.,76.00,67.00,20,10,Wholesale Ordering,Staples,170,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-018,WO-SEED-018,Salt 25kg,Wholesale test product: Salt 25kg.,37.00,31.00,20,10,Wholesale Ordering,Staples,180,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-019,WO-SEED-019,Seasoning Cubes 25kg,Wholesale test product: Seasoning Cubes 25kg.,54.00,46.00,20,10,Wholesale Ordering,Cooking,190,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-020,WO-SEED-020,Peanut Butter 25kg,Wholesale test product: Peanut Butter 25kg.,103.00,89.00,20,10,Wholesale Ordering,Spreads,100,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-021,WO-SEED-021,Rice Bulk Pack 21,Wholesale test product: Rice Bulk Pack 21.,152.00,131.00,20,10,Wholesale Ordering,Staples,110,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-022,WO-SEED-022,Sugar Bulk Pack 22,Wholesale test product: Sugar Bulk Pack 22.,82.00,74.00,20,10,Wholesale Ordering,Staples,120,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-023,WO-SEED-023,Wheat Flour Bulk Pack 23,Wholesale test product: Wheat Flour Bulk Pack 23.,99.00,88.00,20,10,Wholesale Ordering,Staples,130,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-024,WO-SEED-024,Maize Flour Bulk Pack 24,Wholesale test product: Maize Flour Bulk Pack 24.,84.00,74.00,20,10,Wholesale Ordering,Staples,140,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-025,WO-SEED-025,Cooking Oil 10kg,Wholesale test product: Cooking Oil 10kg.,164.00,145.00,20,10,Wholesale Ordering,Cooking,150,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-026,WO-SEED-026,Palm Oil Bulk Pack 26,Wholesale test product: Palm Oil Bulk Pack 26.,144.00,126.00,20,10,Wholesale Ordering,Cooking,160,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-027,WO-SEED-027,Milk Powder Bulk Pack 27,Wholesale test product: Milk Powder Bulk Pack 27.,225.00,199.00,20,10,Wholesale Ordering,Dairy,170,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-028,WO-SEED-028,Tea Bulk Pack 28,Wholesale test product: Tea Bulk Pack 28.,86.00,73.00,20,10,Wholesale Ordering,Beverages,180,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-029,WO-SEED-029,Coffee Bulk Pack 29,Wholesale test product: Coffee Bulk Pack 29.,125.00,112.00,20,10,Wholesale Ordering,Beverages,190,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-030,WO-SEED-030,Tomato Paste 10kg,Wholesale test product: Tomato Paste 10kg.,57.00,50.00,20,10,Wholesale Ordering,Canned Goods,100,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-031,WO-SEED-031,Baked Beans Bulk Pack 31,Wholesale test product: Baked Beans Bulk Pack 31.,54.00,47.00,20,10,Wholesale Ordering,Canned Goods,110,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-032,WO-SEED-032,Tuna Bulk Pack 32,Wholesale test product: Tuna Bulk Pack 32.,81.00,70.00,20,10,Wholesale Ordering,Canned Goods,120,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-033,WO-SEED-033,Biscuits Bulk Pack 33,Wholesale test product: Biscuits Bulk Pack 33.,72.00,62.00,20,10,Wholesale Ordering,Snacks,130,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-034,WO-SEED-034,Pasta Bulk Pack 34,Wholesale test product: Pasta Bulk Pack 34.,73.00,62.00,20,10,Wholesale Ordering,Staples,140,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-035,WO-SEED-035,Spaghetti 10kg,Wholesale test product: Spaghetti 10kg.,73.00,61.00,20,10,Wholesale Ordering,Staples,150,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-036,WO-SEED-036,Macaroni Bulk Pack 36,Wholesale test product: Macaroni Bulk Pack 36.,52.00,47.00,20,10,Wholesale Ordering,Staples,160,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-037,WO-SEED-037,Couscous Bulk Pack 37,Wholesale test product: Couscous Bulk Pack 37.,73.00,65.00,20,10,Wholesale Ordering,Staples,170,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-038,WO-SEED-038,Salt Bulk Pack 38,Wholesale test product: Salt Bulk Pack 38.,34.00,29.00,20,10,Wholesale Ordering,Staples,180,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-039,WO-SEED-039,Seasoning Cubes Bulk Pack 39,Wholesale test product: Seasoning Cubes Bulk Pack 39.,51.00,44.00,20,10,Wholesale Ordering,Cooking,190,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-040,WO-SEED-040,Peanut Butter 10kg,Wholesale test product: Peanut Butter 10kg.,100.00,87.00,20,10,Wholesale Ordering,Spreads,100,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-041,WO-SEED-041,Rice Bulk Pack 41,Wholesale test product: Rice Bulk Pack 41.,149.00,129.00,20,10,Wholesale Ordering,Staples,110,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-042,WO-SEED-042,Sugar Bulk Pack 42,Wholesale test product: Sugar Bulk Pack 42.,100.00,86.00,20,10,Wholesale Ordering,Staples,120,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-043,WO-SEED-043,Wheat Flour Bulk Pack 43,Wholesale test product: Wheat Flour Bulk Pack 43.,96.00,86.00,20,10,Wholesale Ordering,Staples,130,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-044,WO-SEED-044,Maize Flour Bulk Pack 44,Wholesale test product: Maize Flour Bulk Pack 44.,81.00,72.00,20,10,Wholesale Ordering,Staples,140,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-045,WO-SEED-045,Cooking Oil 5kg,Wholesale test product: Cooking Oil 5kg.,161.00,143.00,20,10,Wholesale Ordering,Cooking,150,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-046,WO-SEED-046,Palm Oil Bulk Pack 46,Wholesale test product: Palm Oil Bulk Pack 46.,141.00,124.00,20,10,Wholesale Ordering,Cooking,160,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-047,WO-SEED-047,Milk Powder Bulk Pack 47,Wholesale test product: Milk Powder Bulk Pack 47.,222.00,197.00,20,10,Wholesale Ordering,Dairy,170,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-048,WO-SEED-048,Tea Bulk Pack 48,Wholesale test product: Tea Bulk Pack 48.,83.00,71.00,20,10,Wholesale Ordering,Beverages,180,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-049,WO-SEED-049,Coffee Bulk Pack 49,Wholesale test product: Coffee Bulk Pack 49.,143.00,124.00,20,10,Wholesale Ordering,Beverages,190,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-050,WO-SEED-050,Tomato Paste 5kg,Wholesale test product: Tomato Paste 5kg.,54.00,48.00,20,10,Wholesale Ordering,Canned Goods,100,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-051,WO-SEED-051,Baked Beans Bulk Pack 51,Wholesale test product: Baked Beans Bulk Pack 51.,51.00,45.00,20,10,Wholesale Ordering,Canned Goods,110,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-052,WO-SEED-052,Tuna Bulk Pack 52,Wholesale test product: Tuna Bulk Pack 52.,78.00,68.00,20,10,Wholesale Ordering,Canned Goods,120,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-053,WO-SEED-053,Biscuits Bulk Pack 53,Wholesale test product: Biscuits Bulk Pack 53.,69.00,60.00,20,10,Wholesale Ordering,Snacks,130,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-054,WO-SEED-054,Pasta Bulk Pack 54,Wholesale test product: Pasta Bulk Pack 54.,70.00,60.00,20,10,Wholesale Ordering,Staples,140,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-055,WO-SEED-055,Spaghetti 5kg,Wholesale test product: Spaghetti 5kg.,70.00,59.00,20,10,Wholesale Ordering,Staples,150,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-056,WO-SEED-056,Macaroni Bulk Pack 56,Wholesale test product: Macaroni Bulk Pack 56.,70.00,59.00,20,10,Wholesale Ordering,Staples,160,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-057,WO-SEED-057,Couscous Bulk Pack 57,Wholesale test product: Couscous Bulk Pack 57.,70.00,63.00,20,10,Wholesale Ordering,Staples,170,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-058,WO-SEED-058,Salt Bulk Pack 58,Wholesale test product: Salt Bulk Pack 58.,31.00,27.00,20,10,Wholesale Ordering,Staples,180,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-059,WO-SEED-059,Seasoning Cubes Bulk Pack 59,Wholesale test product: Seasoning Cubes Bulk Pack 59.,48.00,42.00,20,10,Wholesale Ordering,Cooking,190,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-060,WO-SEED-060,Peanut Butter 5kg,Wholesale test product: Peanut Butter 5kg.,97.00,85.00,20,10,Wholesale Ordering,Spreads,100,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-061,WO-SEED-061,Rice Bulk Pack 61,Wholesale test product: Rice Bulk Pack 61.,146.00,127.00,20,10,Wholesale Ordering,Staples,110,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-062,WO-SEED-062,Sugar Bulk Pack 62,Wholesale test product: Sugar Bulk Pack 62.,97.00,84.00,20,10,Wholesale Ordering,Staples,120,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-063,WO-SEED-063,Wheat Flour Bulk Pack 63,Wholesale test product: Wheat Flour Bulk Pack 63.,114.00,98.00,20,10,Wholesale Ordering,Staples,130,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-064,WO-SEED-064,Maize Flour Bulk Pack 64,Wholesale test product: Maize Flour Bulk Pack 64.,78.00,70.00,20,10,Wholesale Ordering,Staples,140,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-065,WO-SEED-065,Cooking Oil 2kg,Wholesale test product: Cooking Oil 2kg.,158.00,141.00,20,10,Wholesale Ordering,Cooking,150,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-066,WO-SEED-066,Palm Oil Bulk Pack 66,Wholesale test product: Palm Oil Bulk Pack 66.,138.00,122.00,20,10,Wholesale Ordering,Cooking,160,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-067,WO-SEED-067,Milk Powder Bulk Pack 67,Wholesale test product: Milk Powder Bulk Pack 67.,219.00,195.00,20,10,Wholesale Ordering,Dairy,170,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-068,WO-SEED-068,Tea Bulk Pack 68,Wholesale test product: Tea Bulk Pack 68.,80.00,69.00,20,10,Wholesale Ordering,Beverages,180,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-069,WO-SEED-069,Coffee Bulk Pack 69,Wholesale test product: Coffee Bulk Pack 69.,140.00,122.00,20,10,Wholesale Ordering,Beverages,190,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-070,WO-SEED-070,Tomato Paste 2kg,Wholesale test product: Tomato Paste 2kg.,72.00,60.00,20,10,Wholesale Ordering,Canned Goods,100,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-071,WO-SEED-071,Baked Beans Bulk Pack 71,Wholesale test product: Baked Beans Bulk Pack 71.,48.00,43.00,20,10,Wholesale Ordering,Canned Goods,110,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-072,WO-SEED-072,Tuna Bulk Pack 72,Wholesale test product: Tuna Bulk Pack 72.,75.00,66.00,20,10,Wholesale Ordering,Canned Goods,120,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-073,WO-SEED-073,Biscuits Bulk Pack 73,Wholesale test product: Biscuits Bulk Pack 73.,66.00,58.00,20,10,Wholesale Ordering,Snacks,130,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-074,WO-SEED-074,Pasta Bulk Pack 74,Wholesale test product: Pasta Bulk Pack 74.,67.00,58.00,20,10,Wholesale Ordering,Staples,140,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-075,WO-SEED-075,Spaghetti 2kg,Wholesale test product: Spaghetti 2kg.,67.00,57.00,20,10,Wholesale Ordering,Staples,150,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-076,WO-SEED-076,Macaroni Bulk Pack 76,Wholesale test product: Macaroni Bulk Pack 76.,67.00,57.00,20,10,Wholesale Ordering,Staples,160,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-077,WO-SEED-077,Couscous Bulk Pack 77,Wholesale test product: Couscous Bulk Pack 77.,88.00,75.00,20,10,Wholesale Ordering,Staples,170,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-078,WO-SEED-078,Salt Bulk Pack 78,Wholesale test product: Salt Bulk Pack 78.,28.00,25.00,20,10,Wholesale Ordering,Staples,180,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-079,WO-SEED-079,Seasoning Cubes Bulk Pack 79,Wholesale test product: Seasoning Cubes Bulk Pack 79.,45.00,40.00,20,10,Wholesale Ordering,Cooking,190,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-080,WO-SEED-080,Peanut Butter 2kg,Wholesale test product: Peanut Butter 2kg.,94.00,83.00,20,10,Wholesale Ordering,Spreads,100,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-081,WO-SEED-081,Rice Bulk Pack 81,Wholesale test product: Rice Bulk Pack 81.,143.00,125.00,20,10,Wholesale Ordering,Staples,110,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-082,WO-SEED-082,Sugar Bulk Pack 82,Wholesale test product: Sugar Bulk Pack 82.,94.00,82.00,20,10,Wholesale Ordering,Staples,120,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-083,WO-SEED-083,Wheat Flour Bulk Pack 83,Wholesale test product: Wheat Flour Bulk Pack 83.,111.00,96.00,20,10,Wholesale Ordering,Staples,130,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-084,WO-SEED-084,Maize Flour Bulk Pack 84,Wholesale test product: Maize Flour Bulk Pack 84.,96.00,82.00,20,10,Wholesale Ordering,Staples,140,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-085,WO-SEED-085,Cooking Oil 1kg,Wholesale test product: Cooking Oil 1kg.,155.00,139.00,20,10,Wholesale Ordering,Cooking,150,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-086,WO-SEED-086,Palm Oil Bulk Pack 86,Wholesale test product: Palm Oil Bulk Pack 86.,135.00,120.00,20,10,Wholesale Ordering,Cooking,160,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-087,WO-SEED-087,Milk Powder Bulk Pack 87,Wholesale test product: Milk Powder Bulk Pack 87.,216.00,193.00,20,10,Wholesale Ordering,Dairy,170,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-088,WO-SEED-088,Tea Bulk Pack 88,Wholesale test product: Tea Bulk Pack 88.,77.00,67.00,20,10,Wholesale Ordering,Beverages,180,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-089,WO-SEED-089,Coffee Bulk Pack 89,Wholesale test product: Coffee Bulk Pack 89.,137.00,120.00,20,10,Wholesale Ordering,Beverages,190,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-090,WO-SEED-090,Tomato Paste 1kg,Wholesale test product: Tomato Paste 1kg.,69.00,58.00,20,10,Wholesale Ordering,Canned Goods,100,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-091,WO-SEED-091,Baked Beans Bulk Pack 91,Wholesale test product: Baked Beans Bulk Pack 91.,66.00,55.00,20,10,Wholesale Ordering,Canned Goods,110,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-092,WO-SEED-092,Tuna Bulk Pack 92,Wholesale test product: Tuna Bulk Pack 92.,72.00,64.00,20,10,Wholesale Ordering,Canned Goods,120,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-093,WO-SEED-093,Biscuits Bulk Pack 93,Wholesale test product: Biscuits Bulk Pack 93.,63.00,56.00,20,10,Wholesale Ordering,Snacks,130,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-094,WO-SEED-094,Pasta Bulk Pack 94,Wholesale test product: Pasta Bulk Pack 94.,64.00,56.00,20,10,Wholesale Ordering,Staples,140,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-095,WO-SEED-095,Spaghetti 1kg,Wholesale test product: Spaghetti 1kg.,64.00,55.00,20,10,Wholesale Ordering,Staples,150,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-096,WO-SEED-096,Macaroni Bulk Pack 96,Wholesale test product: Macaroni Bulk Pack 96.,64.00,55.00,20,10,Wholesale Ordering,Staples,160,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-097,WO-SEED-097,Couscous Bulk Pack 97,Wholesale test product: Couscous Bulk Pack 97.,85.00,73.00,20,10,Wholesale Ordering,Staples,170,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-098,WO-SEED-098,Salt Bulk Pack 98,Wholesale test product: Salt Bulk Pack 98.,46.00,37.00,20,10,Wholesale Ordering,Staples,180,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-099,WO-SEED-099,Seasoning Cubes Bulk Pack 99,Wholesale test product: Seasoning Cubes Bulk Pack 99.,42.00,38.00,20,10,Wholesale Ordering,Cooking,190,1,10,1,10,10,10,taxable,,publish,visible,
+wo-seed-100,WO-SEED-100,Peanut Butter 1kg,Wholesale test product: Peanut Butter 1kg.,91.00,81.00,20,10,Wholesale Ordering,Spreads,100,1,10,1,10,10,10,taxable,,publish,visible,

@@ -7,6 +7,7 @@ use WholesaleOrdering\Admin\CustomersAdmin;
 use WholesaleOrdering\Admin\OrdersAdmin;
 use WholesaleOrdering\Admin\ProductsAdmin;
 use WholesaleOrdering\Admin\ReportsAdmin;
+use WholesaleOrdering\Admin\ProductCsvImporter;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -28,10 +29,12 @@ final class Admin {
 		add_action( 'admin_enqueue_scripts', array( self::class, 'enqueue_assets' ) );
 
 		ApplicationsAdmin::register();
+		ProductCsvImporter::register();
 		CustomersAdmin::register();
 		OrdersAdmin::register();
 		ProductsAdmin::register();
 		ReportsAdmin::register();
+		
 	}
 
 	public static function register_menu(): void {
