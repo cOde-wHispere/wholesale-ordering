@@ -2,297 +2,152 @@
 
 namespace WholesaleOrdering;
 
+use WholesaleOrdering\Admin\Admin;
+use WholesaleOrdering\Auth\Registration;
+use WholesaleOrdering\Account\Account;
+use WholesaleOrdering\Cart\CartIntegration;
+use WholesaleOrdering\Checkout\CheckoutIntegration;
 use WholesaleOrdering\CLI\ProductSeedCommand;
+use WholesaleOrdering\Frontend\Frontend;
 use WholesaleOrdering\Infrastructure\Config;
 use WholesaleOrdering\Infrastructure\Logger;
 use WholesaleOrdering\Infrastructure\MigrationRunner;
 use WholesaleOrdering\Infrastructure\Requirements;
+use WholesaleOrdering\Orders\OrderIntegration;
 use WholesaleOrdering\Pricing\WooCommercePricingIntegration;
 use WholesaleOrdering\Products\ProductFields;
-use WholesaleOrdering\Security\PricingLeakageProtection;
 use WholesaleOrdering\Security\DocumentSecurity;
-use WholesaleOrdering\Cart\CartIntegration;
-use WholesaleOrdering\Checkout\CheckoutIntegration;
-use WholesaleOrdering\Orders\OrderIntegration;
-use WholesaleOrdering\Frontend\Frontend;
-use WholesaleOrdering\Account\Account;
-use WholesaleOrdering\Admin\Admin;
-use WholesaleOrdering\Auth\Registration;
-
+use WholesaleOrdering\Security\PricingLeakageProtection;
 
 defined( 'ABSPATH' ) || exit;
+
 /**
+ * Main plugin bootstrap class.
+ */
+final class Plugin {
 
-* Main plugin bootstrap class.
-  */
-  final class Plugin {
+	private static bool $initialized = false;
 
-  /**
+	public static function init(): void {
+		if ( self::$initialized ) {
+			return;
+		}
 
-  * Prevent initialization more than once.
-  *
-  * @var bool
-    */
-    private static bool $initialized = false;
+		self::$initialized = true;
 
-  /**
+		if ( ! Requirements::php_compatible() ) {
+			Logger::error(
+				'Plugin initialization aborted: PHP version requirement not satisfied.',
+				array(
+					'required' => '8.3',
+					'current'  => PHP_VERSION,
+				)
+			);
 
-  * Initialize the plugin.
-  *
-  * @return void
-    */
-    public static function init(): void {
-    if ( self::$initialized ) {
-    return;
-    }
+			add_action( 'admin_notices', array( self::class, 'php_missing_notice' ) );
+			return;
+		}
 
-    self::$initialized = true;
+		add_action( 'plugins_loaded', array( self::class, 'plugins_loaded' ), 20 );
+	}
 
-    if ( ! Requirements::php_compatible() ) {
-    Logger::error(
-    'Plugin initialization aborted: PHP version requirement not satisfied.',
-    array(
-    'required' => '8.3',
-    'current'  => PHP_VERSION,
-    )
-    );
+	public static function plugins_loaded(): void {
+		if ( ! Requirements::woocommerce_available() ) {
+			Logger::warning( 'Wholesale Ordering initialization skipped: WooCommerce is not available.' );
+			add_action( 'admin_notices', array( self::class, 'woocommerce_missing_notice' ) );
+			return;
+		}
 
-     add_action( 
-         'admin_notices', 
-         array( self::class, 'php_missing_notice' ) 
-     ); 
+		self::register_runtime();
 
-     return; 
+		update_option( Config::OPTION_VERSION, Config::VERSION, false );
 
-    }
+		Logger::info(
+			'Wholesale Ordering plugin initialized.',
+			array( 'version' => Config::VERSION )
+		);
+	}
 
-    /*
-
-    * WooCommerce may not yet be loaded when this plugin bootstrap
-    * file executes. Dependency checks therefore complete on the
-    * plugins_loaded hook.
-      */
-      add_action(
-      'plugins_loaded',
-      array( self::class, 'plugins_loaded' ),
-      20
-      );
-      }
-
-  /**
-
-  * Finalize plugin initialization after WordPress plugins load.
-  *
-  * @return void
-    */
-    public static function plugins_loaded(): void {
-    if ( ! Requirements::woocommerce_available() ) {
-    Logger::warning(
-    'Wholesale Ordering initialization skipped: WooCommerce is not available.'
-    );
-
-     add_action( 
-         'admin_notices', 
-         array( self::class, 'woocommerce_missing_notice' ) 
-     ); 
-
-     return; 
-
-    }
-
-    self::register_runtime();
-
-    update_option(
-    Config::OPTION_VERSION,
-    Config::VERSION,
-    false
-    );
-
-    Logger::info(
-    'Wholesale Ordering plugin initialized.',
-    array(
-    'version' => Config::VERSION,
-    )
-    );
-    }
-
-  /**
-
-  * Register runtime services and hooks.
-  *
-  * @return void
-    */
-    private static function register_runtime(): void {
-    /*
-
-    * Database/schema and domain framework state.
-      */
-      MigrationRunner::run();
-
-    /*
-
-    * Phase 5 administration foundation.
-      */
-      Admin::register();
-
-    /*
-
-    * Product administration fields and metadata persistence.
-      */
-      ProductFields::register();
-
-    /*
-
-    * Authoritative WooCommerce pricing integration.
-    *
-    * This service is responsible for applying the PricingService
-    * decision to WooCommerce product prices, price HTML, cart totals
-    * and variation AJAX responses.
-      */
-      $pricing_integration = new WooCommercePricingIntegration();
-
-    $pricing_integration->register();
-    (new CartIntegration())->register();
-    (new CheckoutIntegration())->register();
-    (new OrderIntegration())->register();
-
-    /*
-
-    * Secondary exposure protection.
-    *
-    * This protects REST responses, structured data and authenticated
-    * request caching from leaking customer-specific wholesale prices.
-      */
-      PricingLeakageProtection::register();
-
-      /*
-	 * Development/staging WP-CLI product fixture commands.
+	/**
+	 * Register runtime services and hooks.
+	 *
+	 * WooCommerce remains authoritative for catalogue, orders, totals and
+	 * store configuration. The plugin adds wholesale-specific behavior and
+	 * its Shop Manager operational interface around those systems.
 	 */
-      ProductSeedCommand::register();
+	private static function register_runtime(): void {
+		MigrationRunner::run();
 
-        // Phase 7 secure document boundary and protected download handler.
-        DocumentSecurity::register();
+		// Phase 5 Shop Manager administration.
+		Admin::register();
 
-    /*
+		// WooCommerce product fields plus the V1 single Wholesale Price field.
+		ProductFields::register();
 
-    * Phase 6 customer-facing storefront and account experience.
-    * WooCommerce remains the catalogue, cart, checkout and order engine.
-      */
-      Frontend::register();
-      Account::register();
-      Registration::register();
-      }
+		$pricing_integration = new WooCommercePricingIntegration();
+		$pricing_integration->register();
 
-  /**
+		( new CartIntegration() )->register();
+		( new CheckoutIntegration() )->register();
+		( new OrderIntegration() )->register();
 
-  * Display a PHP dependency notice.
-  *
-  * @return void
-    */
-    public static function php_missing_notice(): void {
-    if ( ! current_user_can( 'activate_plugins' ) ) {
-    return;
-    }
+		// Protect REST/structured-data/authenticated-cache exposure of pricing.
+		PricingLeakageProtection::register();
 
-    ?>
+		// Development/staging fixture command; no direct DB writes from Python.
+		ProductSeedCommand::register();
 
-     <div class="notice notice-error"> 
-         <p> 
-             <strong>Wholesale Ordering</strong> 
-             requires PHP 8.3 or higher. 
-         </p> 
-     </div> 
-     <?php 
+		// Protected supporting-document boundary.
+		DocumentSecurity::register();
 
-  }
+		// Phase 6 customer-facing experience.
+		Frontend::register();
+		Account::register();
+		Registration::register();
+	}
 
-  /**
+	public static function php_missing_notice(): void {
+		if ( ! current_user_can( 'activate_plugins' ) ) {
+			return;
+		}
+		?>
+		<div class="notice notice-error"><p><strong><?php echo esc_html__( 'Wholesale Ordering', 'wholesale-ordering' ); ?></strong> <?php echo esc_html__( 'requires PHP 8.3 or higher.', 'wholesale-ordering' ); ?></p></div>
+		<?php
+	}
 
-  * Display a WooCommerce dependency notice.
-  *
-  * @return void
-    */
-    public static function woocommerce_missing_notice(): void {
-    if ( ! current_user_can( 'activate_plugins' ) ) {
-    return;
-    }
+	public static function woocommerce_missing_notice(): void {
+		if ( ! current_user_can( 'activate_plugins' ) ) {
+			return;
+		}
+		?>
+		<div class="notice notice-error"><p><strong><?php echo esc_html__( 'Wholesale Ordering', 'wholesale-ordering' ); ?></strong> <?php echo esc_html__( 'requires WooCommerce to be installed and active.', 'wholesale-ordering' ); ?></p></div>
+		<?php
+	}
 
-    ?>
+	public static function activate(): void {
+		if ( ! Requirements::php_compatible() ) {
+			wp_die(
+				esc_html__( 'Wholesale Ordering requires PHP 8.3 or higher.', 'wholesale-ordering' ),
+				esc_html__( 'Plugin activation failed', 'wholesale-ordering' ),
+				array( 'back_link' => true )
+			);
+		}
 
-     <div class="notice notice-error"> 
-         <p> 
-             <strong>Wholesale Ordering</strong> 
-             requires WooCommerce to be installed and active. 
-         </p> 
-     </div> 
-     <?php 
+		update_option( Config::OPTION_VERSION, Config::VERSION, false );
+		MigrationRunner::run();
 
-  }
+		Logger::info(
+			'Wholesale Ordering plugin activated.',
+			array( 'version' => Config::VERSION )
+		);
+	}
 
-  /**
+	public static function deactivate(): void {
+		Logger::info(
+			'Wholesale Ordering plugin deactivated.',
+			array( 'version' => Config::VERSION )
+		);
+	}
 
-  * Activate the plugin.
-  *
-  * @return void
-    */
-    public static function activate(): void {
-    if ( ! Requirements::php_compatible() ) {
-    wp_die(
-    esc_html__(
-    'Wholesale Ordering requires PHP 8.3 or higher.',
-    'wholesale-ordering'
-    ),
-    esc_html__(
-    'Plugin activation failed',
-    'wholesale-ordering'
-    ),
-    array(
-    'back_link' => true,
-    )
-    );
-    }
-
-    /*
-
-    * WooCommerce does not need to be loaded during activation.
-    * Runtime dependency enforcement occurs during plugins_loaded.
-      */
-      update_option(
-      Config::OPTION_VERSION,
-      Config::VERSION,
-      false
-      );
-
-    MigrationRunner::run();
-
-    Logger::info(
-    'Wholesale Ordering plugin activated.',
-    array(
-    'version' => Config::VERSION,
-    )
-    );
-    }
-
-  /**
-
-  * Deactivate the plugin.
-  *
-  * Deactivation must not remove business data.
-  *
-  * @return void
-    */
-    public static function deactivate(): void {
-    Logger::info(
-    'Wholesale Ordering plugin deactivated.',
-    array(
-    'version' => Config::VERSION,
-    )
-    );
-    }
-
-  /**
-
-  * Private constructor.
-    */
-    private function __construct() {}
-    }
+	private function __construct() {}
+}
