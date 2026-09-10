@@ -12,7 +12,7 @@ final class ReportsAdmin {
 
 	public static function register(): void {
 		if ( ! is_admin() ) { return; }
-		add_action( 'admin_menu', array( self::class, 'menu' ), 30 );
+		add_action( 'admin_menu', array( self::class, 'menu' ) );
 		add_action( 'admin_post_' . self::ACTION, array( self::class, 'export' ) );
 	}
 

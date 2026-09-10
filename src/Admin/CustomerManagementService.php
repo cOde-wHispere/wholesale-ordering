@@ -11,43 +11,34 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Customer management service for Phase 5 administration.
  *
- * Customer identity remains owned by WordPress. Wholesale lifecycle
- * transitions remain owned by ApplicationService.
+ * WordPress remains authoritative for customer identity and WooCommerce
+ * remains authoritative for customer order history. Wholesale lifecycle
+ * transitions are delegated to ApplicationService.
  */
 final class CustomerManagementService {
 
 	private ApplicationRepository $application_repository;
 	private ApplicationService $application_service;
 
-	public function __construct(
-		?ApplicationRepository $application_repository = null,
-		?ApplicationService $application_service = null
-	) {
+	public function __construct( ?ApplicationRepository $application_repository = null, ?ApplicationService $application_service = null ) {
 		$this->application_repository = $application_repository ?? new ApplicationRepository();
-		$this->application_service = $application_service ?? new ApplicationService( $this->application_repository );
+		$this->application_service    = $application_service ?? new ApplicationService( $this->application_repository );
 	}
 
-	/**
-	 * Search and filter customers.
-	 *
-	 * Wholesale status is filtered before pagination so totals/pages remain
-	 * correct. WordPress remains authoritative for customer identity.
-	 */
 	public function list_customers( array $args = array() ): array {
-		$search = isset( $args['search'] ) ? sanitize_text_field( (string) $args['search'] ) : '';
-		$status = isset( $args['wholesale_status'] ) ? sanitize_key( (string) $args['wholesale_status'] ) : '';
-		$page = isset( $args['page'] ) ? max( 1, absint( $args['page'] ) ) : 1;
-		$per_page = isset( $args['per_page'] ) ? max( 1, min( 100, absint( $args['per_page'] ) ) ) : 20;
+		$search           = isset( $args['search'] ) ? sanitize_text_field( (string) $args['search'] ) : '';
+		$wholesale_status = isset( $args['wholesale_status'] ) ? sanitize_key( (string) $args['wholesale_status'] ) : '';
+		$page             = isset( $args['page'] ) ? max( 1, absint( $args['page'] ) ) : 1;
+		$per_page         = isset( $args['per_page'] ) ? max( 1, min( 100, absint( $args['per_page'] ) ) ) : 20;
 
 		$query_args = array(
 			'number'  => -1,
 			'orderby' => 'registered',
 			'order'   => 'DESC',
-			'fields'  => 'all',
 		);
 
 		if ( '' !== $search ) {
-			$query_args['search'] = '*' . $search . '*';
+			$query_args['search']         = '*' . $search . '*';
 			$query_args['search_columns'] = array( 'user_login', 'user_email', 'display_name' );
 		}
 
@@ -59,24 +50,20 @@ final class CustomerManagementService {
 			if ( ! $user instanceof \WP_User ) {
 				continue;
 			}
-			$user_status = WholesaleStatus::get( (int) $user->ID );
-			if ( '' !== $status && $user_status !== $status ) {
+
+			$status = WholesaleStatus::get( (int) $user->ID );
+			if ( '' !== $wholesale_status && $status !== $wholesale_status ) {
 				continue;
 			}
-			$filtered[] = $user;
+
+			$filtered[] = $this->build_customer_summary( $user );
 		}
 
 		$total = count( $filtered );
-		$offset = ( $page - 1 ) * $per_page;
-		$items = array_slice( $filtered, $offset, $per_page );
-		$result = array();
-
-		foreach ( $items as $user ) {
-			$result[] = $this->build_customer_summary( $user );
-		}
+		$items = array_slice( $filtered, ( $page - 1 ) * $per_page, $per_page );
 
 		return array(
-			'items'    => $result,
+			'items'    => $items,
 			'total'    => $total,
 			'page'     => $page,
 			'per_page' => $per_page,

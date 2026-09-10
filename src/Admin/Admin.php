@@ -23,7 +23,8 @@ final class Admin {
 			return;
 		}
 
-		add_action( 'admin_menu', array( self::class, 'register_menu' ), 20 );
+		add_action( 'admin_menu', array( self::class, 'register_menu' ), 10 );
+		add_action( 'admin_menu', array( self::class, 'remove_default_dashboard_submenu' ), 99 );
 		add_action( 'admin_enqueue_scripts', array( self::class, 'enqueue_assets' ) );
 
 		ApplicationsAdmin::register();
@@ -53,7 +54,7 @@ final class Admin {
 			__( 'Dashboard', 'wholesale-ordering' ),
 			__( 'Dashboard', 'wholesale-ordering' ),
 			'manage_woocommerce',
-			'wholesale-ordering',
+			'wholesale-ordering-dashboard',
 			array( self::class, 'render_dashboard' )
 		);
 
@@ -65,6 +66,17 @@ final class Admin {
 			'wholesale-ordering-store-operations',
 			array( self::class, 'render_store_operations' )
 		);
+	}
+
+	public static function remove_default_dashboard_submenu(): void {
+		if ( ! current_user_can( 'manage_woocommerce' ) ) {
+			return;
+		}
+
+		// add_menu_page() creates an automatic submenu entry using the parent
+		// slug. Remove that duplicate so the visible button is explicitly
+		// labelled Dashboard. The top-level menu still opens the dashboard.
+		remove_submenu_page( 'wholesale-ordering', 'wholesale-ordering' );
 	}
 
 	public static function enqueue_assets( string $hook ): void {

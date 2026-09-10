@@ -1001,9 +1001,19 @@ final class ProductSeedCommand {
 	private static function build_sku(
 		string $seed_id
 	): string {
-		return strtoupper(
-			'WO-' . sanitize_title( $seed_id )
-		);
+		$seed_id = strtoupper( trim( $seed_id ) );
+		$seed_id = preg_replace( '/[^A-Z0-9_-]+/', '-', $seed_id );
+		$seed_id = trim( (string) $seed_id, '-_' );
+
+		if ( '' === $seed_id ) {
+			throw new \InvalidArgumentException(
+				'Seed ID cannot produce a valid SKU.'
+			);
+		}
+
+		return str_starts_with( $seed_id, 'WO-' )
+			? $seed_id
+			: 'WO-' . $seed_id;
 	}
 
 	/**
