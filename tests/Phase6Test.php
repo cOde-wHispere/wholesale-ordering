@@ -49,6 +49,13 @@ final class Phase6Test extends TestCase {
 
         $this->assertNotFalse(
             has_filter(
+                'woocommerce_product_query_meta_query',
+                array( Frontend::class, 'filter_catalog_meta_query' )
+            )
+        );
+
+        $this->assertNotFalse(
+            has_filter(
                 'woocommerce_quantity_input_args',
                 array( Frontend::class, 'filter_quantity_input_args' )
             )
