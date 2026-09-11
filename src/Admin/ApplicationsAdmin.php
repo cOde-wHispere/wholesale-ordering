@@ -178,7 +178,7 @@ final class ApplicationsAdmin {
 				<tr><th><?php echo esc_html__( 'Company', 'wholesale-ordering' ); ?></th><td><?php echo esc_html( $application->get_company_name() ); ?></td></tr>
 				<tr><th><?php echo esc_html__( 'Business type', 'wholesale-ordering' ); ?></th><td><?php echo esc_html( $application->get_business_type() ); ?></td></tr>
 				<tr><th><?php echo esc_html__( 'Tax number', 'wholesale-ordering' ); ?></th><td><?php echo esc_html( $application->get_tax_number() ); ?></td></tr>
-				<tr><th><?php echo esc_html__( 'Registration number', 'wholesale-ordering' ); ?></th><td><?php echo esc_html( $application->get_registration_number() ); ?></td></tr>
+				<tr><th><?php echo esc_html__( 'Registration number', 'wholesale-ordering' ); ?></th><td><?php echo esc_html( $application->get_business_registration_number() ); ?></td></tr>
 				<tr><th><?php echo esc_html__( 'Status', 'wholesale-ordering' ); ?></th><td><?php echo esc_html( self::status_label( $status ) ); ?></td></tr>
 				<tr><th><?php echo esc_html__( 'Applied', 'wholesale-ordering' ); ?></th><td><?php echo esc_html( self::format_date( $application->get_applied_at() ) ); ?></td></tr>
 				<tr><th><?php echo esc_html__( 'Internal note', 'wholesale-ordering' ); ?></th><td><?php echo nl2br( esc_html( $application->get_internal_note() ) ); ?></td></tr>
