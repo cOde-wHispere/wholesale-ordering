@@ -2648,18 +2648,19 @@ body.wholesale-ordering-site main.wholesale-ordering-home {
    Only applies ≤ 767 px. No other pages or breakpoints affected.
    ============================================================ */
 
-@media (max-width: 767px) {
+@media (max-width: 767px) 
+{
 
   /* ── Shop page ── */
-  body.woocommerce.archive,
+  /*body.woocommerce.archive,
   body.woocommerce-shop {
-    background-color: var(--color-dark, #1a1a2e);
+    background-color: var(--color-dark, #faf8fa98);
   }
 
   /* ── My Account page ── */
-  body.woocommerce-account {
-    background-color: var(--color-dark, #1a1a2e);
-  }
+  /*body.woocommerce-account {
+    background-color: var(--color-dark, #dfdddbe5);
+  }*/
 }
 
 /* ════════════════════════════════════════════════════════════
