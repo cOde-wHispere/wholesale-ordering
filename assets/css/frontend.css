@@ -2642,6 +2642,25 @@ body.wholesale-ordering-site main.wholesale-ordering-home {
   }
 }
 
+/* ============================================================
+   MOBILE BODY BACKGROUND — Shop & My Account
+   Ensures the white cart panel is visible on small screens.
+   Only applies ≤ 767 px. No other pages or breakpoints affected.
+   ============================================================ */
+
+@media (max-width: 767px) {
+
+  /* ── Shop page ── */
+  body.woocommerce.archive,
+  body.woocommerce-shop {
+    background-color: var(--color-dark, #1a1a2e);
+  }
+
+  /* ── My Account page ── */
+  body.woocommerce-account {
+    background-color: var(--color-dark, #1a1a2e);
+  }
+}
 
 /* ════════════════════════════════════════════════════════════
    END OF STYLESHEET
