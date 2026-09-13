@@ -296,7 +296,7 @@ body.wholesale-ordering-site main.wholesale-ordering-home {
   min-width: 0;
 }
 
-/* Centered search - Chinagoods style */
+/* Centered search */
 .wholesale-ordering-header-search {
   position: relative;
   width: 460px;
@@ -448,7 +448,7 @@ body.wholesale-ordering-site main.wholesale-ordering-home {
 
 
 /* ────────────────────────────────────────────────────────────
-   9. DESKTOP SIDEBAR NAVIGATION (Chinagoods-Style)
+   9. DESKTOP SIDEBAR NAVIGATION 
    ──────────────────────────────────────────────────────────── */
 .wholesale-ordering-sidebar {
   position: fixed;
@@ -540,7 +540,7 @@ body.wholesale-ordering-site main.wholesale-ordering-home {
 
 
 /* ────────────────────────────────────────────────────────────
-   10. MOBILE BOTTOM TAB BAR (Chinagoods-Style)
+   10. MOBILE BOTTOM TAB BAR 
    ──────────────────────────────────────────────────────────── */
 .wholesale-ordering-bottom-bar {
   display: none;
@@ -2651,16 +2651,16 @@ body.wholesale-ordering-site main.wholesale-ordering-home {
 @media (max-width: 767px) 
 {
 
-  /* ── Shop page ── */
-  /*body.woocommerce.archive,
-  body.woocommerce-shop {
-    background-color: var(--color-dark, #faf8fa98);
+    .wholesale-ordering-header-cart {
+    background-color: var(--wo-primary);
   }
 
-  /* ── My Account page ── */
-  /*body.woocommerce-account {
-    background-color: var(--color-dark, #dfdddbe5);
-  }*/
+
+  .wholesale-ordering-header-cart:hover,
+  .wholesale-ordering-header-cart:focus-visible {
+    background-color: var(--wo-primary-dark);
+  }
+
 }
 
 /* ════════════════════════════════════════════════════════════
